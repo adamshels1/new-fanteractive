@@ -20,10 +20,10 @@ import helper from '@services/helper'
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
-  const [username, setUsername] = useState('aaaab')
-  const [email, setEmail] = useState('bbbb@mail.ru')
-  const [password, setPassword] = useState('test1234')
-  const [repeatPassword, setRepeatPassword] = useState('test1234')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const checkboxIcon = privacyPolicy ? require('@assets/icons/checkbox-active.png') : require('@assets/icons/Oval.png');
   const onPrivacyPolicy = () => Linking.openURL('https://www.restaurantweeksofatlanta.com/privacy-policy/')
@@ -75,11 +75,11 @@ export default function Login({ navigation }) {
       /> */}
 
 
-      <KeyboardAvoidingView
+      {/* <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       // keyboardVerticalOffset={50}
-      >
+      > */}
         <ScrollView keyboardShouldPersistTaps='always'>
 
           <View style={styles.body}>
@@ -199,7 +199,7 @@ export default function Login({ navigation }) {
 
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
     </ImageBackground>
   )
 }
