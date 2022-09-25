@@ -1,12 +1,14 @@
 import React from 'react'
-import MainStackNavigator from './src/navigation/AppNavigator'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import getStore from './src/redux/store/index';
-const { store, persistor } = getStore();
+// import MainStackNavigator from './src/navigation/AppNavigator'
+// import { Provider } from 'react-redux'
+// import { PersistGate } from 'redux-persist/integration/react'
+// import getStore from './src/redux/store/index';
+import { View } from 'react-native'
+// const { store, persistor } = getStore();
 // import codePush from "react-native-code-push";
 
 function App() {
+  return <View style={{backgroundColor: 'blue', flex: 1}}/>
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
