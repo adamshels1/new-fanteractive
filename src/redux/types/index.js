@@ -1,0 +1,10 @@
+export const TOGGLE_LOADER = 'TOGGLE_LOADER';
+export const SET_USER = 'SET_USER'
+export const SET_TOKEN = 'SET_TOKEN'
+export const LOGOUT = 'LOGOUT'
+export const SET_REWARDS = 'SET_REWARDS'
+
+export const SET_EVENT = 'SET_EVENT'
+export const SET_HIDE_WELCOME = 'SET_HIDE_WELCOME'
+export const SET_UNREAD_NOTIFICATIONS_COUNT = 'SET_UNREAD_NOTIFICATIONS_COUNT'
+export const SET_FEEDS = 'SET_FEEDS'
