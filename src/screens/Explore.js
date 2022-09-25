@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
   body: { alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 17, flex: 1 },
   bodyTop: { marginTop: 46, alignItems: 'center' },
   bodyBottom: { marginTop: 70, width: '100%' },
-  bodyTitle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 24, color: '#121212' },
-  desc: { marginTop: 30, fontFamily: 'Montserrat', fontWeight: '400', color: '#7A7A7A', fontSize: 16, textAlign: 'center', lineHeight: 27 },
+  bodyTitle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 24, color: '#121212' },
+  desc: { marginTop: 30, fontFamily: 'Avenir', fontWeight: '400', color: '#7A7A7A', fontSize: 16, textAlign: 'center', lineHeight: 27 },
   image: { width: 81, height: 81, marginTop: 40 },
   confirmButton: { marginTop: 27, marginBottom: 50 },
-  sendAgainText: { color: '#F2A71D', fontFamily: 'Montserrat', fontWeight: '600', fontSize: 14 },
+  sendAgainText: { color: '#F2A71D', fontFamily: 'Avenir', fontWeight: '600', fontSize: 14 },
   sendAgain: { alignItems: 'center', marginTop: 40 },
 })

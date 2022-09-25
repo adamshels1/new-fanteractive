@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, padding: 0, justifyContent: 'flex-end' },
   container: { marginHorizontal: 10, backgroundColor: '#FFF', borderRadius: 12, bottom: 0 },
 
-  day: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 12, color: '#121212', textAlign: 'center' },
+  day: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 12, color: '#121212', textAlign: 'center' },
   image: { width: '100%', height: 251, borderTopRightRadius: 12, borderTopLeftRadius: 12 },
 
   optionWrap: { flexDirection: 'row', alignItems: 'center' },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
-  title: { marginTop: 11, fontWeight: '600', fontFamily: 'Montserrat', fontSize: 16, color: '#121212' },
-  desc: { marginTop: 10, fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#121212' },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
+  title: { marginTop: 11, fontWeight: '600', fontFamily: 'Avenir', fontSize: 16, color: '#121212' },
+  desc: { marginTop: 10, fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#121212' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' }
 });

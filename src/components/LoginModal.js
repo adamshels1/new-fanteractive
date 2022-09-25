@@ -88,10 +88,10 @@ export default class LoginModal extends Component {
 const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, justifyContent: 'center', paddingTop: '20%' },
   container: { marginHorizontal: 10, backgroundColor: '#FFF', borderRadius: 9, paddingHorizontal: 13, paddingVertical: 20 },
-  text: { marginTop: 15, fontWeight: '400', fontFamily: 'Montserrat', fontSize: 20, lineHeight: 26, color: '#121212', textAlign: 'center', marginBottom: 41 },
+  text: { marginTop: 15, fontWeight: '400', fontFamily: 'Avenir', fontSize: 20, lineHeight: 26, color: '#121212', textAlign: 'center', marginBottom: 41 },
   bodyBottom: { width: '100%' },
   orWrap: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 19 },
-  or: { color: '#B7B7B7', fontFamily: 'Montserrat', fontWeight: '600', fontSize: 14 },
+  or: { color: '#B7B7B7', fontFamily: 'Avenir', fontWeight: '600', fontSize: 14 },
   fbIcon: { width: 18, height: 18, marginRight: 8 },
   emailIcon: { width: 18, height: 18, marginRight: 8 },
   line: { backgroundColor: '#B7B7B7', height: 1, width: '30%' },

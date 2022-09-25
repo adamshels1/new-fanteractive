@@ -239,11 +239,11 @@ const styles = StyleSheet.create({
 
 
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 7 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
   container: { width: '100%', paddingTop: 16, paddingBottom: 16, paddingHorizontal: 17, backgroundColor: '#fff' },
   image: { width: 68, height: 68, marginRight: 15 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
-  textCount: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#848484' },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
+  textCount: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#848484' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 },
   moreIcon: { width: 4, height: 22 },
   mapsIcon: { width: 10, height: 13 },
@@ -253,8 +253,8 @@ const styles = StyleSheet.create({
   commentsIcon: { width: 25, height: 25, marginRight: 7 },
   likeIcon: { width: 28, height: 25, marginRight: 7 },
 
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 18, color: '#121212', maxWidth: '100%' },
-  subTitle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 12, color: '#121212', marginTop: 4 },
-  tag: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 12, color: '#626262', marginTop: 4 },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 18, color: '#121212', maxWidth: '100%' },
+  subTitle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 12, color: '#121212', marginTop: 4 },
+  tag: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 12, color: '#626262', marginTop: 4 },
   tagIcon: { width: 3, height: 3, borderRadius: 1.5, backgroundColor: '#F2A71D', marginHorizontal: 8 },
 })

@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
   },
 
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginRight: 21 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
   image: { width: 46, height: 46, borderRadius: 30, marginRight: 15 },
-  title: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 15, color: '#121212', marginBottom: 7 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
-  textCount: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#848484' },
+  title: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 15, color: '#121212', marginBottom: 7 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
+  textCount: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#848484' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 },
   moreIcon: { width: 4, height: 22 },
   mapsIcon: { width: 10, height: 13 },
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  buttonText: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
+  buttonText: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
   visitIcon: { width: 15, height: 15, marginLeft: 9 },
 
   cardHeader: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   list: { marginTop: 6, paddingHorizontal: 17, marginTop: 13 }
 })

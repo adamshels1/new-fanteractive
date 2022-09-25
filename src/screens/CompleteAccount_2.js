@@ -285,9 +285,9 @@ const styles = StyleSheet.create({
   setProfileText: { fontWeight: '800', fontSize: 12, color: '#5FC521', marginLeft: 12 },
 
   lookumItemStyle: { borderBottomWidth: 1, borderBottomColor: '#DCDCDC', height: 49, justifyContent: 'center' },
-  lookumItemTextStyle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14 },
+  lookumItemTextStyle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14 },
   lookumContentStyle: { height: '80%', borderRadius: 12 },
-  cityButtonText: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#747272' },
+  cityButtonText: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#747272' },
 
   selectWrap: { flexDirection: 'row', justifyContent: 'space-between' },
   selectButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '100%', marginTop: 20, borderBottomWidth: 2, borderColor: '#D6D6D6', },

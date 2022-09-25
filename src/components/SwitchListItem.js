@@ -25,6 +25,6 @@ export default function Button(props) {
 
 const styles = StyleSheet.create({
   wrap: { borderColor: '#DEDEDE', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 15 },
-  text: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 16, },
+  text: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 16, },
   icon: { width: 6, height: 10 }
 });

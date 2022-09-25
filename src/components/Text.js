@@ -7,34 +7,34 @@ export default function CustomText(props) {
   // if (Platform.OS === 'android') {
   //   switch (props?.style?.fontWeight) {
   //     case '100':
-  //       fontFamily = 'Montserrat-Thin'
+  //       fontFamily = 'Avenir-Thin'
   //       break;
   //     case '200':
-  //       fontFamily = 'Montserrat-ExtraLight'
+  //       fontFamily = 'Avenir-ExtraLight'
   //       break;
   //     case '300':
-  //       fontFamily = 'Montserrat-Light'
+  //       fontFamily = 'Avenir-Light'
   //       break;
   //     case '400':
-  //       fontFamily = 'Montserrat-Regular'
+  //       fontFamily = 'Avenir-Regular'
   //       break;
   //     case '500':
-  //       fontFamily = 'Montserrat-Medium'
+  //       fontFamily = 'Avenir-Medium'
   //       break;
   //     case '600':
-  //       fontFamily = 'Montserrat-SemiBold'
+  //       fontFamily = 'Avenir-SemiBold'
   //       break;
   //     case '700':
-  //       fontFamily = 'Montserrat-Bold'
+  //       fontFamily = 'Avenir-Bold'
   //       break;
   //     case '800':
-  //       fontFamily = 'Montserrat-Bold'
+  //       fontFamily = 'Avenir-Bold'
   //       break;
   //     case '900':
-  //       fontFamily = 'Montserrat-ExtraBold'
+  //       fontFamily = 'Avenir-ExtraBold'
   //       break;
   //     default:
-  //       fontFamily = 'Montserrat-Medium'
+  //       fontFamily = 'Avenir-Medium'
   //   }
   // }
   const customStyle = { fontFamily, ...props.style }

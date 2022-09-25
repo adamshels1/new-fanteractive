@@ -259,12 +259,12 @@ const styles = StyleSheet.create({
   },
 
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 7, marginRight: 27 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10 },
   cardHeader: { width: '100%', flexDirection: 'row', paddingTop: 16, paddingBottom: 14, justifyContent: 'space-between', paddingHorizontal: 17 },
   image: { width: 60, height: 60, borderRadius: 30, marginRight: 15 },
-  title: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 18, color: '#121212' },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
-  textCount: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#848484' },
+  title: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 18, color: '#121212' },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
+  textCount: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#848484' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 },
   moreIcon: { width: 4, height: 22 },
   mapsIcon: { width: 10, height: 13 },
@@ -294,9 +294,9 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  buttonText: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
+  buttonText: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
 
-  textTitle: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 14, color: '#FFFFFF', zIndex: 1, textAlign: 'center', marginTop: 30 },
+  textTitle: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 14, color: '#FFFFFF', zIndex: 1, textAlign: 'center', marginTop: 30 },
   image31: { width: '100%', height: 150, position: 'absolute' },
   cardHader: { width: '100%', height: 150, alignItems: 'center' },
   cardHeaderOvarlay: { width: '100%', height: 150, backgroundColor: 'rgba(0,0,0,0.6)', position: 'absolute', zIndex: 1 },
@@ -307,17 +307,17 @@ const styles = StyleSheet.create({
 
   input: { width: '100%', height: 55, borderRadius: 5, borderWidth: 1, paddingHorizontal: 15, fontSize: 14, borderColor: '#B7B7B7', marginBottom: 24, justifyContent: 'center' },
   wrapFiedl: { position: 'absolute', top: -9, left: 18, backgroundColor: '#FFF', zIndex: 9, paddingHorizontal: 5 },
-  textFiedl: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#7A7A7A' },
+  textFiedl: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#7A7A7A' },
 
   cardBody: { marginTop: 11, backgroundColor: '#fff', borderRadius: 12, marginHorizontal: 17, minHeight: 200 },
-  cityButtonText: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#747272' },
+  cityButtonText: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#747272' },
   arrowWrap: { width: 20, height: 30, justifyContent: 'center', alignItems: 'center' },
   arrowIcon: { width: 6, height: 10 },
   wrapDate: { marginHorizontal: 20, borderBottomWidth: 1, borderColor: '#F2A71D', paddingBottom: 7 },
-  dateText: { color: '#121212', fontFamily: 'Montserrat', fontWeight: '400', },
+  dateText: { color: '#121212', fontFamily: 'Avenir', fontWeight: '400', },
   search: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '100%', paddingHorizontal: 12, marginTop: 22 },
 
   lookumItemStyle: { borderBottomWidth: 1, borderBottomColor: '#DCDCDC', height: 49, justifyContent: 'center' },
-  lookumItemTextStyle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14 },
+  lookumItemTextStyle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14 },
   lookumContentStyle: { height: '80%', borderRadius: 12 }
 })

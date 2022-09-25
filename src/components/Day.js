@@ -33,7 +33,7 @@ export default function Day(props) {
 
 const styles = StyleSheet.create({
   container: { width: 70, height: 70, backgroundColor: '#2D77C5', borderRadius: 12, borderColor: '#2D77C5', borderWidth: 1, justifyContent: 'center', alignItems: 'center', margin: '1.8%' },
-  dayText: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 12, color: '#fff' },
-  points: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 16, color: '#2D77C5', marginBottom: 4 },
+  dayText: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 12, color: '#fff' },
+  points: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 16, color: '#2D77C5', marginBottom: 4 },
   checkIcon: { width: 20, height: 20, marginBottom: 7 },
 })

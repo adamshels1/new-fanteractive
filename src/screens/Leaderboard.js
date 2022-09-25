@@ -134,17 +134,17 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   input: { width: '100%', height: 55, borderRadius: 5, borderWidth: 1, paddingHorizontal: 15, fontSize: 14, borderColor: '#B7B7B7', marginBottom: 13, justifyContent: 'center', marginTop: 14 },
   wrapFiedl: { position: 'absolute', top: -9, left: 18, backgroundColor: '#FFF', zIndex: 9, paddingHorizontal: 5 },
-  textFiedl: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#7A7A7A' },
+  textFiedl: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#7A7A7A' },
   availableWrap: {
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
   lookumItemStyle: { borderBottomWidth: 1, borderBottomColor: '#DCDCDC', height: 49, justifyContent: 'center' },
-  lookumItemTextStyle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14 },
+  lookumItemTextStyle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14 },
   lookumContentStyle: { height: '80%', borderRadius: 12 }
 })

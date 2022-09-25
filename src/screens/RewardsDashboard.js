@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4'
   },
   image: { width: 205, height: 189 },
-  title: { fontFamily: 'Montserrat', color: '#121212', fontWeight: '400', fontSize: 24 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
+  title: { fontFamily: 'Avenir', color: '#121212', fontWeight: '400', fontSize: 24 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
   button: { height: 70, backgroundColor: '#fff', borderRadius: 12, width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 23, marginBottom: 10 },
   icon: { width: 36, height: 36, marginRight: 25 },
 })

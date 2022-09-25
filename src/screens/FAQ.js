@@ -116,10 +116,10 @@ export default function FAQ({ route, navigation }) {
                     source={{
                       html: `${item?.content} 
                       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-                      <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+                      <link href='https://fonts.googleapis.com/css?family=Avenir' rel='stylesheet'>
                       <style>
                       body {
-                        font-family: Montserrat;
+                        font-family: Avenir;
                         font-size: 15px;
                         font-weight: 400;
                         line-height: 23px;
@@ -154,8 +154,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   image: { width: 341, height: 201, marginBottom: 19 },
-  title: { fontFamily: 'Montserrat', color: '#121212', fontWeight: '400', fontSize: 18, width: '96%' },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingBottom: 19 },
+  title: { fontFamily: 'Avenir', color: '#121212', fontWeight: '400', fontSize: 18, width: '96%' },
+  text: { fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingBottom: 19 },
   titleWrap: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 19, paddingTop: 23 },
   item: { marginHorizontal: 18, borderColor: '#E2E2E2', borderBottomWidth: 1 },
   arrow: { width: 10, height: 6 },

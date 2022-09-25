@@ -94,12 +94,12 @@ export default function Sponsor(props) {
 }
 
 const styles = StyleSheet.create({
-  becom: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 12, color: '#121212' },
-  platinum: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212', marginLeft: 14 },
+  becom: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 12, color: '#121212' },
+  platinum: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212', marginLeft: 14 },
   sponsorLogo: { width: 50, height: 50, borderRadius: 25, marginRight: 16 },
-  sponsorName: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 18, color: '#121212', marginBottom: 4, maxWidth: '100%' },
-  sponsorType: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#8EBCF2', paddingRight: 5 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
+  sponsorName: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 18, color: '#121212', marginBottom: 4, maxWidth: '100%' },
+  sponsorType: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#8EBCF2', paddingRight: 5 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
 
   sponsor: { backgroundColor: '#fff', marginTop: 12, borderRadius: 15, borderColor: '#95C6FF', borderWidth: 1 },
   sponsorImage: { width: '100%', height: 204, borderTopRightRadius: 15, borderTopLeftRadius: 15 },

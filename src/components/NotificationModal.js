@@ -122,26 +122,26 @@ export default class NotificationModal extends Component {
 const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, justifyContent: 'center', paddingTop: '20%' },
   container: { marginHorizontal: 10, backgroundColor: '#FFF', borderRadius: 9, paddingHorizontal: 13, paddingVertical: 20 },
-  text: { marginTop: 12, fontWeight: '400', fontFamily: 'Montserrat', fontSize: 14, color: '#121212' },
-  day: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 12, color: '#121212', textAlign: 'center' },
-  points: { marginTop: 12, marginBottom: 48, fontWeight: '700', fontFamily: 'Montserrat', fontSize: 35, color: '#2D77C5', textAlign: 'center' },
+  text: { marginTop: 12, fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#121212' },
+  day: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 12, color: '#121212', textAlign: 'center' },
+  points: { marginTop: 12, marginBottom: 48, fontWeight: '700', fontFamily: 'Avenir', fontSize: 35, color: '#2D77C5', textAlign: 'center' },
   image: { width: 151, height: 151, marginTop: 68, marginBottom: 50 },
 
   content: {
     backgroundColor: '#fff',
     borderRadius: 12,
   },
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
-  number: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
+  number: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
   wrapInfo: { width: '70%', marginLeft: 18 },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#7A7A7A' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#7A7A7A' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   image: { width: 55, height: 55, borderRadius: 25 },
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginRight: 11, marginTop: 7 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7, maxWidth: 120 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7, maxWidth: 120 },
 
-  deleteText: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 15, color: '#D91F26', marginBottom: 3 },
-  okText: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 15, color: '#2D77C5', marginBottom: 3 },
+  deleteText: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 15, color: '#D91F26', marginBottom: 3 },
+  okText: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 15, color: '#2D77C5', marginBottom: 3 },
   cardHeader: {
     flexDirection: 'row', borderBottomWidth: 1,
     borderBottomColor: '#E2E2E2',
@@ -154,5 +154,5 @@ const styles = StyleSheet.create({
   buttons: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' },
   button: { width: '49%', height: 55, justifyContent: 'center', alignItems: 'center' },
   line2: { height: 25, width: 1, backgroundColor: '#E2E2E2' },
-  text2: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 13, color: '#7A7A7A', textAlign: 'center' },
+  text2: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 13, color: '#7A7A7A', textAlign: 'center' },
 });

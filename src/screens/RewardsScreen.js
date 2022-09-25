@@ -126,11 +126,11 @@ const styles = StyleSheet.create({
   body: { alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 17, flex: 1 },
   bodyTop: { marginTop: 46, alignItems: 'center' },
   bodyBottom: { marginBottom: 30, width: '100%' },
-  bodyTitle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 24, color: '#121212' },
-  desc: { marginTop: 30, fontFamily: 'Montserrat', fontWeight: '400', color: '#7A7A7A', fontSize: 18 },
+  bodyTitle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 24, color: '#121212' },
+  desc: { marginTop: 30, fontFamily: 'Avenir', fontWeight: '400', color: '#7A7A7A', fontSize: 18 },
   image: { width: 80, height: 80, marginTop: 35 },
   image2: { width: 346, height: 346, marginTop: 51 },
   totalWrap: { height: 68, width: '100%', backgroundColor: '#F5F5F5', alignItems: 'flex-end', justifyContent: 'center', paddingRight: 20 },
-  total: { fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 18 },
+  total: { fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 18 },
   totalCount: { color: '#F2A71D', fontWeight: '700' }
 })

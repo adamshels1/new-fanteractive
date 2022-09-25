@@ -38,13 +38,13 @@ export default function About({ route, navigation }) {
       <ScrollView>
         <View style={{ paddingVertical: 26, paddingHorizontal: 17 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={{ fontFamily: 'Montserrat', color: '#121212', fontWeight: '400', fontSize: 24 }}>
+            <Text style={{ fontFamily: 'Avenir', color: '#121212', fontWeight: '400', fontSize: 24 }}>
               {title}
             </Text>
             <Image style={{ width: 25, height: 32 }} resizeMode='contain' source={require('@assets/icons/badge.png')} />
           </View>
 
-          <Text style={{ fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 }}>
+          <Text style={{ fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 }}>
             {content}
           </Text>
 

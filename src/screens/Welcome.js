@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center'
   },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 24, color: '#121212', textAlign: 'center', lineHeight: 29.26 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 24, color: '#121212', textAlign: 'center', lineHeight: 29.26 },
   image1: { width: 271, height: 265, marginTop: 26 },
   image2: { width: '100%', height: 264, marginTop: 29 },
   image3: { width: '100%', height: 375, marginTop: 29 },

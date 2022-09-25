@@ -50,9 +50,9 @@ export default function RestauraintListItem(props) {
 
 const styles = StyleSheet.create({
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 7 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
   container: { width: '100%', flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E2E2', paddingTop: 16, paddingBottom: 16, justifyContent: 'space-between', paddingHorizontal: 17 },
   image: { width: 60, height: 60, borderRadius: 30, marginRight: 15 },
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 18, color: '#121212' },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 18, color: '#121212' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 }
 });

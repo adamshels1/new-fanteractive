@@ -55,10 +55,10 @@ export default function About({ route, navigation }) {
           source={{
             html: `${content} 
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-            <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+            <link href='https://fonts.googleapis.com/css?family=Avenir' rel='stylesheet'>
             <style>
             body {
-              font-family: Montserrat;
+              font-family: Avenir;
               font-size: 15px;
               font-weight: 400;
               line-height: 23px;

@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 17
   },
-  title: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 14, color: '#121212' },
-  desc: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 13, color: '#7A7A7A', marginTop: 6 },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
+  title: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 14, color: '#121212' },
+  desc: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 13, color: '#7A7A7A', marginTop: 6 },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   optionWrap: { flexDirection: 'row', alignItems: 'center' },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, width: 230 },
   image: { width: 102, height: 79, borderRadius: 12 },
   footer: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 14 },
 });

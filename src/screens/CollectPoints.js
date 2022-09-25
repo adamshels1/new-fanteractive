@@ -235,13 +235,13 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  buttonText: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
+  buttonText: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
 
-  pointsBalance: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#7A7A7A', marginTop: 33 },
+  pointsBalance: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#7A7A7A', marginTop: 33 },
   pointsWrap: { flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 17 },
-  pointsLabel: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 11, color: '#7A7A7A', textTransform: 'uppercase', marginBottom: 2 },
-  pointsValue: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
-  balance: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 40, color: '#F2A71D', marginTop: 7 },
+  pointsLabel: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 11, color: '#7A7A7A', textTransform: 'uppercase', marginBottom: 2 },
+  pointsValue: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
+  balance: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 40, color: '#F2A71D', marginTop: 7 },
   listHeader: { alignItems: 'center', marginBottom: 10 },
   listFooter: { alignItems: 'center', marginBottom: 70, marginTop: 23 },
   image: { width: 100, height: 110, marginTop: 30 },

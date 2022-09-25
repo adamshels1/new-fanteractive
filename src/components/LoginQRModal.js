@@ -55,7 +55,7 @@ export default class UpdatesModal extends Component {
 const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, justifyContent: 'center', paddingTop: '20%' },
   container: { marginHorizontal: 10, backgroundColor: '#FFF', borderRadius: 9, paddingHorizontal: 13, paddingVertical: 20 },
-  text: { marginTop: 15, fontWeight: '400', fontFamily: 'Montserrat', fontSize: 20, lineHeight: 26, color: '#121212', textAlign: 'center', marginBottom: 59 },
+  text: { marginTop: 15, fontWeight: '400', fontFamily: 'Avenir', fontSize: 20, lineHeight: 26, color: '#121212', textAlign: 'center', marginBottom: 59 },
   closeWrap: { position: 'absolute', right: 10, top: 10, zIndex: 1 },
   closeIcon: { width: 38, height: 34 },
 });

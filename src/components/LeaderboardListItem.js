@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
-  number: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
+  number: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
   wrapInfo: { width: '70%', marginLeft: 18 },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   image: { width: 55, height: 55, borderRadius: 25 },
 });

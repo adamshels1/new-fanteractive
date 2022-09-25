@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 17
   },
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212' },
-  desc: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 13, color: '#7A7A7A', marginTop: 6 },
-  date: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 13, color: '#B7B7B7', paddingRight: 10 },
-  points: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#2D77C5', marginTop: 5 },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212' },
+  desc: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 13, color: '#7A7A7A', marginTop: 6 },
+  date: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 13, color: '#B7B7B7', paddingRight: 10 },
+  points: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#2D77C5', marginTop: 5 },
 });

@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/AvenirLTStd-Black.otf",
+      "sha1": "eb534ac4079db239cdd489df7a1aa2b874b5b599"
+    },
+    {
+      "path": "src/assets/fonts/AvenirLTStd-Book.otf",
+      "sha1": "db6bfde1c5f1f6d8129df5dce9484d88d3646f0d"
+    },
+    {
+      "path": "src/assets/fonts/AvenirLTStd-Roman.otf",
+      "sha1": "a614776d8ee6be9ed01ccc136ac5daed16ba604b"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Bold.ttf",
+      "sha1": "be2345122099ffcfef8e48775e8a58bee7db474e"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-BoldItalic.ttf",
+      "sha1": "587960d36b3a3a221915fdb4787bd11ec588e109"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Demi-BoldItalic.ttf",
+      "sha1": "7d84d6dd0215ec0e00545e13749b4c78cd49caff"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-DemiBold.ttf",
+      "sha1": "4c569c16ca08ff0826a408335bc24849888f95a0"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Extra-LightItalic.ttf",
+      "sha1": "27fe494b866c290d449ce5a0eb7648f540904376"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-ExtraLight.ttf",
+      "sha1": "9fb1f51f0ee92301a560f9ed8893e2675f17b2f0"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Heavy.ttf",
+      "sha1": "9634cd4b988fddc5edfdb2f5123c5a356fd542e4"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-HeavyItalic.ttf",
+      "sha1": "96ba2a3eaa49972213405760ef2f193257f426ab"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Light.ttf",
+      "sha1": "4af39bd8278439520a52d59f3937014967bdd3c2"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-LightItalic.ttf",
+      "sha1": "3d62e2bf1e6ad4a437e4f1dff141376f65f94851"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Medium.ttf",
+      "sha1": "9ba1a418cf29974f41e83baa5ea1757c749324ee"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-MediumItalic.ttf",
+      "sha1": "aae759c005c1bd55806ad5100b2c2c433ca73d2e"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Regular.ttf",
+      "sha1": "cf5adbf5c521d1a9b68a7c8b3af9193c0f6e5460"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-RegularItalic.ttf",
+      "sha1": "7bc8f848a628a51cc762b10a94d4ca64badd369e"
+    },
+    {
+      "path": "src/assets/fonts/Oswald-Stencil.ttf",
+      "sha1": "89cd632ee0db44e613d3e154db784faaeb312b91"
+    }
+  ]
+}

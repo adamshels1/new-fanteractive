@@ -110,5 +110,5 @@ const styles = StyleSheet.create({
   closedEye: { height: 19, width: 22 },
   openEye: { height: 16, width: 22 },
   wrapFiedl: { paddingHorizontal: 0 },
-  textFiedl: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#8F9FB3', textTransform: 'uppercase' },
+  textFiedl: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#8F9FB3', textTransform: 'uppercase' },
 });

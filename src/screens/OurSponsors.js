@@ -146,11 +146,11 @@ const styles = StyleSheet.create({
   },
 
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginRight: 21 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
 
-  title: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 15, color: '#121212', marginBottom: 7 },
+  title: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 15, color: '#121212', marginBottom: 7 },
 
-  textCount: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#848484' },
+  textCount: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#848484' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 },
   moreIcon: { width: 4, height: 22 },
   mapsIcon: { width: 10, height: 13 },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  buttonText: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
+  buttonText: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 15, color: '#F2A71D' },
   visitIcon: { width: 15, height: 15, marginLeft: 9 },
 
   becomeButton: {
@@ -200,12 +200,12 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  becom: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 12, color: '#121212', paddingHorizontal: 6 },
-  platinum: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212', marginLeft: 14 },
+  becom: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 12, color: '#121212', paddingHorizontal: 6 },
+  platinum: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212', marginLeft: 14 },
   sponsorLogo: { width: 50, height: 50, borderRadius: 25, marginRight: 16 },
-  sponsorName: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 18, color: '#121212', marginBottom: 4 },
-  sponsorType: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#8EBCF2' },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
+  sponsorName: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 18, color: '#121212', marginBottom: 4 },
+  sponsorType: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#8EBCF2' },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
 
   sponsor: { backgroundColor: '#fff', marginTop: 12, borderRadius: 15, borderColor: '#95C6FF', borderWidth: 1 },
   sponsorImage: { width: '100%', height: 204, borderTopRightRadius: 15, borderTopLeftRadius: 15 },

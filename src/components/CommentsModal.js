@@ -162,10 +162,10 @@ const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, padding: 0, justifyContent: 'flex-end' },
   container: { backgroundColor: '#FFF', borderRadius: 12, bottom: 0 },
 
-  day: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 12, color: '#121212', textAlign: 'center' },
+  day: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 12, color: '#121212', textAlign: 'center' },
   image: { width: '100%', height: 251, borderTopRightRadius: 12, borderTopLeftRadius: 12 },
 
-  title: { fontWeight: '600', fontFamily: 'Montserrat', fontSize: 20, color: '#121212' },
+  title: { fontWeight: '600', fontFamily: 'Avenir', fontSize: 20, color: '#121212' },
 
   likeIcon: { width: 20, height: 17, marginLeft: 5 },
   arrowIcon: { width: 6, height: 10, marginLeft: 17 },

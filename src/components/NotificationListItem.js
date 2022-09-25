@@ -60,14 +60,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1
   },
-  title: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
-  number: { fontFamily: 'Montserrat', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
+  title: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#121212', marginBottom: 3 },
+  number: { fontFamily: 'Avenir', fontWeight: '700', fontSize: 20, color: '#CFCFCF', marginTop: 6 },
   wrapInfo: { width: '70%', marginLeft: 18 },
-  availablePoints: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 16, color: '#7A7A7A' },
+  availablePoints: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 16, color: '#7A7A7A' },
   points: { fontWeight: '700', fontSize: 16, color: '#F2A71D' },
   image: { width: 55, height: 55, borderRadius: 25 },
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginRight: 15, marginTop: 7 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 7 },
   company: {
     flexDirection: 'row', borderBottomWidth: 1,
     borderBottomColor: '#E2E2E2',

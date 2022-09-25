@@ -141,9 +141,9 @@ const styles = StyleSheet.create({
   body: { alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 17, flex: 1 },
   bodyTop: { marginTop: 46, alignItems: 'center' },
   bodyBottom: { marginTop: 40, width: '100%' },
-  bodyTitle: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 24, color: '#121212' },
+  bodyTitle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 24, color: '#121212' },
   image: { width: 56, height: 84, marginTop: 42 },
-  forgot: { color: '#378BED', fontFamily: 'Montserrat', fontWeight: '600', fontSize: 14, marginLeft: 8, textAlign: 'right', marginTop: 17 },
+  forgot: { color: '#378BED', fontFamily: 'Avenir', fontWeight: '600', fontSize: 14, marginLeft: 8, textAlign: 'right', marginTop: 17 },
   agreeWrap: { marginTop: 21, flexDirection: 'row', alignItems: 'center' },
   signup: { marginTop: 35, marginBottom: 50 },
   checkboxIcon: { width: 18, height: 18 }

@@ -220,13 +220,13 @@ const styles = StyleSheet.create({
 
         elevation: 3,
     },
-    title: { fontFamily: 'Montserrat', fontWeight: '600', color: '#fff', fontSize: 15 },
+    title: { fontFamily: 'Avenir', fontWeight: '600', color: '#fff', fontSize: 15 },
     leftWrap: { height: 74, justifyContent: 'flex-start', paddingLeft: 17, flexDirection: 'row', alignItems: 'center', width: 100 },
     rightWrap: { height: 74, justifyContent: 'flex-end', paddingRight: 17, flexDirection: 'row', alignItems: 'center', width: 100 },
     leftButtonText: { fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 },
     rightButtonText: { fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingRight: 8.9 },
     iconButton: { width: 32, height: 74, justifyContent: 'center', alignItems: 'center', paddingRight: 0, marginRight: 2 },
     countWrap: { width: 16, height: 16, borderRadius: 8, backgroundColor: '#F2A71D', borderWidth: 1, borderColor: '#2D77C5', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: -5, right: -7 },
-    countText: { color: '#2D77C5', fontSize: 9, fontWeight: '700', fontFamily: 'Montserrat' },
+    countText: { color: '#2D77C5', fontSize: 9, fontWeight: '700', fontFamily: 'Avenir' },
     buttonWrap: { flexDirection: 'row', alignItems: 'center' },
 })

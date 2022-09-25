@@ -80,12 +80,12 @@ export default function RestauraintListItem(props) {
 
 const styles = StyleSheet.create({
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 7, paddingRight: 7 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, maxWidth: 230 },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400', marginLeft: 10, maxWidth: 230 },
   container: { width: '100%', flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E2E2', paddingTop: 16, paddingBottom: 16, justifyContent: 'space-between', paddingHorizontal: 17, alignItems: 'center' },
   image: { width: 50, height: 50, borderRadius: 25, marginRight: 17 },
-  title: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 16, color: '#121212', maxWidth: 270 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#121212' },
-  textCount: { fontFamily: 'Montserrat', fontWeight: '600', fontSize: 13, color: '#848484' },
+  title: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 16, color: '#121212', maxWidth: 270 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14, color: '#121212' },
+  textCount: { fontFamily: 'Avenir', fontWeight: '600', fontSize: 13, color: '#848484' },
   menuButton: { justifyContent: 'center', alignItems: 'center', width: 40 },
   moreIcon: { width: 4, height: 22 },
   mapsIcon: { width: 10, height: 13 },

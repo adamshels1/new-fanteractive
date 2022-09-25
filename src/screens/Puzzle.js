@@ -445,13 +445,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4'
   },
   image: { width: 48, height: 47 },
-  title: { fontFamily: 'Montserrat', color: '#121212', fontWeight: '400', fontSize: 24 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
+  title: { fontFamily: 'Avenir', color: '#121212', fontWeight: '400', fontSize: 24 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
   button: { backgroundColor: '#fff', borderRadius: 12, width: '100%', paddingHorizontal: 18, paddingVertical: 18, marginTop: 20 },
   icon: { width: 36, height: 36, marginRight: 25 },
   listHeader: { alignItems: 'center', marginTop: '5%', marginBottom: '5%' },
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 14, marginRight: 10 },
-  optionText: { fontFamily: 'Montserrat', fontSize: 13, color: '#7A7A7A', fontWeight: '400' },
+  optionText: { fontFamily: 'Avenir', fontSize: 13, color: '#7A7A7A', fontWeight: '400' },
   agendaIcon: { width: 12, height: 12, marginRight: 10 },
   optionValue: { fontWeight: '700', color: '#F2A71D' },
 

@@ -147,6 +147,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   image: { width: 60, height: 60, marginBottom: 15 },
-  title: { fontFamily: 'Montserrat', color: '#121212', fontWeight: '400', fontSize: 24 },
-  text: { fontFamily: 'Montserrat', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
+  title: { fontFamily: 'Avenir', color: '#121212', fontWeight: '400', fontSize: 24 },
+  text: { fontFamily: 'Avenir', fontWeight: '400', color: '#121212', fontSize: 14, lineHeight: 18, paddingTop: 13 },
 })

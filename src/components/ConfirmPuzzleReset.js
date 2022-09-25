@@ -64,9 +64,9 @@ export default class Confirm extends Component {
 const styles = StyleSheet.create({
   modal: { flex: 1, backgroundColor: 'rgba(0,0,0,0.001)', margin: 0, padding: 0, justifyContent: 'flex-end' },
   container: { backgroundColor: '#FFF', borderRadius: 12, bottom: 0, paddingHorizontal: 17, paddingBottom: 57 },
-  text: { marginTop: 12, fontWeight: '600', fontFamily: 'Montserrat', fontSize: 20, color: '#121212', textAlign: 'center' },
-  day: { fontWeight: '400', fontFamily: 'Montserrat', fontSize: 12, color: '#121212', textAlign: 'center' },
-  points: { marginTop: 12, marginBottom: 48, fontWeight: '700', fontFamily: 'Montserrat', fontSize: 35, color: '#2D77C5', textAlign: 'center' },
+  text: { marginTop: 12, fontWeight: '600', fontFamily: 'Avenir', fontSize: 20, color: '#121212', textAlign: 'center' },
+  day: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 12, color: '#121212', textAlign: 'center' },
+  points: { marginTop: 12, marginBottom: 48, fontWeight: '700', fontFamily: 'Avenir', fontSize: 35, color: '#2D77C5', textAlign: 'center' },
   image: { width: 103, height: 103, marginTop: 67, marginBottom: 16 },
   buttons: { marginTop: 54, flexDirection: 'row', justifyContent: 'space-between', width: '100%' },
   closeWrap: { position: 'absolute', right: 10, top: 10, zIndex: 1 },
