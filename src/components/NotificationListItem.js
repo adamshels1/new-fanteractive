@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, View } from 'react-native';
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import { Text } from '@components'
 

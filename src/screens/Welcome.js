@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Header, Button, Text, StatusBar } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
-import Carousel, { Pagination } from 'react-native-snap-carousel'
+// import Carousel, { Pagination } from 'react-native-snap-carousel'
 const SCREEN_WIDTH = Dimensions.get('window').width
 // import YoutubePlayer from "react-native-youtube-iframe"
 import helper from '@services/helper'
@@ -28,7 +28,7 @@ export default function Welcome({ route, navigation }) {
   const [screens, setScreens] = useState([])
   const token = useSelector(state => state.userReducer.token)
   const user = useSelector(state => state.userReducer.user)
-  const carouselRef = useRef()
+  // const carouselRef = useRef()
 
   useEffect(() => {
     getData()
@@ -80,14 +80,14 @@ export default function Welcome({ route, navigation }) {
   const SCREENS = screens.map(item => <Screen {...item} />)
 
   const isLastScreen = activeTab === (screens.length - 1)
-  const onNext = () => {
-    carouselRef?.current?.snapToNext()
-    if (isLastScreen) {
-      dispatch(setHideWelcomeAction(true))
-    } else {
-      setActiveTab(activeTab + 1)
-    }
-  }
+  // const onNext = () => {
+  //   carouselRef?.current?.snapToNext()
+  //   if (isLastScreen) {
+  //     dispatch(setHideWelcomeAction(true))
+  //   } else {
+  //     setActiveTab(activeTab + 1)
+  //   }
+  // }
 
 
   return (
@@ -99,7 +99,7 @@ export default function Welcome({ route, navigation }) {
       />
 
 
-      <Carousel
+      {/* <Carousel
         ref={carouselRef}
         data={SCREENS}
         renderItem={({ item }) => item}
@@ -120,7 +120,7 @@ export default function Welcome({ route, navigation }) {
         activeDotIndex={activeTab}
         containerStyle={{
         }}
-      />
+      /> */}
 
 
       <Button

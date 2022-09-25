@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Image } from 'react-native'
 import { Button, Text } from '@components'
-import PropTypes from 'prop-types'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 
 export default function Sponsor(props) {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ActivityIndicator, Text } from 'react-native';
-import PropTypes from 'prop-types'
 
 export default function Button(props) {
   const color = props.color ? props.color : '#5EC422';
@@ -24,12 +23,6 @@ export default function Button(props) {
 
     </TouchableOpacity>
   )
-}
-
-Button.propTypes = {
-  text: PropTypes.string,
-  inverter: PropTypes.bool,
-  onPress: PropTypes.func
 }
 
 const styles = StyleSheet.create({

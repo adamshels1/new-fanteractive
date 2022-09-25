@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, View } from 'react-native';
-import PropTypes from 'prop-types'
 import { Text } from '@components'
 
 export default function RewardListItem({ avatar, place, points, onPress, first_name, last_name }) {

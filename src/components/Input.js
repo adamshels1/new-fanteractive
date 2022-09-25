@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, TextInput, TouchableWithoutFeedback } from 'react-native';
-import PropTypes from 'prop-types'
 import { Text } from '@components'
 import { TextInputMask } from 'react-native-masked-text';
 
@@ -113,13 +112,3 @@ const styles = StyleSheet.create({
   wrapFiedl: { paddingHorizontal: 0 },
   textFiedl: { fontFamily: 'Montserrat', fontWeight: '400', fontSize: 14, color: '#8F9FB3', textTransform: 'uppercase' },
 });
-
-
-Input.propTypes = {
-  field: PropTypes.string,
-  showSecureTextButton: PropTypes.bool,
-  secureTextEntry: PropTypes.bool,
-  autoCapitalize: PropTypes.string,
-  onChangeText: PropTypes.func,
-  value: PropTypes.string
-};

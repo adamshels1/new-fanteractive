@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, View, Linking } from 'react-native';
-import PropTypes from 'prop-types'
 import { Text } from '@components'
 
 export default function RestauraintListItem(props) {
@@ -48,9 +47,6 @@ export default function RestauraintListItem(props) {
     </TouchableOpacity>
   )
 }
-
-// RestauraintListItem.propTypes = {
-// }
 
 const styles = StyleSheet.create({
   optionWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 7 },

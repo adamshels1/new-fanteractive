@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Image, View, Linking } from 'react-native'
-import PropTypes from 'prop-types'
 import * as Animatable from 'react-native-animatable'
 import { Text } from '@components'
 

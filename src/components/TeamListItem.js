@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ActivityIndicator, View, Image } from 'react-native';
-import PropTypes from 'prop-types'
 import { colors } from '@constants'
 import { Text } from '@components'
 
@@ -22,11 +21,6 @@ export default function TeamListItem(props) {
     </View>
 
   )
-}
-
-TeamListItem.propTypes = {
-  text: PropTypes.string,
-  onPress: PropTypes.func
 }
 
 const styles = StyleSheet.create({

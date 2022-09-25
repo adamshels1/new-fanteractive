@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ActivityIndicator, View, Image, Switch, Platform } from 'react-native';
-import PropTypes from 'prop-types'
 import { colors } from '@constants'
 import { Text } from '@components'
 
@@ -22,11 +21,6 @@ export default function Button(props) {
       />
     </View>
   )
-}
-
-Button.propTypes = {
-  text: PropTypes.string,
-  onPress: PropTypes.func
 }
 
 const styles = StyleSheet.create({

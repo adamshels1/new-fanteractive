@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, ActivityIndicator, Text, View, ImageBackground } from 'react-native';
-import PropTypes from 'prop-types'
 
 export default function AvarageItem(props) {
   const { range = 100 } = props
