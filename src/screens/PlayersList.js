@@ -12,60 +12,67 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Header, StatusBar, Text, BlockTitle, ListItemArticle, TeamListItem, Button, FilterModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
+import moment from 'moment';
 
 export default function About({ route, navigation }) {
   // const dispatch = useDispatch()
-  const [page, setPage] = useState({})
-  const [visibleFilterModal, setVisibleFilterModal] = useState(false)
-  // useEffect(async () => {
-  //   try {
-  //     dispatch(loaderAction({ isLoading: true }))
-  //     const page = await mainApi.getPage({ id: 1065 });
-  //     setPage(page);
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   } catch (e) {
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   }
-  // }, []);
-  const { title = '', content = '' } = page;
+  const [players, setPlayers] = useState([])
+  useEffect(() => {
+    getActivityPlayes()
+  }, []);
+
+  const getActivityPlayes = async () => {
+    try {
+      const res = await mainApi.getActivityPlayes()
+      console.log('aaa', res)
+      setPlayers(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        title={title}
         showMenu
         showFilter
         navigation={navigation}
         onFilter={() => setVisibleFilterModal(true)}
       />
 
-      <FilterModal
+      {/* <FilterModal
         isVisible={visibleFilterModal}
         onClose={() => setVisibleFilterModal(false)}
+      /> */}
+
+
+
+      <FlatList
+        ListHeaderComponent={<BlockTitle title='Recent Players Grades' />}
+        style={{ paddingVertical: 24, paddingHorizontal: 20 }}
+        data={players}
+        renderItem={({ item, index }) => {
+          console.log('item', item)
+          return (
+            <ListItemArticle
+              value1={'Player Scouting Report'}
+              value2={item.name}
+              value3={`${item.team.name} ${item.position.title}`}
+              value4={item.fanager_name}
+              value5={moment(item.rating_posted_at).format('DD MMM, YYYY')}
+              image={{ uri: item?.thumbnail?.url }}
+              miniImage={{ uri: item?.team?.thumbnail?.url }}
+              onPress={() => navigation.navigate('PlayerSummary', { item })}
+            />
+          )
+        }
+        }
       />
 
-      <ScrollView>
-
-        <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
-
-          <BlockTitle title='Recent Players Grades' />
-
-          <FlatList
-            style={{ marginTop: 25 }}
-            data={[1, 1, 1, 1, 1]}
-            renderItem={() => <ListItemArticle 
-              value='2.3' 
-              onPress={() => navigation.navigate('PlayerSummary')} 
-              image={{uri: 'https://www.afcb.co.uk/media/204512/brooklyn-genesini.jpg?anchor=center&mode=crop&width=420&height=640&quality=60'}}
-              />
-            }
-          />
-
-        </View>
 
 
 
-      </ScrollView>
 
     </View>
   )
