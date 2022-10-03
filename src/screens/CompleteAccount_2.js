@@ -88,7 +88,6 @@ export default function Login({ navigation }) {
       });
       console.log('resresresres', res)
       dispatch(loaderAction({ isLoading: false }))
-      return
       if (res.status === 200) {
         navigation.navigate('HomeTabs')
       } else {
