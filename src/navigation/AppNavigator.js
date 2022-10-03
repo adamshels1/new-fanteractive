@@ -200,7 +200,9 @@ function HomeTabs() {
     const event = useSelector(state => state.mainReducer.event)
     const logoSource = event?.logo ? { uri: event.logo } : require('@assets/images/no_logo.png')
     return (
-        <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
+        <Tab.Navigator tabBar={props => <CustomTabBar {...props} />} screenOptions={{
+            headerShown: false
+        }}>
 
             <Tab.Screen
                 name="FeedStackScreen"
@@ -311,6 +313,9 @@ function MainStackNavigator() {
                 initialRouteName="HomeTabs"
                 drawerPosition="left"
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
+                screenOptions={{
+                    headerShown: false
+                }}
             >
 
                 <Drawer.Screen name="HomeTabs" component={HomeTabs} />
