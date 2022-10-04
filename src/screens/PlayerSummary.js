@@ -51,6 +51,14 @@ export default function About({ route, navigation }) {
     }
   }
 
+  const summaryOptions = {
+    average: "Average",
+    median: "Median",
+    percentile_75: "75 Percentile",
+    percentile_90: "95 Percentile",
+    total_reviews: "Total Reviews"
+  }
+
 
   return (
     <View style={styles.container}>
@@ -121,7 +129,7 @@ export default function About({ route, navigation }) {
 
             <TouchableOpacity
               onPress={() => {
-                refCarousel2.current?.scrollTo({ count: -1, animated: true });
+                refCarousel2.current?.scrollTo({ count: 1, animated: true });
               }}
             >
               <Image source={require('@assets/icons/cicle-arrow-left.png')} style={{ width: 26, height: 26 }} />
@@ -131,38 +139,40 @@ export default function About({ route, navigation }) {
 
             <Carousel
               loop
-              width={220}
-              height={98}
+              width={300}
+              height={110}
               ref={refCarousel2}
               data={summaryMeta}
               scrollAnimationDuration={1000}
               onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
               renderItem={({ item, index }) => (
-                <View
-                  key={'c' + index}
-                  style={{
-                    shadowOffset: {
-                      width: 0,
-                      height: 0,
-                    },
-                    shadowOpacity: 0.2,
-                    shadowRadius: 3.22,
-                    elevation: 3,
-                    width: 220,
-                    height: 98,
-                    backgroundColor: '#fff',
-                    borderRadius: 7
-                  }}>
-                  <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
-                    <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>
-                      {item.key}
-                    </Text>
-                  </View>
+                <View style={{width: 300, height: 120, alignItems: 'center'}}>
+                  <View
+                    key={'c' + index}
+                    style={{
+                      shadowOffset: {
+                        width: 0,
+                        height: 0,
+                      },
+                      shadowOpacity: 0.2,
+                      shadowRadius: 3.22,
+                      elevation: 3,
+                      width: 220,
+                      height: 98,
+                      backgroundColor: '#fff',
+                      borderRadius: 7
+                    }}>
+                    <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
+                      <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>
+                        {summaryOptions[item.key]}
+                      </Text>
+                    </View>
 
-                  <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>
-                      {item.value}
-                    </Text>
+                    <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+                      <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>
+                        {item.value}
+                      </Text>
+                    </View>
                   </View>
                 </View>
               )}
@@ -191,7 +201,7 @@ export default function About({ route, navigation }) {
 
             <TouchableOpacity
               onPress={() => {
-                refCarousel.current?.scrollTo({ count: -1, animated: true });
+                refCarousel.current?.scrollTo({ count: 1, animated: true });
               }}
             >
               <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
@@ -199,20 +209,22 @@ export default function About({ route, navigation }) {
 
             <Carousel
               loop
-              width={180}
-              height={18}
+              width={280}
+              height={20}
               ref={refCarousel}
               data={avarageTypes}
               scrollAnimationDuration={1000}
               onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
               renderItem={({ index }) => (
-                <Text key={'a-' + index} style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>average stats</Text></Text>
+                <View style={{ width: 280, height: 20, alignItems: 'center' }}>
+                  <Text key={'a-' + index} style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>{avarageTypes[index]} stats</Text></Text>
+                </View>
               )}
             />
 
             <TouchableOpacity
               onPress={() => {
-                refCarousel.current?.scrollTo({ count: 1, animated: true });
+                refCarousel.current?.scrollTo({ count: -1, animated: true });
               }}
             >
               <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
