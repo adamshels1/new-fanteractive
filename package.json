@@ -37,6 +37,7 @@
     "react-native-permissions": "^3.0.4",
     "react-native-ratings": "^8.1.0",
     "react-native-reanimated": "^2.10.0",
+    "react-native-reanimated-carousel": "^3.0.6",
     "react-native-safe-area-context": "^4.3.4",
     "react-native-screens": "^3.17.0",
     "react-native-sms-verifycode": "^2.4.3",
