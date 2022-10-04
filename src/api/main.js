@@ -352,6 +352,23 @@ const getPlayerReports = async (id) => {
     return res
 };
 
+const getArticles = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}article`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 
 
 
@@ -1413,6 +1430,7 @@ export default {
     getActivityPlayes,
     getPlayerSummary,
     getPlayerReports,
+    getArticles,
 
     getRestaurant,
     getRestaurantWeeks,
