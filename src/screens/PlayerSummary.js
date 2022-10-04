@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   StyleSheet,
   View,
@@ -11,31 +11,51 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
+import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 
 
 export default function About({ route, navigation }) {
   // const dispatch = useDispatch()
-  const [page, setPage] = useState({})
-  // useEffect(async () => {
-  //   try {
-  //     dispatch(loaderAction({ isLoading: true }))
-  //     const page = await mainApi.getPage({ id: 1065 });
-  //     setPage(page);
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   } catch (e) {
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   }
-  // }, []);
-  const { title = '', content = '' } = page;
+  const item = route?.params?.item
+  const refCarousel = useRef();
+  const refCarousel2 = useRef();
+  const [summary, setSummary] = useState([])
+  const [summaryMeta, setSummaryMeta] = useState([])
+  const [avarageType, setAvarageType] = useState('avg')
+  const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
+
+  console.log('item', item)
+
+  useEffect(() => {
+    getActivityPlayes()
+  }, []);
+
+  const getActivityPlayes = async () => {
+    try {
+      const res = await mainApi.getPlayerSummary(item.player_id)
+      setSummary(res.data.data)
+      let summaryMeta = []
+      Object.keys(res.data.meta).forEach((key) => {
+        summaryMeta.push({
+          key,
+          value: res.data.meta[key]
+        })
+      });
+      setSummaryMeta(summaryMeta)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        title={title}
         navigation={navigation}
         goBack={navigation.goBack}
       />
@@ -45,17 +65,23 @@ export default function About({ route, navigation }) {
         >
           <Image
             style={{ height: 387, width: '100%' }}
-            source={{ uri: 'https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blt6ba33b35a143d067/60effe93f101cd22d91c320e/3d2b8d0b5a8ed594a2bf5c324547b22c7dfbebb2.jpg' }}
+            source={{ uri: item?.thumbnail?.url }}
           />
           <View style={{ height: 113, width: '100%', backgroundColor: 'rgba(0,0,0,0.5)', position: 'absolute', bottom: 0, paddingLeft: 14, paddingTop: 15, flexDirection: 'row', justifyContent: 'space-between', paddingRight: 20 }}>
             <View>
-              <Text style={{ fontWeight: '700', fontSize: 32, color: '#FFF' }}>Harry Kane</Text>
-              <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF' }}> • Running Back</Text>
+              <Text style={{ fontWeight: '700', fontSize: 32, color: '#FFF', width: 290 }} numberOfLines={1}>
+                {item?.name}
+              </Text>
+              <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF' }}>
+                {item?.sport?.name} • {item?.position?.abbr}
+              </Text>
             </View>
             <View style={{ height: 140, top: -80 }}>
-              <Image source={require('@assets/images/337-3379384_logo-tottenham-hotspurs-tottenham-hotspurs-hd-png-download.png')} style={{ width: 42, height: 42, borderRadius: 21 }} />
-              <Image source={require('@assets/images/icons8-england.png')} style={{ width: 42, height: 42, borderRadius: 21, marginTop: 9 }} />
-              <Text style={{ fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF' }}>9.2</Text>
+              <Image source={{ uri: item?.team?.thumbnail?.url }} style={{ width: 42, height: 42, borderRadius: 21 }} />
+              <Image source={{ uri: item?.national_team?.thumbnail?.url }} style={{ width: 42, height: 42, marginTop: 9 }} />
+              <Text style={{ fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF', textAlign: 'center' }}>
+                {summaryMeta?.find(i => i.key === 'average')?.value}
+              </Text>
             </View>
           </View>
         </View>
@@ -86,115 +112,126 @@ export default function About({ route, navigation }) {
 
         <View style={{ paddingHorizontal: 20 }}>
 
-          <View style={{
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowOpacity: 0.2,
-            shadowRadius: 3.22,
-            elevation: 3,
-            width: 220,
-            height: 98,
-            backgroundColor: '#fff',
-            borderRadius: 7
-          }}>
-            <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
-              <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>Avarage Stats total</Text>
-            </View>
 
-            <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>9.2</Text>
-            </View>
+
+
+
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+
+            <TouchableOpacity
+              onPress={() => {
+                refCarousel2.current?.scrollTo({ count: -1, animated: true });
+              }}
+            >
+              <Image source={require('@assets/icons/cicle-arrow-left.png')} style={{ width: 26, height: 26 }} />
+            </TouchableOpacity>
+
+
+
+            <Carousel
+              loop
+              width={220}
+              height={98}
+              ref={refCarousel2}
+              data={summaryMeta}
+              scrollAnimationDuration={1000}
+              onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
+              renderItem={({ item, index }) => (
+                <View
+                  key={'c' + index}
+                  style={{
+                    shadowOffset: {
+                      width: 0,
+                      height: 0,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 3.22,
+                    elevation: 3,
+                    width: 220,
+                    height: 98,
+                    backgroundColor: '#fff',
+                    borderRadius: 7
+                  }}>
+                  <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
+                    <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>
+                      {item.key}
+                    </Text>
+                  </View>
+
+                  <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>
+                      {item.value}
+                    </Text>
+                  </View>
+                </View>
+              )}
+            />
+
+
+            <TouchableOpacity
+              onPress={() => {
+                refCarousel2.current?.scrollTo({ count: -1, animated: true });
+              }}
+            >
+              <Image source={require('@assets/icons/cicle-arrow-right.png')} style={{ width: 26, height: 26 }} />
+            </TouchableOpacity>
+
+
           </View>
+
+
+
+
+
+
 
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 }}>
-            <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
-            <Text style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>average stats</Text></Text>
-            <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
+
+            <TouchableOpacity
+              onPress={() => {
+                refCarousel.current?.scrollTo({ count: -1, animated: true });
+              }}
+            >
+              <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
+            </TouchableOpacity>
+
+            <Carousel
+              loop
+              width={180}
+              height={18}
+              ref={refCarousel}
+              data={avarageTypes}
+              scrollAnimationDuration={1000}
+              onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
+              renderItem={({ index }) => (
+                <Text key={'a-' + index} style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>average stats</Text></Text>
+              )}
+            />
+
+            <TouchableOpacity
+              onPress={() => {
+                refCarousel.current?.scrollTo({ count: 1, animated: true });
+              }}
+            >
+              <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
+            </TouchableOpacity>
           </View>
 
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Power Moves</Text>
-              <Text style={styles.optionValue}>9.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '10%' }} />
-            </ImageBackground>
-          </View>
+
+          {summary?.map(i => {
+            const value = parseFloat(i[avarageType])?.toFixed(1)
+            return (
+              <AvarageItem
+                title={i?.title}
+                value={value}
+                range={value?.replace('.', '')}
+              />
+            )
+          })}
 
 
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Finesse Moves</Text>
-              <Text style={styles.optionValue}>4.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '60%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Acceleration</Text>
-              <Text style={styles.optionValue}>7.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '30%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Block Shedding</Text>
-              <Text style={styles.optionValue}>10.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '0%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Tackling</Text>
-              <Text style={styles.optionValue}>2.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '80%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Penetration</Text>
-              <Text style={styles.optionValue}>5.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '50%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Motor</Text>
-              <Text style={styles.optionValue}>9.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '10%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Speed</Text>
-              <Text style={styles.optionValue}>6.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '40%' }} />
-            </ImageBackground>
-          </View>
 
 
 

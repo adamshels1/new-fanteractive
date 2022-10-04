@@ -44,8 +44,6 @@ export default function About({ route, navigation }) {
         onClose={() => setVisibleFilterModal(false)}
       />
 
-      <ScrollView>
-
         <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 
           <BlockTitle title='Latest Fanalyst Activity' />
@@ -54,7 +52,7 @@ export default function About({ route, navigation }) {
             style={{ marginTop: 25 }}
             data={[1, 1, 1, 1, 1]}
             renderItem={() => <ListItemArticle 
-              value='2.3' 
+              value='Player Scouting Report' 
               onPress={() => navigation.navigate('PlayerSummary')} 
               image={{uri: 'https://www.afcb.co.uk/media/204512/brooklyn-genesini.jpg?anchor=center&mode=crop&width=420&height=640&quality=60'}}
               />
@@ -63,9 +61,6 @@ export default function About({ route, navigation }) {
 
         </View>
 
-
-
-      </ScrollView>
 
     </View>
   )

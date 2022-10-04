@@ -17,28 +17,36 @@ export default function ListItem(props) {
     }}>
       <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#EDEEF3', justifyContent: 'center', alignItems: 'center', marginRight: 14, }}>
         <Image source={props.image} resizeMode='contain' style={{ width: 50, height: 50, borderRadius: 25 }} />
+        {props.miniImage && (
+          <Image source={props.miniImage} resizeMode='contain' style={{ width: 16, height: 16, borderRadius: 8, position: 'absolute', right: 0, bottom: 0 }} />
+        )}
+
       </View>
 
       <View>
         <Text style={{ fontWeight: '500', fontSize: 10, color: '#7D86A9', width: 200 }} numberOfLines={1}>
-          ARTICLE
+          {props?.value1}
         </Text>
-        <Text style={{ fontWeight: '900', fontSize: 16, color: '#00293B', width: 200 }} numberOfLines={1}>
-          Face the Nation
+        <Text style={{ fontWeight: '900', fontSize: 16, color: '#00293B', width: 250 }} numberOfLines={1}>
+          {props?.value2}
         </Text>
         <Text style={{ fontWeight: '500', fontSize: 13, color: '#00293B', width: 200 }} numberOfLines={1}>
-          Sport Reality
+          {props?.value3}
         </Text>
         <View style={{ flexDirection: 'row', marginTop: 5.5 }}>
 
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image source={require('@assets/icons/user_article.png')} style={{ width: 13, height: 13 }} />
-            <Text style={{ fontWeight: '500', fontSize: 12, color: '#00293B', marginLeft: 6 }}>Alexander_TheAxe</Text>
+            <Text style={{ fontWeight: '500', fontSize: 12, color: '#00293B', marginLeft: 6 }}>
+              {props?.value4}
+            </Text>
           </View>
 
           <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
             <Image source={require('@assets/icons/calendar.png')} style={{ width: 11.5, height: 11 }} />
-            <Text style={{ fontWeight: '500', fontSize: 12, color: '#00293B', marginLeft: 6 }}>21 Oct, 2020</Text>
+            <Text style={{ fontWeight: '500', fontSize: 12, color: '#00293B', marginLeft: 6 }}>
+              {props?.value5}
+            </Text>
           </View>
 
         </View>

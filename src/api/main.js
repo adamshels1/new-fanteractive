@@ -299,6 +299,42 @@ const getUserAnalyses = async (token, { userId }) => {
 };
 
 
+const getActivityPlayes = async (limit = 40) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}activity/players`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: { limit }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+const getPlayerSummary = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}players/scouting/report/summary/${id}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
 
 
 
@@ -1356,6 +1392,8 @@ export default {
     getUser,
     getUserOdds,
     getUserAnalyses,
+    getActivityPlayes,
+    getPlayerSummary,
 
     getRestaurant,
     getRestaurantWeeks,

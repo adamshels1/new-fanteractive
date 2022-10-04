@@ -44,8 +44,6 @@ export default function About({ route, navigation }) {
         onClose={() => setVisibleFilterModal(false)}
       />
 
-      <ScrollView>
-
         <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 
           <BlockTitle title='Recent Articles' />
@@ -59,9 +57,6 @@ export default function About({ route, navigation }) {
 
         </View>
 
-
-
-      </ScrollView>
 
     </View>
   )

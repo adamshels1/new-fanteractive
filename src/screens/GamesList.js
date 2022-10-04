@@ -44,7 +44,6 @@ export default function About({ route, navigation }) {
         onClose={() => setVisibleFilterModal(false)}
       />
 
-      <ScrollView>
 
         <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 
@@ -64,8 +63,6 @@ export default function About({ route, navigation }) {
         </View>
 
 
-
-      </ScrollView>
 
     </View>
   )

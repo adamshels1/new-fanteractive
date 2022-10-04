@@ -4,7 +4,7 @@ import { Text } from '@components'
 
 export default function BlockTitle(props) {
   return (
-    <View style={{ height: 33, width: '100%', flexDirection: 'row', alignItems: 'center' }}>
+    <View style={{ height: 33, width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 21 }}>
       <View style={{ backgroundColor: '#fff' }}>
         <Text style={{ fontWeight: '700', fontSize: 22, color: '#161F2D', paddingRight: 10, textTransform: 'uppercase' }}>
           {props?.title}
