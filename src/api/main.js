@@ -335,6 +335,24 @@ const getPlayerSummary = async (id) => {
 };
 
 
+const getPlayerReports = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}players/scouting/report/detail/${id}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
 
 
 
@@ -1394,6 +1412,7 @@ export default {
     getUserAnalyses,
     getActivityPlayes,
     getPlayerSummary,
+    getPlayerReports,
 
     getRestaurant,
     getRestaurantWeeks,

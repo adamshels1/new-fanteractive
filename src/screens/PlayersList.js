@@ -17,16 +17,20 @@ import moment from 'moment';
 export default function About({ route, navigation }) {
   // const dispatch = useDispatch()
   const [players, setPlayers] = useState([])
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     getActivityPlayes()
   }, []);
 
   const getActivityPlayes = async () => {
     try {
+      setLoading(true)
       const res = await mainApi.getActivityPlayes()
       console.log('aaa', res)
       setPlayers(res.data.data)
+      setLoading(false)
     } catch (e) {
+      setLoading(false)
       console.log('e', e)
     }
   }
@@ -49,6 +53,8 @@ export default function About({ route, navigation }) {
 
 
       <FlatList
+        refreshing={loading}
+        onRefresh={getActivityPlayes}
         ListHeaderComponent={<BlockTitle title='Recent Players Grades' />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={players}
