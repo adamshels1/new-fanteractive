@@ -58,6 +58,7 @@ export default function About({ route, navigation }) {
         ListHeaderComponent={<BlockTitle title='Recent Articles' />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={articles}
+        keyExtractor={(item, index) => item.id}
         renderItem={({ item, index }) => {
           console.log('item', item)
           return (
@@ -68,8 +69,8 @@ export default function About({ route, navigation }) {
               value4={item?.author?.full_name}
               value5={moment(item?.published).format('DD MMM, YYYY')}
               image={{ uri: item?.thumbnail?.url }}
-            // miniImage={{ uri: item?.team?.thumbnail?.url }}
-            // onPress={() => navigation.navigate('Article', { item })}
+              // miniImage={{ uri: item?.team?.thumbnail?.url }}
+              onPress={() => navigation.navigate('Article', { item })}
             />
           )
         }

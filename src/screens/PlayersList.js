@@ -58,6 +58,7 @@ export default function About({ route, navigation }) {
         ListHeaderComponent={<BlockTitle title='Recent Players Grades' />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={players}
+        keyExtractor={(item, index) => item.player_id}
         renderItem={({ item, index }) => {
           console.log('item', item)
           return (
