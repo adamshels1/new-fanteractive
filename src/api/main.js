@@ -334,12 +334,46 @@ const getPlayerSummary = async (id) => {
     return res
 };
 
+const getStadiumSummary = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}stadium-rating/summary/${id}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 
 const getPlayerReports = async (id) => {
 
     var config = {
         method: 'get',
         url: `${server.BASE_URL_API}players/scouting/report/detail/${id}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+const getStadiumReports = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}stadium-rating/details/${id}`,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -1447,8 +1481,10 @@ export default {
     getActivityPlayes,
     getPlayerSummary,
     getPlayerReports,
+    getStadiumReports,
     getArticles,
     getActivityStadiums,
+    getStadiumSummary,
 
     getRestaurant,
     getRestaurantWeeks,

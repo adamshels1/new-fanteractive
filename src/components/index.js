@@ -44,6 +44,7 @@ import MultiSelectModal from './MultiSelectModal'
 import ListItemArticle from './ListItemArticle'
 import AvarageItem from './AvarageItem'
 import ListItemGame from './ListItemGame'
+import AverageBlock from './AverageBlock'
 
 export { 
     Header, 
@@ -90,4 +91,5 @@ export {
     ListItemArticle,
     AvarageItem,
     ListItemGame,
+    AverageBlock
 }

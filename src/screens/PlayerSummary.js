@@ -11,7 +11,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -101,14 +101,14 @@ export default function PlayerSummary({ route, navigation }) {
       <View style={{ paddingHorizontal: 20 }}>
 
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <View style={styles.wrapCarousel2}>
 
           <TouchableOpacity
             onPress={() => {
               refCarousel2.current?.scrollTo({ count: 1, animated: true });
             }}
           >
-            <Image source={require('@assets/icons/cicle-arrow-left.png')} style={{ width: 26, height: 26 }} />
+            <Image source={require('@assets/icons/cicle-arrow-left.png')} style={styles.arrowIcon} />
           </TouchableOpacity>
 
 
@@ -120,37 +120,12 @@ export default function PlayerSummary({ route, navigation }) {
             ref={refCarousel2}
             data={summaryMeta}
             scrollAnimationDuration={1000}
-            onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
+            // onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
             renderItem={({ item, index }) => (
-              <View style={{ width: 300, height: 120, alignItems: 'center' }}>
-                <View
-                  key={'c' + index}
-                  style={{
-                    shadowOffset: {
-                      width: 0,
-                      height: 0,
-                    },
-                    shadowOpacity: 0.2,
-                    shadowRadius: 3.22,
-                    elevation: 3,
-                    width: 220,
-                    height: 98,
-                    backgroundColor: '#fff',
-                    borderRadius: 7
-                  }}>
-                  <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
-                    <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>
-                      {summaryOptions[item.key]}
-                    </Text>
-                  </View>
-
-                  <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>
-                      {item.value}
-                    </Text>
-                  </View>
-                </View>
-              </View>
+              <AverageBlock
+                title={summaryOptions[item.key]}
+                value={item.value}
+              />
             )}
           />
 
@@ -160,7 +135,7 @@ export default function PlayerSummary({ route, navigation }) {
               refCarousel2.current?.scrollTo({ count: -1, animated: true });
             }}
           >
-            <Image source={require('@assets/icons/cicle-arrow-right.png')} style={{ width: 26, height: 26 }} />
+            <Image source={require('@assets/icons/cicle-arrow-right.png')} style={styles.arrowIcon} />
           </TouchableOpacity>
 
 
@@ -173,14 +148,14 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 }}>
+        <View style={styles.carousel}>
 
           <TouchableOpacity
             onPress={() => {
               refCarousel.current?.scrollTo({ count: 1, animated: true });
             }}
           >
-            <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
+            <Image source={require('@assets/icons/arrow-left.png')} style={styles.arrowIcon2} />
           </TouchableOpacity>
 
           <Carousel
@@ -192,8 +167,8 @@ export default function PlayerSummary({ route, navigation }) {
             scrollAnimationDuration={1000}
             onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
             renderItem={({ index }) => (
-              <View style={{ width: 280, height: 20, alignItems: 'center' }}>
-                <Text key={'a-' + index} style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>{avarageTypes[index]} stats</Text></Text>
+              <View style={styles.avarageShowWrap}>
+                <Text key={'a-' + index} style={styles.avarageShowText}>SHOW: <Text style={{ color: '#5FC422' }}>{avarageTypes[index]} stats</Text></Text>
               </View>
             )}
           />
@@ -203,7 +178,7 @@ export default function PlayerSummary({ route, navigation }) {
               refCarousel.current?.scrollTo({ count: -1, animated: true });
             }}
           >
-            <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
+            <Image source={require('@assets/icons/arrow-right.png')} style={styles.arrowIcon2} />
           </TouchableOpacity>
         </View>
 
@@ -244,26 +219,28 @@ export default function PlayerSummary({ route, navigation }) {
         goBack={navigation.goBack}
       />
       <ScrollView>
+
+
         <View
-          style={{ height: 387, width: '100%' }}
+          style={styles.bodyHeader}
         >
           <Image
-            style={{ height: 387, width: '100%' }}
+            style={styles.image}
             source={{ uri: item?.thumbnail?.url }}
           />
-          <View style={{ height: 113, width: '100%', backgroundColor: 'rgba(0,0,0,0.5)', position: 'absolute', bottom: 0, paddingLeft: 14, paddingTop: 15, flexDirection: 'row', justifyContent: 'space-between', paddingRight: 20 }}>
+          <View style={styles.nameWrap}>
             <View>
-              <Text style={{ fontWeight: '700', fontSize: 32, color: '#FFF', width: 290 }} numberOfLines={1}>
+              <Text style={styles.name} numberOfLines={1}>
                 {item?.name}
               </Text>
-              <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF' }}>
+              <Text style={styles.options}>
                 {item?.sport?.name} • {item?.position?.abbr}
               </Text>
             </View>
             <View style={{ height: 140, top: -80 }}>
-              <Image source={{ uri: item?.team?.thumbnail?.url }} style={{ width: 42, height: 42, borderRadius: 21 }} />
-              <Image source={{ uri: item?.national_team?.thumbnail?.url }} style={{ width: 42, height: 42, marginTop: 9 }} />
-              <Text style={{ fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF', textAlign: 'center' }}>
+              <Image source={{ uri: item?.team?.thumbnail?.url }} style={styles.logo1} />
+              <Image source={{ uri: item?.national_team?.thumbnail?.url }} style={styles.logo2} />
+              <Text style={styles.avarageValue}>
                 {summaryMeta?.find(i => i.key === 'average')?.value}
               </Text>
             </View>
@@ -272,17 +249,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
-        <View style={{
-          top: -32,
-          height: 64, borderRadius: 32, backgroundColor: '#FFFF', width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 3.22,
-          elevation: 3,
-        }}>
+        <View style={styles.tabs}>
           <TouchableOpacity onPress={() => setActiveTab('summary')}>
             <Text style={activeTab === 'summary' ? styles.activeTab : styles.tab}>Summary</Text>
           </TouchableOpacity>
@@ -316,10 +283,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  sliderTitle: { fontWeight: '800', color: '#2B2B2B', fontSize: 18, marginTop: 10 },
-  sliderOptions: { flexDirection: 'row', alignItems: 'center' },
-  sliderValue: { marginLeft: 26, fontFamily: 'Oswald', fontWeight: '700', fontSize: 18, color: '#2B2B2B' },
-  sliderIcon: { width: 29, height: 28, marginLeft: 23 },
   block: {
     height: 118,
     width: '100%',
@@ -337,14 +300,31 @@ const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  writeFieldTitle: { fontWeight: '800', fontSize: 12, color: '#00293B', position: 'absolute', backgroundColor: '#fff', top: 5, left: 25, zIndex: 1 },
-  writeInput: { borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.32)', borderRadius: 4, height: 86, padding: 11, paddingTop: 11, fontWeight: '400', fontSize: 16, color: '#00293B' },
-  textWrap: { flexDirection: 'row', justifyContent: 'space-between' },
-  optionTitle: { fontWeight: '500', fontSize: 14, paddingBottom: 8, paddingLeft: 3 },
-  optionValue: { fontWeight: '700', fontSize: 18 },
-  gradientLine: { width: '100%', height: 6, borderRadius: 3, alignItems: 'flex-end', marginBottom: 16 },
-  grayLine: { backgroundColor: '#F4F4FB', height: 6, },
-
   tab: { color: '#7D86A9', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' },
   activeTab: { color: '#5EC422', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' },
+  tabs: {
+    top: -32,
+    height: 64, borderRadius: 32, backgroundColor: '#FFFF', width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3.22,
+    elevation: 3,
+  },
+  nameWrap: { height: 113, width: '100%', backgroundColor: 'rgba(0,0,0,0.5)', position: 'absolute', bottom: 0, paddingLeft: 14, paddingTop: 15, flexDirection: 'row', justifyContent: 'space-between', paddingRight: 20 },
+  name: { fontWeight: '700', fontSize: 32, color: '#FFF', width: 290 },
+  options: { fontWeight: '500', fontSize: 12, color: '#FFF' },
+  logo1: { width: 42, height: 42, borderRadius: 21 },
+  logo2: { width: 42, height: 42, marginTop: 9 },
+  avarageValue: { fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF', textAlign: 'center' },
+  image: { height: 387, width: '100%' },
+  bodyHeader: { height: 387, width: '100%' },
+  wrapCarousel2: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  arrowIcon: { width: 26, height: 26 },
+  carousel: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 },
+  avarageShowWrap: { width: 280, height: 20, alignItems: 'center' },
+  avarageShowText: { fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' },
+  arrowIcon2: { width: 6.72, height: 11.26 },
 })
