@@ -421,6 +421,24 @@ const getActivityStadiums = async (limit = 50) => {
 };
 
 
+const getActivityGames = async (limit = 50) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}activity/games?limit=${limit}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
 
 
 
@@ -1485,6 +1503,7 @@ export default {
     getArticles,
     getActivityStadiums,
     getStadiumSummary,
+    getActivityGames,
 
     getRestaurant,
     getRestaurantWeeks,

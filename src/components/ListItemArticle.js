@@ -52,9 +52,12 @@ export default function ListItem(props) {
         </View>
       </View>
 
-      {/* <Text style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'Oswald', fontSize: 26, fontWeight: '700' }}>
-        2 : 0
-      </Text> */}
+      {props?.gameResult && (
+        <Text style={{ position: 'absolute', top: 10, right: 10, fontFamily: 'Oswald', fontSize: 26, fontWeight: '700' }}>
+          {props.gameResult}
+        </Text>
+      )}
+
 
     </TouchableOpacity>
   )

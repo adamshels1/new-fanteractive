@@ -9,58 +9,76 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItemGame, TeamListItem, Button, FilterModal } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItemArticle, TeamListItem, Button, FilterModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
+import moment from 'moment';
 
 export default function About({ route, navigation }) {
   // const dispatch = useDispatch()
-  const [page, setPage] = useState({})
-  const [visibleFilterModal, setVisibleFilterModal] = useState(false)
-  // useEffect(async () => {
-  //   try {
-  //     dispatch(loaderAction({ isLoading: true }))
-  //     const page = await mainApi.getPage({ id: 1065 });
-  //     setPage(page);
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   } catch (e) {
-  //     dispatch(loaderAction({ isLoading: false }))
-  //   }
-  // }, []);
-  const { title = '', content = '' } = page;
+  const [games, setGames] = useState([])
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    getActivityGames()
+  }, []);
+
+  const getActivityGames = async () => {
+    try {
+      setLoading(true)
+      const res = await mainApi.getActivityGames()
+      console.log('aaa', res)
+      setGames(res.data.data)
+      setLoading(false)
+    } catch (e) {
+      setLoading(false)
+      console.log('e', e)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        title={title}
         showMenu
         showFilter
         navigation={navigation}
         onFilter={() => setVisibleFilterModal(true)}
       />
 
-      <FilterModal
+      {/* <FilterModal
         isVisible={visibleFilterModal}
         onClose={() => setVisibleFilterModal(false)}
+      /> */}
+
+
+
+      <FlatList
+        refreshing={loading}
+        onRefresh={getActivityGames}
+        ListHeaderComponent={<BlockTitle title='Recent Games Reviews' />}
+        style={{ paddingVertical: 24, paddingHorizontal: 20 }}
+        data={games}
+        keyExtractor={(item, index) => item.player_id}
+        renderItem={({ item, index }) => {
+          // console.log('item', item)
+          return (
+            <ListItemArticle
+              value1={'GAME REPORT CARD'}
+              value2={item.team.name}
+              value3={`vs ${item.game.local_team.name}`}
+              value4={item?.fanager?.full_name}
+              value5={moment(item.rating_posted_at).format('DD MMM, YYYY')}
+              gameResult={'3:2'}
+              image={{ uri: item?.team?.thumbnail?.url }}
+              miniImage={{ uri: item?.team?.thumbnail?.url }}
+              onPress={() => navigation.navigate('PlayerSummary', { item })}
+            />
+          )
+        }
+        }
       />
 
 
-        <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
-
-          <BlockTitle title='Recent Games Reviews' />
-
-          <FlatList
-            style={{ marginTop: 25 }}
-            data={[1, 1, 1, 1, 1]}
-            renderItem={() => <ListItemGame
-              value='2.3'
-              onPress={() => navigation.navigate('GameSummary')}
-              image={{ uri: 'https://2.bp.blogspot.com/-vEeXSLwkSqg/XI7btUXIe3I/AAAAAAAAJI4/odtruDY2ncYW5sruJ9qL_TrIF7_z0TlQgCK4BGAYYCw/s1600/logo%2Bpec%2Bzwolle%2Bnederland%2Bfootball.png' }}
-            />
-            }
-          />
-
-        </View>
 
 
 
