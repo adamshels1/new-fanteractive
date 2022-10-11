@@ -11,7 +11,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, AddReportButton } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2 } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -73,146 +73,6 @@ export default function PlayerSummary({ route, navigation }) {
   }
 
 
-  const renderReports = () => {
-    return (
-      <View style={{ paddingHorizontal: 20 }}>
-        <FlatList
-          data={reports}
-          keyExtractor={(item, index) => 'report-' + index}
-          renderItem={({ item }) => (
-            <ListItem
-              value={parseFloat(item?.avg).toFixed(2)}
-              amount={item?.event?.user?.full_name}
-              title={`${item?.event?.sport?.name} • ${moment(item?.posted).format('DD MMM YYYY')}`}
-              icon={{
-                uri: item?.thumbnail?.url
-              }}
-              disabled
-            // onPress={() => navigation.navigate('PlayerReport')}
-            />
-          )}
-          ListFooterComponent={<View style={{ height: 100 }} />}
-        />
-      </View>
-    )
-  }
-
-
-  const renderSummary = () => {
-    return (
-      <View style={{ paddingHorizontal: 20 }}>
-
-
-        <View style={styles.wrapCarousel2}>
-
-          <TouchableOpacity
-            onPress={() => {
-              refCarousel2.current?.scrollTo({ count: 1, animated: true });
-            }}
-          >
-            <Image source={require('@assets/icons/cicle-arrow-left.png')} style={styles.arrowIcon} />
-          </TouchableOpacity>
-
-
-
-          <Carousel
-            loop
-            width={300}
-            height={110}
-            ref={refCarousel2}
-            data={summaryMeta}
-            scrollAnimationDuration={1000}
-            // onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
-            renderItem={({ item, index }) => (
-              <AverageBlock
-                key={'ab-' + index}
-                title={summaryOptions[item.key]}
-                value={item.value}
-              />
-            )}
-          />
-
-
-          <TouchableOpacity
-            onPress={() => {
-              refCarousel2.current?.scrollTo({ count: -1, animated: true });
-            }}
-          >
-            <Image source={require('@assets/icons/cicle-arrow-right.png')} style={styles.arrowIcon} />
-          </TouchableOpacity>
-
-
-        </View>
-
-
-
-
-
-
-
-
-        <View style={styles.carousel}>
-
-          <TouchableOpacity
-            onPress={() => {
-              refCarousel.current?.scrollTo({ count: 1, animated: true });
-            }}
-          >
-            <Image source={require('@assets/icons/arrow-left.png')} style={styles.arrowIcon2} />
-          </TouchableOpacity>
-
-          <Carousel
-            loop
-            width={280}
-            height={20}
-            ref={refCarousel}
-            data={avarageTypes}
-            scrollAnimationDuration={1000}
-            onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
-            renderItem={({ index }) => (
-              <View key={'a-' + index} style={styles.avarageShowWrap}>
-                <Text style={styles.avarageShowText}>SHOW: <Text style={{ color: '#5FC422' }}>{avarageTypes[index]} stats</Text></Text>
-              </View>
-            )}
-          />
-
-          <TouchableOpacity
-            onPress={() => {
-              refCarousel.current?.scrollTo({ count: -1, animated: true });
-            }}
-          >
-            <Image source={require('@assets/icons/arrow-right.png')} style={styles.arrowIcon2} />
-          </TouchableOpacity>
-        </View>
-
-
-        {summary?.map((i, key) => {
-          const value = parseFloat(i[avarageType])?.toFixed(1)
-          return (
-            <AvarageItem
-              key={'s-' + key}
-              title={i?.title}
-              value={value}
-              range={value?.replace('.', '')}
-            />
-          )
-        })}
-
-
-
-
-
-        {/* <Button
-          leftComponent={<Image source={require('@assets/icons/shape.png')} style={{ width: 26, height: 29, marginRight: 8 }} />}
-          text='Issue A New Scouting Report'
-          style={{ width: '100%', marginTop: 36, marginBottom: 20 }}
-          textStyle={{ fontFamily: 'Oswald' }}
-          onPress={() => navigation.navigate('PlayerEdit')}
-        /> */}
-
-      </View>
-    )
-  }
 
 
   return (
@@ -221,10 +81,6 @@ export default function PlayerSummary({ route, navigation }) {
       <Header
         navigation={navigation}
         goBack={navigation.goBack}
-      />
-
-      <AddReportButton
-        onPress={() => navigation.navigate('StadiumAddReport', {item})}
       />
 
       <ScrollView>
@@ -260,24 +116,86 @@ export default function PlayerSummary({ route, navigation }) {
         </View>
 
 
+        <View style={{ padding: 15, paddingTop: 31 }}>
+          <Text style={{ fontWeight: '900', fontSize: 24, color: '#00293B', textAlign: 'center', marginTop: 31 }}>
+            Step1: Tell us about{`\n`}the event
+          </Text>
 
-        <View style={styles.tabs}>
-          <TouchableOpacity onPress={() => setActiveTab('summary')}>
-            <Text style={activeTab === 'summary' ? styles.activeTab : styles.tab}>Summary</Text>
+
+          <View style={styles.filtersWrap}>
+            <TouchableOpacity style={styles.filterItem}>
+              <Text style={styles.filterText}>About Reviewer</Text>
+            </TouchableOpacity>
+          </View>
+
+
+          <Input2
+            field='Event Name'
+          />
+
+
+          <TouchableOpacity style={styles.inputButton}>
+            <View style={styles.inputButtonField}>
+              <Text style={styles.inputButtonFieldText}>
+                Sport
+              </Text>
+            </View>
+            <Text style={styles.inputButtonText}>
+              aaa
+            </Text>
+            <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => setActiveTab('reports')}>
-            <Text style={activeTab === 'reports' ? styles.activeTab : styles.tab}>Detail Reports</Text>
+
+
+
+          <TouchableOpacity style={styles.inputButton}>
+            <View style={styles.inputButtonField}>
+              <Text style={styles.inputButtonFieldText}>
+                Visit date
+              </Text>
+            </View>
+            <Text style={styles.inputButtonText}>
+              12 August 2020
+            </Text>
+            <Image source={require('@assets/icons/calendar2.png')} resizeMode='center' style={{ width: 17.19, height: 17.97 }} />
           </TouchableOpacity>
+
+
+
+          <View style={styles.filtersWrap}>
+            <TouchableOpacity style={styles.filterItem}>
+              <Text style={styles.filterText}>Your Media </Text>
+            </TouchableOpacity>
+          </View>
+
+
+          <Text style={{ fontWeight: '900', fontSize: 12, color: '#00293B', padding: 10, textAlign: 'center' }}>
+            You can attach images or video from your visit below to have them display together with your ratings!
+          </Text>
+
+          <TouchableOpacity style={{ height: 176, width: '100%', borderColor: '#7D86A9', borderWidth: 1, borderRadius: 4, justifyContent: 'center', alignItems: 'center', marginTop: 6, marginBottom: 21 }}>
+
+            <Image source={require('@assets/icons/upload-gray.png')} style={{ width: 100, height: 66 }} />
+
+            <Text style={{ marginTop: 18, fontWeight: '900', fontSize: 14, color: '#7D86A9' }}>
+              Tap here to upload{`\n`}your Photos or Videos
+            </Text>
+
+          </TouchableOpacity>
+
+
+
+          <Button
+            text='Save and Continue'
+            style={{ marginBottom: 100 }}
+          />
+
+
+
         </View>
 
 
-
-
-
-        {activeTab === 'summary' && renderSummary()}
-
-        {activeTab === 'reports' && renderReports()}
 
 
 
@@ -331,12 +249,24 @@ const styles = StyleSheet.create({
   logo1: { width: 42, height: 42, borderRadius: 21 },
   logo2: { width: 42, height: 42, marginTop: 9 },
   avarageValue: { fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF', textAlign: 'center' },
-  image: { height: 315, width: '100%' },
-  bodyHeader: { height: 315, width: '100%' },
+  image: { height: 155, width: '100%' },
+  bodyHeader: { height: 155, width: '100%' },
   wrapCarousel2: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   arrowIcon: { width: 26, height: 26 },
   carousel: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 },
   avarageShowWrap: { width: 280, height: 20, alignItems: 'center' },
   avarageShowText: { fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' },
   arrowIcon2: { width: 6.72, height: 11.26 },
+
+  filterItem: { flexDirection: 'row', alignItems: 'center' },
+  filterText: { fontWeight: '900', fontSize: 12, color: '#00293B' },
+  filterIcon: { width: 7.53, height: 4.34, top: 1, marginLeft: 3.24 },
+  filtersWrap: { height: 30, width: '100%', backgroundColor: '#EDF1F9', borderRadius: 3, marginTop: 29, paddingHorizontal: 11, flexDirection: 'row', justifyContent: 'space-between' },
+
+  inputButton: { width: '100%', height: 50, borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.32)', borderRadius: 4, marginTop: 23, alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, flexDirection: 'row' },
+  inputButtonField: { left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },
+  inputButtonFieldText: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 12, color: '#00293B', paddingHorizontal: 5 },
+  inputButtonText: { fontSize: 16, fontFamily: 'Avenir', color: '#00293B', fontWeight: '400' },
+
+
 })

@@ -45,6 +45,8 @@ import ListItemArticle from './ListItemArticle'
 import AvarageItem from './AvarageItem'
 import ListItemGame from './ListItemGame'
 import AverageBlock from './AverageBlock'
+import AddReportButton from './AddReportButton'
+import Input2 from './Input2'
 
 export { 
     Header, 
@@ -91,5 +93,7 @@ export {
     ListItemArticle,
     AvarageItem,
     ListItemGame,
-    AverageBlock
+    AverageBlock,
+    AddReportButton,
+    Input2
 }

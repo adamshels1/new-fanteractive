@@ -41,6 +41,7 @@ import Articles from '@screens/Articles'
 import Article from '@screens/Article'
 import StadiumReport from '@screens/StadiumReport'
 import StadiumSummary from '@screens/StadiumSummary'
+import StadiumAddReport from '@screens/StadiumAddReport'
 import StadiumDetail from '@screens/StadiumDetail'
 import StadiumsList from '@screens/StadiumsList'
 import GameReport from '@screens/GameReport'
@@ -165,6 +166,10 @@ function StadiumStackScreen() {
             <Stack.Screen
                 name='StadiumDetail'
                 component={StadiumDetail}
+            />
+            <Stack.Screen
+                name='StadiumAddReport'
+                component={StadiumAddReport}
             />
             <Stack.Screen
                 name='StadiumReport'
