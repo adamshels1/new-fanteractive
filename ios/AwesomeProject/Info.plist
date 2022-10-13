@@ -37,6 +37,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Give access to upload photos to add reports/profile</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Give access to upload photos to add reports/profile</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AvenirLTStd-Black.otf</string>

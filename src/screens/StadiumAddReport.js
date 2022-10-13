@@ -11,12 +11,14 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2 } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2, StatsOverviewItem } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 import moment from 'moment';
+import ImagePicker from 'react-native-image-crop-picker';
+// import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 
 export default function PlayerSummary({ route, navigation }) {
@@ -30,6 +32,8 @@ export default function PlayerSummary({ route, navigation }) {
   const [activeTab, setActiveTab] = useState('summary')
   const [avarageType, setAvarageType] = useState('avg')
   const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
+
+  const [step, setStep] = useState(1)
 
   useEffect(() => {
     getActivityStadium()
@@ -73,6 +77,147 @@ export default function PlayerSummary({ route, navigation }) {
   }
 
 
+  const onGallery = async () => {
+    try {
+      ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        multiple: true
+      }).then(image => {
+        // setAvatarFile(image);
+        console.log(image);
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+
+
+
+  const renderStep2 = () => {
+    return (
+      <View>
+
+        <Text style={{ fontFamily: 'Avenir', fontWeight: '800', color: '#00293B', fontSize: 24, textAlign: 'center', marginTop: 33 }}>
+          Step2: Rate Venue
+        </Text>
+
+
+
+        <View style={{ paddingHorizontal: 26, marginTop: 45 }}>
+
+          <StatsOverviewItem
+            field={'Power Moves'}
+            onChangeComment={text => console.log(text)}
+          />
+
+
+          <Button text='Fanalyze' style={{ width: '100%', marginTop: 36 }} />
+          <Button
+            text='BACK'
+            style={{ width: '100%', marginTop: 17 }}
+            inverter
+            onPress={() => setStep(1)}
+          />
+
+          <View style={{ height: 100 }} />
+
+
+        </View>
+
+
+      </View>
+    )
+  }
+
+
+  const renderStep1 = () => {
+    return (
+      <View style={{ padding: 15, paddingTop: 31 }}>
+        <Text style={{ fontWeight: '900', fontSize: 24, color: '#00293B', textAlign: 'center', marginTop: 31 }}>
+          Step1: Tell us about{`\n`}the event
+        </Text>
+
+
+        <View style={styles.filtersWrap}>
+          <TouchableOpacity style={styles.filterItem}>
+            <Text style={styles.filterText}>About Reviewer</Text>
+          </TouchableOpacity>
+        </View>
+
+
+        <Input2
+          field='Event Name'
+        />
+
+
+        <TouchableOpacity style={styles.inputButton}>
+          <View style={styles.inputButtonField}>
+            <Text style={styles.inputButtonFieldText}>
+              Sport
+            </Text>
+          </View>
+          <Text style={styles.inputButtonText}>
+            aaa
+          </Text>
+          <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+        </TouchableOpacity>
+
+
+
+
+        <TouchableOpacity style={styles.inputButton}>
+          <View style={styles.inputButtonField}>
+            <Text style={styles.inputButtonFieldText}>
+              Visit date
+            </Text>
+          </View>
+          <Text style={styles.inputButtonText}>
+            12 August 2020
+          </Text>
+          <Image source={require('@assets/icons/calendar2.png')} resizeMode='center' style={{ width: 17.19, height: 17.97 }} />
+        </TouchableOpacity>
+
+
+
+        <View style={styles.filtersWrap}>
+          <TouchableOpacity style={styles.filterItem}>
+            <Text style={styles.filterText}>Your Media </Text>
+          </TouchableOpacity>
+        </View>
+
+
+        <Text style={{ fontWeight: '900', fontSize: 12, color: '#00293B', padding: 10, textAlign: 'center' }}>
+          You can attach images or video from your visit below to have them display together with your ratings!
+        </Text>
+
+        <TouchableOpacity
+          onPress={onGallery}
+          style={{ height: 176, width: '100%', borderColor: '#7D86A9', borderWidth: 1, borderRadius: 4, justifyContent: 'center', alignItems: 'center', marginTop: 6, marginBottom: 21 }}
+        >
+
+          <Image source={require('@assets/icons/upload-gray.png')} style={{ width: 100, height: 66 }} />
+
+          <Text style={{ marginTop: 18, fontWeight: '900', fontSize: 14, color: '#7D86A9' }}>
+            Tap here to upload{`\n`}your Photos or Videos
+          </Text>
+
+        </TouchableOpacity>
+
+
+
+        <Button
+          text='Save and Continue'
+          style={{ marginBottom: 100 }}
+          onPress={() => setStep(2)}
+        />
+
+
+
+      </View>
+    )
+  }
 
 
   return (
@@ -116,87 +261,11 @@ export default function PlayerSummary({ route, navigation }) {
         </View>
 
 
-        <View style={{ padding: 15, paddingTop: 31 }}>
-          <Text style={{ fontWeight: '900', fontSize: 24, color: '#00293B', textAlign: 'center', marginTop: 31 }}>
-            Step1: Tell us about{`\n`}the event
-          </Text>
-
-
-          <View style={styles.filtersWrap}>
-            <TouchableOpacity style={styles.filterItem}>
-              <Text style={styles.filterText}>About Reviewer</Text>
-            </TouchableOpacity>
-          </View>
-
-
-          <Input2
-            field='Event Name'
-          />
-
-
-          <TouchableOpacity style={styles.inputButton}>
-            <View style={styles.inputButtonField}>
-              <Text style={styles.inputButtonFieldText}>
-                Sport
-              </Text>
-            </View>
-            <Text style={styles.inputButtonText}>
-              aaa
-            </Text>
-            <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
-          </TouchableOpacity>
 
 
 
-
-          <TouchableOpacity style={styles.inputButton}>
-            <View style={styles.inputButtonField}>
-              <Text style={styles.inputButtonFieldText}>
-                Visit date
-              </Text>
-            </View>
-            <Text style={styles.inputButtonText}>
-              12 August 2020
-            </Text>
-            <Image source={require('@assets/icons/calendar2.png')} resizeMode='center' style={{ width: 17.19, height: 17.97 }} />
-          </TouchableOpacity>
-
-
-
-          <View style={styles.filtersWrap}>
-            <TouchableOpacity style={styles.filterItem}>
-              <Text style={styles.filterText}>Your Media </Text>
-            </TouchableOpacity>
-          </View>
-
-
-          <Text style={{ fontWeight: '900', fontSize: 12, color: '#00293B', padding: 10, textAlign: 'center' }}>
-            You can attach images or video from your visit below to have them display together with your ratings!
-          </Text>
-
-          <TouchableOpacity style={{ height: 176, width: '100%', borderColor: '#7D86A9', borderWidth: 1, borderRadius: 4, justifyContent: 'center', alignItems: 'center', marginTop: 6, marginBottom: 21 }}>
-
-            <Image source={require('@assets/icons/upload-gray.png')} style={{ width: 100, height: 66 }} />
-
-            <Text style={{ marginTop: 18, fontWeight: '900', fontSize: 14, color: '#7D86A9' }}>
-              Tap here to upload{`\n`}your Photos or Videos
-            </Text>
-
-          </TouchableOpacity>
-
-
-
-          <Button
-            text='Save and Continue'
-            style={{ marginBottom: 100 }}
-          />
-
-
-
-        </View>
-
-
-
+        {step === 1 && renderStep1()}
+        {step === 2 && renderStep2()}
 
 
 

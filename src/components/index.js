@@ -47,6 +47,7 @@ import ListItemGame from './ListItemGame'
 import AverageBlock from './AverageBlock'
 import AddReportButton from './AddReportButton'
 import Input2 from './Input2'
+import StatsOverviewItem from './StatsOverviewItem.js'
 
 export { 
     Header, 
@@ -95,5 +96,6 @@ export {
     ListItemGame,
     AverageBlock,
     AddReportButton,
-    Input2
+    Input2,
+    StatsOverviewItem
 }

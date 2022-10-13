@@ -26,7 +26,6 @@ import Explore from '@screens/Explore'
 import ExploreCard from '@screens/ExploreCard'
 // import Settings from '@screens/Settings'
 import ChangePassword from '@screens/ChangePassword'
-import EditProfile from '@screens/EditProfile'
 import RecoverPassword from '@screens/RecoverPassword'
 
 import About from '@screens/About'
