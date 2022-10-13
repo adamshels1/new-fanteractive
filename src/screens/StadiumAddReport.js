@@ -11,7 +11,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2, StatsOverviewItem } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2, StatsOverviewItem, MultiSelectModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -33,11 +33,16 @@ export default function PlayerSummary({ route, navigation }) {
   const [avarageType, setAvarageType] = useState('avg')
   const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
 
+  const token = useSelector(state => state.userReducer.token)
+  const [sports, setSports] = useState([])
+  const [visibleSportsModal, setVisibleSportsModal] = useState(false)
+
   const [step, setStep] = useState(1)
 
   useEffect(() => {
     getActivityStadium()
     getStadiumReports()
+    getSports()
   }, []);
 
   const getActivityStadium = async () => {
@@ -93,6 +98,26 @@ export default function PlayerSummary({ route, navigation }) {
   }
 
 
+  const getSports = async () => {
+    try {
+      const res = await mainApi.getSports(token)
+      console.log(res.data.data)
+      setSports(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+
+
+  const onSelectSport = item => {
+    setSports(sports.map(i => {
+      return {
+        ...i,
+        selected: item.id === i.id ? !i.selected : false
+      }
+    }))
+  }
 
 
   const renderStep2 = () => {
@@ -152,14 +177,17 @@ export default function PlayerSummary({ route, navigation }) {
         />
 
 
-        <TouchableOpacity style={styles.inputButton}>
+        <TouchableOpacity
+          style={styles.inputButton}
+          onPress={() => setVisibleSportsModal(true)}
+        >
           <View style={styles.inputButtonField}>
             <Text style={styles.inputButtonFieldText}>
               Sport
             </Text>
           </View>
           <Text style={styles.inputButtonText}>
-            aaa
+            Your Sport Rating
           </Text>
           <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
         </TouchableOpacity>
@@ -226,6 +254,14 @@ export default function PlayerSummary({ route, navigation }) {
       <Header
         navigation={navigation}
         goBack={navigation.goBack}
+      />
+
+      <MultiSelectModal
+        title='Select Sport'
+        isVisible={visibleSportsModal}
+        onClose={() => setVisibleSportsModal(false)}
+        onSelect={onSelectSport}
+        data={sports}
       />
 
       <ScrollView>
