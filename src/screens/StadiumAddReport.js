@@ -20,6 +20,7 @@ import moment from 'moment';
 import ImagePicker from 'react-native-image-crop-picker';
 import AlertAsync from 'react-native-alert-async';
 // import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
+import helper from '@services/helper';
 
 
 export default function PlayerSummary({ route, navigation }) {
@@ -161,7 +162,7 @@ export default function PlayerSummary({ route, navigation }) {
         characteristics: characteristics.map(i => {
           return {
             id: i.id,
-            value: i.value ? i.value : null,
+            value: i.value ? helper.formatAvarageNumber(i.value) : null,
             comment: i.comment ? i.comment : null
           }
         })

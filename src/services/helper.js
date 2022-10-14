@@ -35,5 +35,16 @@ export default {
     },
     randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
-      }
+    },
+    formatAvarageNumber(value) { // min and max included 
+        if (!value) return null
+        let a = value.toString().split('')
+        if (a.length === 1) {
+            return `0.${a[0]}`
+        } else if (a.length === 2) {
+            return `${a[0]}.${a[1]}`
+        } else {
+            return `${a[0]}${a[1]}.${a[2]}`
+        }
+    }
 };

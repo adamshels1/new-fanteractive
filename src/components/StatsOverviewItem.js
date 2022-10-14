@@ -15,6 +15,7 @@ import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import helper from '@services/helper';
 const windowWidth = Dimensions.get('window').width;
 
 export default function StatsOverviewItem(props) {
@@ -66,10 +67,12 @@ export default function StatsOverviewItem(props) {
           //   100,
           // )}
           />
-          <Text style={styles.sliderValue}>
-            {/* 8.0 */}
-            {value}
-          </Text>
+          <View style={{ width: 40, marginLeft: 26, }}>
+            <Text style={styles.sliderValue}>
+              {/* 8.0 */}
+              {helper.formatAvarageNumber(value)}
+            </Text>
+          </View>
           <TouchableOpacity onPress={toggleVisivleComment}>
             {/* <Image source={require('@assets/icons/add2.png')} style={styles.sliderIcon} /> */}
             <Image source={visibleComment ? require('@assets/icons/add2-red.png') : require('@assets/icons/add2.png')} style={styles.sliderIcon} />
@@ -96,8 +99,8 @@ export default function StatsOverviewItem(props) {
 const styles = StyleSheet.create({
   sliderTitle: { fontWeight: '800', color: '#2B2B2B', fontSize: 18, marginTop: 10 },
   sliderOptions: { flexDirection: 'row', alignItems: 'center' },
-  sliderValue: { marginLeft: 26, fontFamily: 'Oswald', fontWeight: '700', fontSize: 18, color: '#2B2B2B' },
-  sliderIcon: { width: 29, height: 28, marginLeft: 23 },
+  sliderValue: { fontFamily: 'Oswald', fontWeight: '700', fontSize: 18, color: '#2B2B2B' },
+  sliderIcon: { width: 29, height: 28, marginLeft: 13 },
   block: {
     height: 118,
     width: '100%',
