@@ -439,9 +439,66 @@ const getActivityGames = async (limit = 50) => {
 };
 
 
+const getStadiumCharacteristics = async (token) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}stadium-rating/characteristics`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
 
 
 
+const addStadiumRating = async (token, { stadiumId, comment, eventName, date, sportId, images, characteristics }) => {
+
+    const headers = {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}`
+    };
+
+
+    let formData = new FormData();
+    formData.append('general_comment', comment)
+    formData.append('event_name', eventName)
+    formData.append('visited_at', date)
+    formData.append('sport_id', sportId)
+    formData.append('characteristics', characteristics)
+
+    images.forEach(i => {
+        formData.append('images[]', {
+            uri: i.path,
+            type: i.mime,
+            name: i.filename
+            // name: 'file.jpeg',
+        });
+    });
+
+
+    const params = {
+        method: 'POST',
+        headers,
+        body: formData
+    };
+    const url = `${server.BASE_URL_API}stadium-rating/add/${stadiumId}`;
+    console.log(url, params);
+    const response = await fetch(url, params);
+    console.log('response', response)
+    return response
+    // const res = await response.json();
+    // console.log('data', res)
+
+    // return res
+};
 
 
 
@@ -1504,6 +1561,8 @@ export default {
     getActivityStadiums,
     getStadiumSummary,
     getActivityGames,
+    getStadiumCharacteristics,
+    addStadiumRating,
 
     getRestaurant,
     getRestaurantWeeks,

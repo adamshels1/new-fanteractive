@@ -11,18 +11,19 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2, StatsOverviewItem, MultiSelectModal } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock, Input, Input2, StatsOverviewItem, MultiSelectModal, DatePeriodModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 import moment from 'moment';
 import ImagePicker from 'react-native-image-crop-picker';
+import AlertAsync from 'react-native-alert-async';
 // import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 
 
 export default function PlayerSummary({ route, navigation }) {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const item = route?.params?.item
   const refCarousel = useRef();
   const refCarousel2 = useRef();
@@ -34,8 +35,16 @@ export default function PlayerSummary({ route, navigation }) {
   const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
 
   const token = useSelector(state => state.userReducer.token)
+  const [dateVisible, setDateVisible] = useState(false)
+  const [date, setDate] = useState(new Date())
   const [sports, setSports] = useState([])
   const [visibleSportsModal, setVisibleSportsModal] = useState(false)
+  const [eventName, setEventName] = useState('')
+  const [comment, setComment] = useState('')
+  const selectedSport = sports?.find(i => i.selected)
+  const [characteristics, setCharacteristics] = useState([])
+  const [images, setImages] = useState([])
+
 
   const [step, setStep] = useState(1)
 
@@ -43,7 +52,18 @@ export default function PlayerSummary({ route, navigation }) {
     getActivityStadium()
     getStadiumReports()
     getSports()
+    getStadiumCharacteristics()
   }, []);
+
+  const getStadiumCharacteristics = async () => {
+    try {
+      const res = await mainApi.getStadiumCharacteristics(token)
+      console.log('getStadiumCharacteristics', res.data.data)
+      setCharacteristics(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
 
   const getActivityStadium = async () => {
     try {
@@ -66,7 +86,7 @@ export default function PlayerSummary({ route, navigation }) {
   const getStadiumReports = async () => {
     try {
       const res = await mainApi.getStadiumReports(item.id)
-      console.log('resres', res.data.data)
+      console.log('reports', res.data.data)
       setReports(res.data.data)
     } catch (e) {
       console.log('e', e)
@@ -91,6 +111,7 @@ export default function PlayerSummary({ route, navigation }) {
       }).then(image => {
         // setAvatarFile(image);
         console.log(image);
+        setImages(image)
       })
     } catch (e) {
       console.log(e)
@@ -111,6 +132,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
   const onSelectSport = item => {
+    console.log('item', item)
     setSports(sports.map(i => {
       return {
         ...i,
@@ -119,6 +141,55 @@ export default function PlayerSummary({ route, navigation }) {
     }))
   }
 
+  const onConfirmDate = date => {
+    setDate(new Date(date))
+    console.log('data', date)
+  }
+
+  const dateFormat = moment(date).format('DD MMMM YYYY')
+
+
+  const addStadiumRating = async () => {
+    try {
+      const data = {
+        stadiumId: item.id,
+        comment,
+        eventName,
+        date,
+        sportId: selectedSport?.id,
+        images,
+        characteristics: characteristics.map(i => {
+          return {
+            id: i.id,
+            value: i.value ? i.value : null,
+            comment: i.comment ? i.comment : null
+          }
+        })
+      };
+      console.log('data', data)
+      dispatch(loaderAction({ isLoading: true }))
+      const res = await mainApi.addStadiumRating(token, {
+        stadiumId: item.id,
+        comment,
+        eventName,
+        date,
+        sportId: selectedSport?.id,
+        images,
+        characteristics
+      })
+      console.log('res', res)
+      if (res.status === 200) {
+        // navigation.navigate('StadiumSummary', { activeTab: 'reports' })
+        navigation.goBack()
+      } else {
+        AlertAsync('Something went wrong')
+      }
+      dispatch(loaderAction({ isLoading: false }))
+    } catch (e) {
+      dispatch(loaderAction({ isLoading: false }))
+      console.log('e', e)
+    }
+  }
 
   const renderStep2 = () => {
     return (
@@ -132,13 +203,50 @@ export default function PlayerSummary({ route, navigation }) {
 
         <View style={{ paddingHorizontal: 26, marginTop: 45 }}>
 
-          <StatsOverviewItem
-            field={'Power Moves'}
-            onChangeComment={text => console.log(text)}
+          {characteristics.map((i, index) => {
+            return (
+              <StatsOverviewItem
+                key={i.id}
+                field={i?.title}
+                toggleVisivleComment={id => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === id) {
+                      item.comment = null
+                    }
+                    return item;
+                  }))
+                }}
+                onChangeComment={(comment) => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === i.id) {
+                      item.comment = comment
+                    }
+                    return item;
+                  }))
+                }}
+                comment={i?.comment}
+                value={i?.value}
+                onValuesChange={(values) => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === i.id) {
+                      item.value = values[0]
+                    }
+                    return item;
+                  }))
+                }}
+                {...i}
+              />
+            )
+          })}
+
+
+
+
+          <Button
+            text='Fanalyze'
+            style={{ width: '100%', marginTop: 36 }}
+            onPress={addStadiumRating}
           />
-
-
-          <Button text='Fanalyze' style={{ width: '100%', marginTop: 36 }} />
           <Button
             text='BACK'
             style={{ width: '100%', marginTop: 17 }}
@@ -174,6 +282,16 @@ export default function PlayerSummary({ route, navigation }) {
 
         <Input2
           field='Event Name'
+          onChangeText={text => setEventName(text)}
+          value={eventName}
+        />
+
+        <Input2
+          field='Comment'
+          onChangeText={text => setComment(text)}
+          value={comment}
+          style={{ height: 100 }}
+          multiline
         />
 
 
@@ -187,22 +305,31 @@ export default function PlayerSummary({ route, navigation }) {
             </Text>
           </View>
           <Text style={styles.inputButtonText}>
-            Your Sport Rating
+            {selectedSport ? selectedSport?.name : 'Your Sport Rating'}
           </Text>
           <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
         </TouchableOpacity>
 
 
+        <DatePeriodModal
+          isVisible={dateVisible}
+          onClose={() => setDateVisible(false)}
+          onConfirm={onConfirmDate}
+          mode='single'
+        />
 
 
-        <TouchableOpacity style={styles.inputButton}>
+        <TouchableOpacity
+          style={styles.inputButton}
+          onPress={() => setDateVisible(true)}
+        >
           <View style={styles.inputButtonField}>
             <Text style={styles.inputButtonFieldText}>
               Visit date
             </Text>
           </View>
           <Text style={styles.inputButtonText}>
-            12 August 2020
+            {dateFormat}
           </Text>
           <Image source={require('@assets/icons/calendar2.png')} resizeMode='center' style={{ width: 17.19, height: 17.97 }} />
         </TouchableOpacity>

@@ -19,6 +19,11 @@ const windowWidth = Dimensions.get('window').width;
 
 export default function StatsOverviewItem(props) {
   const [visibleComment, setVisibleComment] = useState(false)
+  const toggleVisivleComment = () => {
+    setVisibleComment(!visibleComment)
+    props?.toggleVisivleComment && props.toggleVisivleComment(props.id)
+  }
+  const { value = 0 } = props
   return (
     <View>
       <View>
@@ -31,12 +36,12 @@ export default function StatsOverviewItem(props) {
             // onValuesChangeFinish={enableScroll}
             // isMarkersSeparated={()=><View style={{backgroundColor: 'red', width: 10, height: 10}}/>}
             imageBackgroundSource={require('@assets/images/Rectangle.png')}
-            customMarker={() => <Image source={require('@assets/icons/slider-marker.png')} style={{ width: 40, height: 40 }} />}
+            // customMarker={() => <Image source={require('@assets/icons/slider-marker.png')} style={{ width: 40, height: 40 }} />}
             unselectedStyle={{ backgroundColor: '#CBD5EA' }}
             selectedStyle={{ backgroundColor: 'rgba(0,0,0,0)' }}
-            markerStyle={{ backgroundColor: '#fff', borderWidth: 4, borderColor: '#5FC422' }}
+            markerStyle={{ backgroundColor: '#fff', borderWidth: 0, borderColor: 'gray' }}
             values={[
-              100,
+              value,
             ]}
             min={0}
             max={100}
@@ -49,6 +54,7 @@ export default function StatsOverviewItem(props) {
               backgroundColor: 'red',
             }}
             sliderLength={windowWidth - 155}
+            onValuesChange={props?.onValuesChange}
           // onValuesChange={api.debounce(
           //   (values) =>
           //     this.setState({
@@ -60,8 +66,11 @@ export default function StatsOverviewItem(props) {
           //   100,
           // )}
           />
-          <Text style={styles.sliderValue}>8.0</Text>
-          <TouchableOpacity onPress={() => setVisibleComment(!visibleComment)}>
+          <Text style={styles.sliderValue}>
+            {/* 8.0 */}
+            {value}
+          </Text>
+          <TouchableOpacity onPress={toggleVisivleComment}>
             {/* <Image source={require('@assets/icons/add2.png')} style={styles.sliderIcon} /> */}
             <Image source={visibleComment ? require('@assets/icons/add2-red.png') : require('@assets/icons/add2.png')} style={styles.sliderIcon} />
           </TouchableOpacity>
@@ -73,7 +82,7 @@ export default function StatsOverviewItem(props) {
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
           <TextInput
             style={styles.writeInput} multiline
-            value='Strength allows him to break most arm tackles and fight for every inch, however, if he gets stronger'
+            value={props?.comment}
             onChangeText={props.onChangeComment}
           />
         </View>

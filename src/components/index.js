@@ -48,6 +48,7 @@ import AverageBlock from './AverageBlock'
 import AddReportButton from './AddReportButton'
 import Input2 from './Input2'
 import StatsOverviewItem from './StatsOverviewItem.js'
+import DatePeriodModal from './DatePeriodModal.js'
 
 export { 
     Header, 
@@ -97,5 +98,6 @@ export {
     AverageBlock,
     AddReportButton,
     Input2,
-    StatsOverviewItem
+    StatsOverviewItem,
+    DatePeriodModal
 }
