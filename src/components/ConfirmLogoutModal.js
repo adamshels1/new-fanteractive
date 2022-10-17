@@ -20,7 +20,7 @@ export default class UpdatesModal extends Component {
           <View style={styles.container}>
 
           <TouchableOpacity onPress={onClose} style={styles.closeWrap}>
-            <Image source={require('@assets/icons/x.png')} style={styles.closeIcon} />
+            <Image source={require('@assets/icons/x2.png')} style={styles.closeIcon} />
           </TouchableOpacity>
 
 
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
   day: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 12, color: '#121212', textAlign: 'center' },
   points: { marginTop: 12, marginBottom: 48, fontWeight: '700', fontFamily: 'Avenir', fontSize: 35, color: '#2D77C5', textAlign: 'center' },
   image: { width: 81, height: 73, marginTop: 70, marginBottom: 22 },
-  closeWrap: { position: 'absolute', right: 10, top: 10, zIndex: 1 },
-  closeIcon: { width: 38, height: 34 },
+  closeWrap: { position: 'absolute', right: 5, top: 5, zIndex: 1 },
+  closeIcon: { width: 50, height: 50 },
 });

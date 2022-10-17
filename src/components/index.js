@@ -49,6 +49,7 @@ import AddReportButton from './AddReportButton'
 import Input2 from './Input2'
 import StatsOverviewItem from './StatsOverviewItem.js'
 import DatePeriodModal from './DatePeriodModal.js'
+import SelectPlayerModal from './SelectPlayerModal'
 
 export { 
     Header, 
@@ -99,5 +100,6 @@ export {
     AddReportButton,
     Input2,
     StatsOverviewItem,
-    DatePeriodModal
+    DatePeriodModal,
+    SelectPlayerModal,
 }

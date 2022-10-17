@@ -58,20 +58,20 @@ export default function About({ route, navigation }) {
         ListHeaderComponent={<BlockTitle title='Recent Games Reviews' />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={games}
-        keyExtractor={(item, index) => item.player_id}
+        keyExtractor={(item, index) => item.id}
         renderItem={({ item, index }) => {
           // console.log('item', item)
           return (
             <ListItemArticle
               value1={'GAME REPORT CARD'}
-              value2={item.team.name}
-              value3={`vs ${item.game.local_team.name}`}
+              value2={item?.game?.visitor_team?.name}
+              value3={`vs ${item?.game?.local_team?.name}`}
               value4={item?.fanager?.full_name}
-              value5={moment(item.rating_posted_at).format('DD MMM, YYYY')}
-              gameResult={'3:2'}
+              value5={moment(item?.rating_posted_at).format('DD MMM, YYYY')}
+              gameResult={`${item?.game?.visitor_score}:${item?.game?.local_score}`}
               image={{ uri: item?.team?.thumbnail?.url }}
               miniImage={{ uri: item?.team?.thumbnail?.url }}
-              onPress={() => navigation.navigate('PlayerSummary', { item })}
+              onPress={() => navigation.navigate('GameSummary', { item })}
             />
           )
         }

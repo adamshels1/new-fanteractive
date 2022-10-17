@@ -19,7 +19,7 @@ import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 import moment from 'moment';
 
 
-export default function PlayerSummary({ route, navigation }) {
+export default function StadiumSummary({ route, navigation }) {
   // const dispatch = useDispatch()
   const item = route?.params?.item
   const refCarousel = useRef();

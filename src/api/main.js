@@ -501,6 +501,24 @@ const addStadiumRating = async (token, { stadiumId, comment, eventName, date, sp
 };
 
 
+const getGame = async (gameId) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}game/${gameId}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
 
 
 
@@ -1563,6 +1581,7 @@ export default {
     getActivityGames,
     getStadiumCharacteristics,
     addStadiumRating,
+    getGame,
 
     getRestaurant,
     getRestaurantWeeks,

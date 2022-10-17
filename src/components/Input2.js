@@ -54,11 +54,14 @@ export default class Input extends Component {
     const { borderColor } = this.state;
     return (
       <View style={[styles.wrapStyle, this.props.wrapStyle]}>
-        <View style={styles.wrapFiedl}>
-          <Text style={styles.textFiedl}>
-            {this.props.field}
-          </Text>
-        </View>
+        {this.props.field && (
+          <View style={styles.wrapFiedl}>
+            <Text style={styles.textFiedl}>
+              {this.props.field}
+            </Text>
+          </View>
+        )}
+
         {this.props.phone ? (
           <TextInputMask
             {...this.props}
@@ -94,7 +97,7 @@ export default class Input extends Component {
           <View style={styles.secureTextButton}>
             <Image
               source={require('@assets/icons/search.png')}
-              style={{ width: 20, height: 20, top: 8 }}
+              style={{ width: 20, height: 20, top: -4 }}
             />
           </View>
         )}
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
   secureTextButton: { position: 'absolute', right: 0, top: 0, width: 56, height: 56, justifyContent: 'center', alignItems: 'center' },
   closedEye: { height: 19, width: 22 },
   openEye: { height: 16, width: 22 },
-  wrapFiedl: {  left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },
+  wrapFiedl: { left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },
   textFiedl: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 12, color: '#00293B', paddingHorizontal: 5 },
-  wrapStyle: {marginTop: 23}
+  wrapStyle: { marginTop: 23 }
 });

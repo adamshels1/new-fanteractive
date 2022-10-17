@@ -49,6 +49,7 @@ import GameSummary from '@screens/GameSummary'
 import GamesList from '@screens/GamesList'
 import PlayersList from '@screens/PlayersList'
 import FeedList from '@screens/FeedList'
+import GameAddReport from '@screens/GameAddReport'
 
 const Stack = createStackNavigator()
 
@@ -139,6 +140,11 @@ function GamesStackScreen() {
             <Stack.Screen
                 name='GameSummary'
                 component={GameSummary}
+            />
+
+            <Stack.Screen
+                name='GameAddReport'
+                component={GameAddReport}
             />
 
 

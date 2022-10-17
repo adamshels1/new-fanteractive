@@ -11,7 +11,7 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AddReportButton } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -45,12 +45,6 @@ export default function GameSummary({ route, navigation }) {
         navigation={navigation}
         goBack={navigation.goBack}
       />
-
-
-      <AddReportButton
-        onPress={() => navigation.navigate('GameAddReport', { item })}
-      />
-
       <ScrollView>
         <View
           style={{ height: 376, width: '100%' }}

@@ -51,7 +51,7 @@ export default CustomDrawerContent = (props) => {
     }
 
     return (
-        <DrawerContentScrollView {...props} style={{ backgroundColor: '#161F2D' }}>
+        <DrawerContentScrollView {...props} style={{ backgroundColor: '#00293B' }}>
 
             <ConfirmLogoutModal
                 isVisible={visibleConfirmLogoutModal}
@@ -68,7 +68,7 @@ export default CustomDrawerContent = (props) => {
                 >
                     <Image style={styles.closeIcon} resizeMode='contain' source={require('@assets/icons/close.png')} />
                 </View>
-                <Text style={styles.title}>Close</Text>
+                <Text style={styles.title}>CLOSE</Text>
             </TouchableOpacity>
 
             <CustomDrawerMenuItem
@@ -102,6 +102,24 @@ export default CustomDrawerContent = (props) => {
             />
 
 
+
+            {isloggedin && (
+                <CustomDrawerMenuItem
+                    icon={require('@assets/icons/Seetting_icon.png')}
+                    title='Profile Settings'
+                    onPress={() => navigateWithReset('ProfileStackScreen')}
+                />
+            )}
+
+
+            <CustomDrawerMenuItem
+                icon={require('@assets/icons/Logou_icon.png')}
+                title='Logout'
+                onPress={() => setVisibleConfirmLogoutModal(true)}
+            />
+
+
+
             {/* 
             {isloggedin && (
                 <CustomDrawerMenuItem
@@ -133,7 +151,7 @@ const styles = StyleSheet.create({
     menu: { flexDirection: 'row', alignItems: 'center', borderBottomColor: '#E2E2E2', paddingVertical: 23, paddingHorizontal: 17 },
     menuTitle: { paddingLeft: 10, fontFamily: 'Avenir', fontWeight: '800', color: '#FFF' },
     menuHeader: {
-        paddingTop: 19, paddingLeft: 15.5, backgroundColor: '#161F2D', flexDirection: 'row', alignItems: 'center',
+        paddingTop: 19, paddingLeft: 15.5, backgroundColor: '#00293B', flexDirection: 'row', alignItems: 'center',
         paddingBottom: 10,
         shadowColor: "#000",
         shadowOffset: {

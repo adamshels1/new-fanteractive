@@ -22,8 +22,8 @@ import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
-  const [username, setUsername] = useState('penob45180') //shels_a
-  const [password, setPassword] = useState('test1234') //test1234
+  const [username, setUsername] = useState('') //penob45180 / dev: shels_a
+  const [password, setPassword] = useState('') //test1234
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const token = useSelector(state => state.userReducer.token)
   const user = useSelector(state => state.userReducer.user)
@@ -205,7 +205,7 @@ export default function Login({ navigation }) {
 
               <View style={styles.rememberBlock}>
                 <View style={styles.rememberWrap}>
-                  <Image style={{ width: 15, height: 15 }} resizeMode='contain' source={require('@assets/icons/Oval.png')} />
+                  <Image style={{ width: 15, height: 15 }} resizeMode='contain' source={false ? require('@assets/icons/Oval.png') : require('@assets/icons/oval-green.png')} />
                   <Text style={styles.remember}>Remember me</Text>
                 </View>
                 <TouchableOpacity
