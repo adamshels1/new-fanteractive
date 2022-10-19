@@ -11,20 +11,82 @@ import {
   ImageBackground,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AddReportButton } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, AvarageItem, Button, AddReportButton, SelectTeamModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import moment from 'moment';
+import helper from '../services/helper';
 
 
 export default function GameSummary({ route, navigation }) {
-  const item = route?.params?.item
 
+  const item = route?.params?.item
+  const token = useSelector(state => state.userReducer.token)
   const [game, setGame] = useState([])
+  const [localStatsOveral, setLocalStatsOveral] = useState([])
+  const [localStatsOveralPlayer, setLocalStatsOveralPlayer] = useState([])
+
+  const [visitorStatsOveral, setVisitorStatsOveral] = useState([])
+  const [visitorStatsOveralPlayer, setVisitorStatsOveralPlayer] = useState([])
+
+  const [teamRoster, setTeamRoster] = useState([])
+
+  const [reports, setReports] = useState([])
+  const [activeTab, setActiveTab] = useState('summary')
+  const [visibleSelectTeamModal, setVisibleSelectTeamModal] = useState(false)
+
+
+  const getLocalStatsOveral = async () => {
+    try {
+      const res = await mainApi.getGameStatsOveral(token, {
+        gameId: 342, //item.id,
+        teamId: 47, //item?.game?.local_team?.id
+      })
+
+      const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
+        gameId: 342, //item.id,
+        teamId: 47, //item?.game?.local_team?.id
+      })
+
+      console.log('item', item)
+      console.log('localStatsOveral', res?.data?.data)
+      console.log('localStatsOveralPlayer', resPlayer?.data?.data)
+      setLocalStatsOveralPlayer(resPlayer?.data?.data)
+      setLocalStatsOveral(res?.data?.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+
+  const getVisitorStatsOveral = async () => {
+    try {
+      const res = await mainApi.getGameStatsOveral(token, {
+        gameId: 342, //item.id,
+        teamId: 47, //item?.game?.visitor_team?.id
+      })
+
+      const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
+        gameId: 342, //item.id,
+        teamId: 47, //item?.game?.visitor_team?.id
+      })
+
+      console.log('item', item)
+      console.log('visitorStatsOveral', res?.data?.data)
+      console.log('visitorStatsOveralPlayer', resPlayer?.data?.data)
+      setVisitorStatsOveralPlayer(resPlayer?.data?.data)
+      setVisitorStatsOveral(res?.data?.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   useEffect(() => {
     getGame()
+    getLocalStatsOveral()
+    getVisitorStatsOveral()
+    getGameReports()
   }, []);
 
   const getGame = async () => {
@@ -37,6 +99,252 @@ export default function GameSummary({ route, navigation }) {
     }
   }
 
+
+  const getGameReports = async () => {
+    try {
+      const res = await mainApi.getGameReports(342)
+      console.log('resres', res.data.data)
+      setReports(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+
+  const renderReports = () => {
+    return (
+      <View style={{ paddingHorizontal: 20 }}>
+        <FlatList
+          data={reports}
+          keyExtractor={(item, index) => 'report-' + index}
+          renderItem={({ item }) => (
+            <ListItem
+              value={helper.fixAlphabetical(item?.avg)}
+              amount={item?.fanager?.full_name}
+              title={`${item?.fanager?.tier_label} • ${moment(item?.reated_at).format('DD MMM YYYY')}`}
+              icon={{
+                uri: item?.fanager?.thumbnail?.url
+              }}
+              disabled
+            // onPress={() => navigation.navigate('PlayerReport')}
+            />
+          )}
+          ListFooterComponent={<View style={{ height: 100 }} />}
+        />
+      </View>
+    )
+  }
+
+
+  const renderSummary = () => {
+    return (
+      <View style={{ paddingHorizontal: 20 }}>
+
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image source={{ uri: item?.game?.local_team?.thumbnail?.url }} style={{ width: 42, height: 42 }} />
+          <Text style={{ fontFamily: 'Oswald', fontWeight: '500', fontSize: 20, marginLeft: 12, top: 2 }}>
+            {item?.game?.local_team?.name}
+          </Text>
+        </View>
+
+        {localStatsOveral?.map(i => {
+          return (
+            <AvarageItem
+              style={{ marginTop: 14 }}
+              title={i?.title}
+              value={helper.fixAlphabetical(i?.avg)}
+              range={parseFloat(i?.avg).toFixed(1).replace('.', '')}
+            />
+          )
+        })}
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
+          <Text>MVP</Text>
+          <View style={{ flexDirection: 'row', paddingLeft: 15 }}>
+            {localStatsOveralPlayer.map(i => {
+              return (
+                <Image
+                  style={{ width: 38, height: 38, borderRadius: 19, marginRight: 12 }}
+                  source={{ uri: i?.thumbnail?.url }}
+                />
+              )
+            })}
+
+          </View>
+        </View>
+
+
+
+
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 22 }}>
+          <Image source={{ uri: item?.game?.visitor_team?.thumbnail?.url }} style={{ width: 46, height: 46 }} />
+
+          <Text style={{ fontFamily: 'Oswald', fontWeight: '500', fontSize: 20, marginLeft: 12, top: 3 }}>
+            {item?.game?.visitor_team?.name}
+          </Text>
+        </View>
+
+
+
+        {visitorStatsOveral?.map(i => {
+          return (
+            <AvarageItem
+              style={{ marginTop: 14 }}
+              title={i?.title}
+              value={helper.fixAlphabetical(i?.avg)}
+              range={parseFloat(i?.avg).toFixed(1).replace('.', '')}
+            />
+          )
+        })}
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
+          <Text>MVP</Text>
+          <View style={{ flexDirection: 'row', paddingLeft: 15 }}>
+            {visitorStatsOveralPlayer.map(i => {
+              return (
+                <Image
+                  style={{ width: 38, height: 38, borderRadius: 19, marginRight: 12 }}
+                  source={{ uri: i?.thumbnail?.url }}
+                />
+              )
+            })}
+
+          </View>
+        </View>
+
+
+        {/* <View style={{
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 3.22,
+          elevation: 3,
+          width: 220,
+          height: 98,
+          backgroundColor: '#fff',
+          borderRadius: 7
+        }}>
+          <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
+            <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>Avarage Stats total</Text>
+          </View>
+
+          <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>9.2</Text>
+          </View>
+        </View>
+
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 }}>
+          <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
+          <Text style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>average stats</Text></Text>
+          <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
+        </View>
+
+        <View>
+          <View style={styles.textWrap}>
+            <Text style={styles.optionTitle}>Team Grade</Text>
+            <Text style={styles.optionValue}>9.0</Text>
+          </View>
+          <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
+            <View style={{ ...styles.grayLine, width: '10%' }} />
+          </ImageBackground>
+        </View>
+
+
+        <View>
+          <View style={styles.textWrap}>
+            <Text style={styles.optionTitle}>Offense Grade</Text>
+            <Text style={styles.optionValue}>4.0</Text>
+          </View>
+          <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
+            <View style={{ ...styles.grayLine, width: '60%' }} />
+          </ImageBackground>
+        </View>
+
+        <View>
+          <View style={styles.textWrap}>
+            <Text style={styles.optionTitle}>Defense Grade</Text>
+            <Text style={styles.optionValue}>7.0</Text>
+          </View>
+          <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
+            <View style={{ ...styles.grayLine, width: '30%' }} />
+          </ImageBackground>
+        </View>
+
+        <View>
+          <View style={styles.textWrap}>
+            <Text style={styles.optionTitle}>Special Teams</Text>
+            <Text style={styles.optionValue}>10.0</Text>
+          </View>
+          <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
+            <View style={{ ...styles.grayLine, width: '0%' }} />
+          </ImageBackground>
+        </View>
+
+        <View>
+          <View style={styles.textWrap}>
+            <Text style={styles.optionTitle}>Coaching</Text>
+            <Text style={styles.optionValue}>2.0</Text>
+          </View>
+          <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
+            <View style={{ ...styles.grayLine, width: '80%' }} />
+          </ImageBackground>
+        </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
+          <Text>MVP</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Image
+              style={{ width: 38, height: 38, borderRadius: 19, marginRight: 12 }}
+              source={require('@assets/icons/avatar_3.png')}
+            />
+            <Image
+              style={{ width: 38, height: 38, borderRadius: 19, }}
+              source={require('@assets/icons/avatar_3.png')}
+            />
+
+          </View>
+        </View>
+
+
+        {[
+          { title: '3rd Down Efficiency', value: '24' },
+          { title: '4th down efficiency', value: '5-11, 45%' },
+          { title: 'Red-Zone Efficiency', value: '2-3, 67%' },
+          { title: 'Goal-To-Go Efficiency', value: '3-4, 75%' },
+          { title: 'Total Net Yards', value: '3-4, 75%' },
+          { title: 'Net Rushing Yards', value: '376' },
+          { title: 'Net Passing Yards', value: '180' },
+          { title: 'Return Yards', value: '196' },
+          { title: 'Field Goals', value: '64' }
+        ].map(i => {
+          return (
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
+              <Text style={{ fontWeight: '900', fontSize: 16, color: '#00293B' }}>
+                {i.title}
+              </Text>
+              <Text style={{ fontWeight: '400', fontSize: 16, color: '#00293B' }}>
+                {i.value}
+              </Text>
+            </View>
+          )
+        })} */}
+
+        <View style={{ height: 100 }} />
+
+      </View>
+    )
+  }
+
+
+  const onTeamAddReport = team => {
+    setVisibleSelectTeamModal(false)
+    navigation.navigate('GameAddReport', { item, team })
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
@@ -46,9 +354,15 @@ export default function GameSummary({ route, navigation }) {
         goBack={navigation.goBack}
       />
 
+      <SelectTeamModal
+        isVisible={visibleSelectTeamModal}
+        local_team={item?.game?.local_team}
+        visitor_team={item?.game?.visitor_team}
+        onSelect={onTeamAddReport}
+      />
 
       <AddReportButton
-        onPress={() => navigation.navigate('GameAddReport', { item })}
+        onPress={setVisibleSelectTeamModal}
       />
 
       <ScrollView>
@@ -112,152 +426,28 @@ export default function GameSummary({ route, navigation }) {
 
 
 
-        <View style={{
-          top: -32,
-          height: 64, borderRadius: 32, backgroundColor: '#FFFF', width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 0,
-          },
-          shadowOpacity: 0.3,
-          shadowRadius: 3.22,
-          elevation: 3,
-        }}>
-          <TouchableOpacity>
-            <Text style={{ color: '#5EC422', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' }}>Summary</Text>
+        <View style={styles.tabs}>
+          <TouchableOpacity onPress={() => setActiveTab('summary')}>
+            <Text style={activeTab === 'summary' ? styles.activeTab : styles.tab}>Summary</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate('GameDetail')}>
-            <Text style={{ color: '#7D86A9', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' }}>Detail Reports</Text>
+          <TouchableOpacity onPress={() => setActiveTab('reports')}>
+            <Text style={activeTab === 'reports' ? styles.activeTab : styles.tab}>Detail Reports</Text>
           </TouchableOpacity>
         </View>
 
 
 
-        <View style={{ paddingHorizontal: 20 }}>
-
-          <View style={{
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowOpacity: 0.2,
-            shadowRadius: 3.22,
-            elevation: 3,
-            width: 220,
-            height: 98,
-            backgroundColor: '#fff',
-            borderRadius: 7
-          }}>
-            <View style={{ width: '100%', height: 35, backgroundColor: '#00293B', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 7, borderTopLeftRadius: 7 }}>
-              <Text style={{ fontFamily: 'Oswald', fontWeight: '700', fontSize: 12, color: '#FFFFFF' }}>Avarage Stats total</Text>
-            </View>
-
-            <View style={{ width: '100%', height: 62, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ fontWeight: '400', fontSize: 42, color: '#000000' }}>9.2</Text>
-            </View>
-          </View>
 
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 }}>
-            <Image source={require('@assets/icons/arrow-left.png')} style={{ width: 6.72, height: 11.26 }} />
-            <Text style={{ fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' }}>SHOW: <Text style={{ color: '#5FC422' }}>average stats</Text></Text>
-            <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 6.72, height: 11.26 }} />
-          </View>
+        {activeTab === 'summary' && renderSummary()}
 
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Team Grade</Text>
-              <Text style={styles.optionValue}>9.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '10%' }} />
-            </ImageBackground>
-          </View>
+        {activeTab === 'reports' && renderReports()}
 
 
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Offense Grade</Text>
-              <Text style={styles.optionValue}>4.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '60%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Defense Grade</Text>
-              <Text style={styles.optionValue}>7.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '30%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Special Teams</Text>
-              <Text style={styles.optionValue}>10.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '0%' }} />
-            </ImageBackground>
-          </View>
-
-          <View>
-            <View style={styles.textWrap}>
-              <Text style={styles.optionTitle}>Coaching</Text>
-              <Text style={styles.optionValue}>2.0</Text>
-            </View>
-            <ImageBackground source={require('@assets/images/Rectangle.png')} style={styles.gradientLine}>
-              <View style={{ ...styles.grayLine, width: '80%' }} />
-            </ImageBackground>
-          </View>
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30 }}>
-            <Text>MVP</Text>
-            <View style={{ flexDirection: 'row' }}>
-              <Image
-                style={{ width: 38, height: 38, borderRadius: 19, marginRight: 12 }}
-                source={require('@assets/icons/avatar_3.png')}
-              />
-              <Image
-                style={{ width: 38, height: 38, borderRadius: 19, }}
-                source={require('@assets/icons/avatar_3.png')}
-              />
-
-            </View>
-          </View>
 
 
-          {[
-            { title: '3rd Down Efficiency', value: '24' },
-            { title: '4th down efficiency', value: '5-11, 45%' },
-            { title: 'Red-Zone Efficiency', value: '2-3, 67%' },
-            { title: 'Goal-To-Go Efficiency', value: '3-4, 75%' },
-            { title: 'Total Net Yards', value: '3-4, 75%' },
-            { title: 'Net Rushing Yards', value: '376' },
-            { title: 'Net Passing Yards', value: '180' },
-            { title: 'Return Yards', value: '196' },
-            { title: 'Field Goals', value: '64' }
-          ].map(i => {
-            return (
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
-                <Text style={{ fontWeight: '900', fontSize: 16, color: '#00293B' }}>
-                  {i.title}
-                </Text>
-                <Text style={{ fontWeight: '400', fontSize: 16, color: '#00293B' }}>
-                  {i.value}
-                </Text>
-              </View>
-            )
-          })}
 
-          <View style={{ height: 100 }} />
-
-        </View>
 
 
       </ScrollView>
@@ -298,5 +488,19 @@ const styles = StyleSheet.create({
   optionTitle: { fontWeight: '500', fontSize: 14, paddingBottom: 8, paddingLeft: 3 },
   optionValue: { fontWeight: '700', fontSize: 18 },
   gradientLine: { width: '100%', height: 6, borderRadius: 3, alignItems: 'flex-end', marginBottom: 16 },
-  grayLine: { backgroundColor: '#F4F4FB', height: 6, }
+  grayLine: { backgroundColor: '#F4F4FB', height: 6, },
+
+  tab: { color: '#7D86A9', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' },
+  activeTab: { color: '#5EC422', fontFamily: 'Oswald', fontWeight: '700', fontSize: 20, fontFamily: 'Oswald', textTransform: 'uppercase' },
+  tabs: {
+    top: -32,
+    height: 64, borderRadius: 32, backgroundColor: '#FFFF', width: '100%', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3.22,
+    elevation: 3,
+  },
 })

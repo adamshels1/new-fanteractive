@@ -46,5 +46,36 @@ export default {
         } else {
             return `${a[0]}${a[1]}.${a[2]}`
         }
+    },
+    fixAlphabetical(val) {
+        if ((!val) && (val !== 0)) {
+            return null;
+        }
+        let value = val;
+        if (typeof val === "string") {
+            value = parseFloat(val);
+        }
+        if (value < 0.5) {
+            return 'N/R';
+        } else if (value < 1.5) {
+            return 'F';
+        } else if (value < 2.5) {
+            return 'D';
+        } else if (value < 3.5) {
+            return 'C';
+        } else if (value < 4.5) {
+            return 'C+';
+        } else if (value < 5.5) {
+            return 'B-';
+        } else if (value < 6.5) {
+            return 'B';
+        } else if (value < 7.5) {
+            return 'B+';
+        } else if (value < 8.5) {
+            return 'A-';
+        } else if (value < 9.5) {
+            return 'A';
+        }
+        return 'A+';
     }
 };

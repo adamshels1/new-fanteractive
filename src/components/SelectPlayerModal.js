@@ -7,7 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 export default function CountriesModal(props) {
   const { onClose, data = [], onSelect, title, showSearch, searchValue, onChangeSearchText } = props
-  console.log('data'.data)
+  console.log('data', data)
   return (
     <Modal
       style={styles.modal}
@@ -46,10 +46,10 @@ export default function CountriesModal(props) {
           data={data}
           keyExtractor={(item, index) => item.id}
           style={{ backgroundColor: '#fff' }}
-          ListHeaderComponent={<View style={{paddingHorizontal: 15, paddingBottom: 8}}>
+          ListHeaderComponent={<View style={{ paddingHorizontal: 15, paddingBottom: 8 }}>
             <Input2
-              // onChangeText={text => setEventName(text)}
-              // value={eventName}
+              onChangeText={onChangeSearchText}
+              value={searchValue}
               showSearchIcon
               placeholder='Search Players'
             />
@@ -61,16 +61,21 @@ export default function CountriesModal(props) {
                 style={{ height: 78, paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#D9DBE9', flexDirection: 'row', alignItems: 'center' }}
               >
 
-                <Image style={{ width: 24, height: 24, marginRight: 11 }} source={false ? require('@assets/icons/check-player.png') : require('@assets/icons/uncheck-player.png')} />
+                <Image style={{ width: 24, height: 24, marginRight: 11 }}
+                  source={item?.selected ? require('@assets/icons/check-player.png') : require('@assets/icons/uncheck-player.png')}
+                />
 
-                <Image style={{ width: 61, height: 61, marginRight: 15 }} source={require('@assets/icons/user.png')} />
+                <Image
+                  style={{ width: 61, height: 61, marginRight: 15 }}
+                  source={item?.thumbnail?.url ? { uri: item?.thumbnail?.url } : require('@assets/icons/user.png')}
+                />
 
                 <View>
                   <Text style={{ fontWeight: '500', fontSize: 18, color: '#081735' }}>
-                    Angel Di Maria
+                    {item?.name}
                   </Text>
                   <Text style={{ fontWeight: '500', fontSize: 13, color: '#A0A3BD' }}>
-                    Sweeper
+                    {item?.position?.title}
                   </Text>
                 </View>
               </TouchableOpacity>

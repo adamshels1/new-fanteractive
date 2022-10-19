@@ -74,31 +74,31 @@ export default CustomDrawerContent = (props) => {
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Dash_icon.png')}
                 title='My Fanalyst Dashboard'
-                onPress={() => props.navigation.navigate('Login')}
+            // onPress={() => props.navigation.navigate('Login')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Player_icon.png')}
                 title='Player Scouting'
-                onPress={() => navigateWithReset('Login')}
+            // onPress={() => navigateWithReset('Login')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Game_icon.png')}
                 title='Game Fanalyses'
-                onPress={() => navigateWithReset('Login')}
+            // onPress={() => navigateWithReset('Login')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Team_icon.png')}
                 title='My Team Ratings'
-                onPress={() => navigateWithReset('Login')}
+            // onPress={() => navigateWithReset('Login')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Venue_icon.png')}
                 title='My Stadium Ratings'
-                onPress={() => navigateWithReset('Login')}
+            // onPress={() => navigateWithReset('Login')}
             />
 
 
@@ -107,7 +107,7 @@ export default CustomDrawerContent = (props) => {
                 <CustomDrawerMenuItem
                     icon={require('@assets/icons/Seetting_icon.png')}
                     title='Profile Settings'
-                    onPress={() => navigateWithReset('ProfileStackScreen')}
+                // onPress={() => navigateWithReset('ProfileStackScreen')}
                 />
             )}
 

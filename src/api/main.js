@@ -501,6 +501,43 @@ const addStadiumRating = async (token, { stadiumId, comment, eventName, date, sp
 };
 
 
+const getGameStatsOveral = async (token, { gameId, teamId }) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}game/${gameId}/stats-overall?team_id=${teamId}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+const getGameStatsOveralPlayer = async (token, { gameId, teamId }) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}game/${gameId}/stats-overall-player?team_id=${teamId}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
 const getGame = async (gameId) => {
 
     var config = {
@@ -518,6 +555,97 @@ const getGame = async (gameId) => {
     return res
 };
 
+
+const getGameReports = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}game/${id}/detail?limit=20`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+const getTeamRoster = async (teamId) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}team/${teamId}/roster`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+const getGameCharacteristics = async (token, { gameId }) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}game/${gameId}/characteristics`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+
+
+const addGameReport = async (token, {
+    gameId,
+    teamId,
+    playerId,
+    ratings,
+    players,
+    analyzes,
+}) => {
+
+    var data = JSON.stringify({
+        "team_id": teamId,
+        "player_id": playerId,
+        "ragings": ratings,
+        "players": players,
+        "analyzes": analyzes
+    });
+
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}game/${gameId}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
 
 
 
@@ -1582,6 +1710,14 @@ export default {
     getStadiumCharacteristics,
     addStadiumRating,
     getGame,
+    getGameStatsOveral,
+    getGameStatsOveralPlayer,
+    getGameReports,
+    getTeamRoster,
+    getGameCharacteristics,
+    addGameReport,
+
+
 
     getRestaurant,
     getRestaurantWeeks,

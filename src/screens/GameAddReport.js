@@ -26,6 +26,7 @@ import helper from '@services/helper';
 export default function PlayerSummary({ route, navigation }) {
   const dispatch = useDispatch()
   const item = route?.params?.item
+  const team = route?.params?.team
   const refCarousel = useRef();
   const refCarousel2 = useRef();
   const [summary, setSummary] = useState([])
@@ -43,24 +44,51 @@ export default function PlayerSummary({ route, navigation }) {
   const [eventName, setEventName] = useState('')
   const [comment, setComment] = useState('')
   const selectedSport = sports?.find(i => i.selected)
-  const [characteristics, setCharacteristics] = useState([])
   const [images, setImages] = useState([])
 
+  const [characteristics, setCharacteristics] = useState([])
+  const [teamRoster, setTeamRoster] = useState([])
   const [visibleSelectPlayerModal, setVisibleSelectPlayerModal] = useState(false)
   const [step, setStep] = useState(1)
 
+  const selectedPlayer = teamRoster.find(i => i.selected)
+
   useEffect(() => {
-    getActivityStadium()
-    getStadiumReports()
-    getSports()
-    getStadiumCharacteristics()
+    // getActivityStadium()
+    // getStadiumReports()
+    // getSports()
+    getGameCharacteristics()
+    getTeamRoster()
   }, []);
 
-  const getStadiumCharacteristics = async () => {
+  const getTeamRoster = async () => {
     try {
-      const res = await mainApi.getStadiumCharacteristics(token)
-      console.log('getStadiumCharacteristics', res.data.data)
-      setCharacteristics(res.data.data)
+      const res = await mainApi.getTeamRoster(28)
+      console.log('getTeamRoster', res)
+      setTeamRoster(res?.data?.data.map(i => {
+        return {
+          ...i,
+          visible: true
+        }
+      }))
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+  const getGameCharacteristics = async () => {
+    try {
+      const res = await mainApi.getGameCharacteristics(token, {
+        gameId: 342, //item?.id 
+      })
+      const characteristics = res.data.data.map(i => {
+        return {
+          ...i.characteristic,
+          block: i.block
+        }
+      })
+      console.log('getGameCharacteristics', characteristics)
+      setCharacteristics(characteristics)
     } catch (e) {
       console.log('e', e)
     }
@@ -132,9 +160,9 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
-  const onSelectSport = item => {
+  const onSelectPlayer = item => {
     console.log('item', item)
-    setSports(sports.map(i => {
+    setTeamRoster(teamRoster.map(i => {
       return {
         ...i,
         selected: item.id === i.id ? !i.selected : false
@@ -149,38 +177,34 @@ export default function PlayerSummary({ route, navigation }) {
 
   const dateFormat = moment(date).format('DD MMMM YYYY')
 
+  const prepareItem = i => {
+    return {
+      id: i.id,
+      value: i.value ? helper.formatAvarageNumber(i.value) : null,
+      comment: i.comment ? i.comment : null
+    }
+  }
 
-  const addStadiumRating = async () => {
+
+  const addGameReport = async () => {
     try {
+      // console.log(teamRoster.filter(i => i.value))
+      // return
       const data = {
-        stadiumId: item.id,
-        comment,
-        eventName,
-        date,
-        sportId: selectedSport?.id,
-        images,
-        characteristics: characteristics.map(i => {
-          return {
-            id: i.id,
-            value: i.value ? helper.formatAvarageNumber(i.value) : null,
-            comment: i.comment ? i.comment : null
-          }
-        })
+        gameId: 15574, //item.id,
+        teamId: 28, //team.id,
+        playerId: selectedPlayer?.id,
+        ratings: characteristics.filter(i => i.value && i.block === 'Summary Grades').map(prepareItem),
+        players: teamRoster.filter(i => i.value).map(prepareItem),
+        analyzes: characteristics.filter(i => i.value && i.block === 'Advance Team Grade').map(prepareItem),
       };
+
       console.log('data', data)
+
       dispatch(loaderAction({ isLoading: true }))
-      const res = await mainApi.addStadiumRating(token, {
-        stadiumId: item.id,
-        comment,
-        eventName,
-        date,
-        sportId: selectedSport?.id,
-        images,
-        characteristics
-      })
+      const res = await mainApi.addGameReport(token, data)
       console.log('res', res)
-      if (res.status === 200) {
-        // navigation.navigate('StadiumSummary', { activeTab: 'reports' })
+      if (res?.status === 200) {
         navigation.goBack()
       } else {
         AlertAsync('Something went wrong')
@@ -188,23 +212,43 @@ export default function PlayerSummary({ route, navigation }) {
       dispatch(loaderAction({ isLoading: false }))
     } catch (e) {
       dispatch(loaderAction({ isLoading: false }))
+      AlertAsync(e?.response?.data?.message || 'Something went wrong')
       console.log('e', e)
     }
   }
 
-  const renderStep2 = () => {
+
+  const onChangeSearchText = text => {
+
+    const newTeamRoster = teamRoster.map(item => {
+      const itemData = item.name
+        ? item.name.toUpperCase()
+        : ''.toUpperCase();
+      const textData = text.toUpperCase();
+      const visible = itemData.indexOf(textData) > -1 ? true : false;
+      return {
+        ...item,
+        visible
+      }
+    })
+    setTeamRoster(newTeamRoster)
+  }
+
+
+  const renderStep3 = () => {
     return (
       <View>
 
         <Text style={{ fontFamily: 'Avenir', fontWeight: '800', color: '#00293B', fontSize: 24, textAlign: 'center', marginTop: 33 }}>
-          Step2: Rate Venue
+          Step 3 of 3: Advance{`\n`}Team Grades
         </Text>
 
 
 
         <View style={{ paddingHorizontal: 26, marginTop: 45 }}>
 
-          {characteristics.map((i, index) => {
+
+          {characteristics.filter(i => i.block === 'Advance Team Grade').map((i, index) => {
             return (
               <StatsOverviewItem
                 key={i.id}
@@ -243,10 +287,125 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
+
+
           <Button
             text='Fanalyze'
             style={{ width: '100%', marginTop: 36 }}
-            onPress={addStadiumRating}
+            onPress={addGameReport}
+          />
+          <Button
+            text='BACK'
+            style={{ width: '100%', marginTop: 17 }}
+            inverter
+            onPress={() => setStep(2)}
+          />
+
+          <View style={{ height: 100 }} />
+
+
+        </View>
+
+
+      </View>
+    )
+  }
+
+
+
+  const renderStep2 = () => {
+    return (
+      <View>
+
+        <Text style={{ fontFamily: 'Avenir', fontWeight: '800', color: '#00293B', fontSize: 24, textAlign: 'center', marginTop: 33 }}>
+          Step 2 of 3: Player{`\n`}Grades
+        </Text>
+
+
+
+        <View style={{ paddingHorizontal: 26, marginTop: 45 }}>
+
+
+          {teamRoster.map((i, index) => {
+            return (
+              <StatsOverviewItem
+                format='alphabetical'
+                {...i}
+                key={i.id}
+                field={i?.name}
+                toggleVisivleComment={id => {
+                  setTeamRoster(teamRoster.map(item => {
+                    if (item.id === id) {
+                      item.comment = null
+                    }
+                    return item;
+                  }))
+                }}
+                onChangeComment={(comment) => {
+                  setTeamRoster(teamRoster.map(item => {
+                    if (item.id === i.id) {
+                      item.comment = comment
+                    }
+                    return item;
+                  }))
+                }}
+                comment={i?.comment}
+                value={i?.value}
+                onValuesChange={(values) => {
+                  setTeamRoster(teamRoster.map(item => {
+                    if (item.id === i.id) {
+                      item.value = values[0]
+                    }
+                    return item;
+                  }))
+                }}
+              />
+            )
+          })}
+
+          {/* {characteristics.map((i, index) => {
+            return (
+              <StatsOverviewItem
+                key={i.id}
+                field={i?.title}
+                toggleVisivleComment={id => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === id) {
+                      item.comment = null
+                    }
+                    return item;
+                  }))
+                }}
+                onChangeComment={(comment) => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === i.id) {
+                      item.comment = comment
+                    }
+                    return item;
+                  }))
+                }}
+                comment={i?.comment}
+                value={i?.value}
+                onValuesChange={(values) => {
+                  setCharacteristics(characteristics.map(item => {
+                    if (item.id === i.id) {
+                      item.value = values[0]
+                    }
+                    return item;
+                  }))
+                }}
+                {...i}
+              />
+            )
+          })} */}
+
+
+
+
+          <Button
+            text='Save and Continue'
+            style={{ width: '100%', marginTop: 36 }}
+            onPress={() => setStep(3)}
           />
           <Button
             text='BACK'
@@ -274,33 +433,53 @@ export default function PlayerSummary({ route, navigation }) {
         </Text>
 
 
-        <StatsOverviewItem
-          field={'Overall Team Grade'}
-          // comment={i?.comment}
-          value={'B'}
-        />
 
-        <StatsOverviewItem
-          field={'Overall Offense Grade'}
-          // comment={i?.comment}
-          value={'F+'}
-        />
-
-        <StatsOverviewItem
-          field={'Overall Defense Grade'}
-          // comment={i?.comment}
-          value={'C'}
-        />
-
+        {characteristics.filter(i => i.block === 'Summary Grades').map((i, index) => {
+          return (
+            <StatsOverviewItem
+              key={i.id}
+              field={i?.title}
+              toggleVisivleComment={id => {
+                setCharacteristics(characteristics.map(item => {
+                  if (item.id === id) {
+                    item.comment = null
+                  }
+                  return item;
+                }))
+              }}
+              onChangeComment={(comment) => {
+                setCharacteristics(characteristics.map(item => {
+                  if (item.id === i.id) {
+                    item.comment = comment
+                  }
+                  return item;
+                }))
+              }}
+              comment={i?.comment}
+              value={i?.value}
+              onValuesChange={(values) => {
+                setCharacteristics(characteristics.map(item => {
+                  if (item.id === i.id) {
+                    item.value = values[0]
+                  }
+                  return item;
+                }))
+              }}
+              {...i}
+            />
+          )
+        })}
 
 
         <SelectPlayerModal
           title='Select Sport'
           isVisible={visibleSelectPlayerModal}
           onClose={() => setVisibleSelectPlayerModal(false)}
-          // onSelect={onSelectSport}
-          data={[1, 1, 1, 1]}
+          onSelect={onSelectPlayer}
+          data={teamRoster.filter(i => i.visible)}
           showSearch
+          // searchValue={''}
+          onChangeSearchText={onChangeSearchText}
         />
 
         <TouchableOpacity
@@ -309,14 +488,26 @@ export default function PlayerSummary({ route, navigation }) {
         >
 
           <View style={{ alignItems: 'center', flexDirection: 'row' }}>
-            <Image
-              style={{ height: 24, width: 24, marginRight: 14 }}
-              source={require('@assets/icons/star-icon.png')}
-            />
+
+            {selectedPlayer ? (
+              <Image
+                style={{ height: 57, width: 57, borderRadius: 28.5, marginRight: 14 }}
+                source={{ uri: selectedPlayer?.thumbnail?.url }}
+              />
+            ) : (
+              <Image
+                style={{ height: 24, width: 24, marginRight: 14 }}
+                source={require('@assets/icons/star-icon.png')}
+              />
+            )}
+
+
 
             <View>
               <Text style={{ fontWeight: '900', fontSize: 12, letterSpacing: 0.4, color: '#A0A3BD' }}>My Player of the Game</Text>
-              <Text style={{ fontWeight: '500', fontSize: 18, color: '#081735' }}>Not Specified</Text>
+              <Text style={{ fontWeight: '500', fontSize: 18, color: '#081735' }}>
+                {selectedPlayer ? selectedPlayer.name : 'Not Specified'}
+              </Text>
             </View>
           </View>
 
@@ -360,14 +551,6 @@ export default function PlayerSummary({ route, navigation }) {
       <Header
         navigation={navigation}
         goBack={navigation.goBack}
-      />
-
-      <MultiSelectModal
-        title='Select Sport'
-        isVisible={visibleSportsModal}
-        onClose={() => setVisibleSportsModal(false)}
-        onSelect={onSelectSport}
-        data={sports}
       />
 
       <ScrollView>
@@ -437,6 +620,7 @@ export default function PlayerSummary({ route, navigation }) {
 
         {step === 1 && renderStep1()}
         {step === 2 && renderStep2()}
+        {step === 3 && renderStep3()}
 
 
 

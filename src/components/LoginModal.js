@@ -21,7 +21,7 @@ export default class LoginModal extends Component {
           <View style={styles.container}>
 
             <TouchableOpacity onPress={onClose} style={styles.closeWrap}>
-              <Image source={require('@assets/icons/x.png')} style={styles.closeIcon} />
+              <Image source={require('@assets/icons/x2.png')} style={styles.closeIcon} />
             </TouchableOpacity>
 
 

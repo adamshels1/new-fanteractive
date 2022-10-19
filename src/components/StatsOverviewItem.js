@@ -19,7 +19,7 @@ import helper from '@services/helper';
 const windowWidth = Dimensions.get('window').width;
 
 export default function StatsOverviewItem(props) {
-  const { onChangeComment } = props
+  const { onChangeComment, format = 'avarageNumber' } = props
   const [visibleComment, setVisibleComment] = useState(false)
   const toggleVisivleComment = () => {
     setVisibleComment(!visibleComment)
@@ -27,6 +27,10 @@ export default function StatsOverviewItem(props) {
   }
   const { value = 0 } = props
 
+  let formatValue = helper.formatAvarageNumber(value)
+  if (format === 'alphabetical') {
+    formatValue = helper.fixAlphabetical(formatValue)
+  }
 
   if (onChangeComment) return (
     <View>
@@ -73,7 +77,7 @@ export default function StatsOverviewItem(props) {
         />
         <View style={{ width: 40, marginLeft: 26 }}>
           <Text style={styles.sliderValue}>
-            {helper.formatAvarageNumber(value)}
+            {formatValue}
           </Text>
         </View>
         <TouchableOpacity onPress={toggleVisivleComment}>

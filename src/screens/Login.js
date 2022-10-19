@@ -22,8 +22,8 @@ import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
-  const [username, setUsername] = useState('') //penob45180 / dev: shels_a
-  const [password, setPassword] = useState('') //test1234
+  const [username, setUsername] = useState('penob45180') //penob45180 / dev: shels_a
+  const [password, setPassword] = useState('test1234') //test1234
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const token = useSelector(state => state.userReducer.token)
   const user = useSelector(state => state.userReducer.user)
