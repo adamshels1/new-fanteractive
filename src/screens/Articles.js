@@ -56,6 +56,7 @@ export default function About({ route, navigation }) {
         refreshing={loading}
         onRefresh={getArticles}
         ListHeaderComponent={<BlockTitle title='Recent Articles' />}
+        ListFooterComponent={<View style={{height: 50}} />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={articles}
         keyExtractor={(item, index) => item.id}

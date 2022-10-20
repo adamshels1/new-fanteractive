@@ -105,7 +105,7 @@ export default class Input extends Component {
 }
 
 const styles = StyleSheet.create({
-  input: { width: '100%', height: 36, borderBottomWidth: 2, borderColor: '#D6D6D6', fontSize: 16, fontFamily: 'Avenir', color: '#CBCBCB', fontWeight: '400' },
+  input: { width: '100%', height: 38, borderBottomWidth: 2, borderColor: '#D6D6D6', fontSize: 16, fontFamily: 'Avenir', color: '#CBCBCB', fontWeight: '400' },
   secureTextButton: { position: 'absolute', right: 0, top: 0, width: 56, height: 56, justifyContent: 'center', alignItems: 'center' },
   closedEye: { height: 19, width: 22 },
   openEye: { height: 16, width: 22 },

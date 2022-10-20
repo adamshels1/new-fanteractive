@@ -14,6 +14,7 @@ import { mainApi } from '@api'
 import AlertAsync from 'react-native-alert-async'
 import { loaderAction } from '@redux/actions/loaderActions'
 import { setRewardsAction } from '@redux/actions/mainActions'
+import helper from '@services/helper'
 
 export default function EmailVerification({ navigation }) {
   const dispatch = useDispatch()
@@ -35,7 +36,7 @@ export default function EmailVerification({ navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
 

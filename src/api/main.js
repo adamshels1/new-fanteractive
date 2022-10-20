@@ -4,23 +4,24 @@ import qs from 'qs'
 
 
 const login = async ({ username = '', password = '' }) => {
-    const headers = {
-        'Content-Type': 'application/json',
+
+
+    var data = qs.stringify({
+        username,
+        password
+    });
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}auth/sign-in`,
+        headers: {
+            'Accept': 'application/json'
+        },
+        data: data
     };
 
-    const params = {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ username, password })
-    };
-
-    const url = `${server.BASE_URL_API}auth/sign-in`;
-    console.log(url, params)
-    const response = await fetch(url, params);
-    const data = await response.json();
-    console.log(data)
-
-    return data;
+    const res = await axios(config)
+    console.log('res', res)
+    return res
 };
 
 
@@ -1308,25 +1309,24 @@ const likeComment = async (object) => {
     return data;
 };
 
-const recoverPassword = async (object) => {
-    const headers = {
-        'Content-Type': 'application/json',
+const recoverPassword = async ({ email }) => {
+
+
+    var data = qs.stringify({
+        email,
+    });
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}auth/sign-in/reset-password`,
+        headers: {
+            'Accept': 'application/json'
+        },
+        data: data
     };
 
-    const params = {
-        method: 'GET',
-        headers,
-    };
-
-    const paramsUrl = new URLSearchParams(object).toString();
-
-    const url = `${server.BASE_URL_API}/lostpassword/?${paramsUrl}`;
-    console.log('url', url);
-    const response = await fetch(url, params);
-    const data = await response.json();
-    console.log('data', data)
-
-    return data;
+    const res = await axios(config)
+    console.log('res', res)
+    return res
 };
 
 const getAvailableDailyPoints = async (object) => {

@@ -17,14 +17,16 @@ import { mainApi } from '@api'
 import AlertAsync from 'react-native-alert-async'
 import { loaderAction } from '@redux/actions/loaderActions'
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
+import helper from '@services/helper'
 // import messaging from '@react-native-firebase/messaging'
 // import { LoginManager, Settings, AccessToken, AuthenticationToken } from "react-native-fbsdk-next"
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
-  const [username, setUsername] = useState('penob45180') //penob45180 / dev: shels_a
-  const [password, setPassword] = useState('test1234') //test1234
+  const [username, setUsername] = useState('') //penob45180 / dev: shels_a //penob45180
+  const [password, setPassword] = useState('') //test1234 //test1234
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [remember, setRemember] = useState(false)
   const token = useSelector(state => state.userReducer.token)
   const user = useSelector(state => state.userReducer.user)
   const checkboxIcon = privacyPolicy ? require('@assets/icons/checkbox-active.png') : require('@assets/icons/checkbox.png');
@@ -65,10 +67,10 @@ export default function Login({ navigation }) {
       const res = await mainApi.login({ username, password });
       dispatch(loaderAction({ isLoading: false }))
       console.log('resresres', res)
-      if (res?.access_token) {
+      if (res?.data?.access_token) {
         setUsername('')
         setPassword('')
-        dispatch(setTokenAction(res?.access_token))
+        dispatch(setTokenAction(res?.data?.access_token))
         navigation.navigate('HomeTabs')
 
         // const user = res.response;
@@ -89,7 +91,7 @@ export default function Login({ navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
 
@@ -164,7 +166,7 @@ export default function Login({ navigation }) {
 
             <View style={styles.bodyBottom}>
               <Input
-                field='Username'
+                field='Email address'
                 onChangeText={username => setUsername(username)}
                 value={username}
                 autoCapitalize="none"
@@ -204,10 +206,10 @@ export default function Login({ navigation }) {
               </TouchableOpacity> */}
 
               <View style={styles.rememberBlock}>
-                <View style={styles.rememberWrap}>
-                  <Image style={{ width: 15, height: 15 }} resizeMode='contain' source={false ? require('@assets/icons/Oval.png') : require('@assets/icons/oval-green.png')} />
+                <TouchableOpacity onPress={() => setRemember(!remember)} style={styles.rememberWrap}>
+                  <Image style={{ width: 15, height: 15 }} resizeMode='contain' source={remember ? require('@assets/icons/oval-green.png') : require('@assets/icons/Oval.png')} />
                   <Text style={styles.remember}>Remember me</Text>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('RecoverPassword')}
                 >
@@ -267,7 +269,7 @@ const styles = StyleSheet.create({
   },
   body: { justifyContent: 'space-between', marginHorizontal: 17, flex: 1, marginTop: 56 },
   bodyBottom: { marginTop: 40, width: '100%' },
-  forgot: { color: '#5EC422', fontFamily: 'Avenir', fontWeight: '800', fontSize: 18 },
+  forgot: { color: '#5EC422', fontFamily: 'Avenir', fontWeight: '800', fontSize: 16 },
   or: { color: '#B7B7B7', fontFamily: 'Avenir', fontWeight: '400', fontSize: 16 },
   image: { width: 56, height: 84, marginTop: 42 },
   agree: { color: '#CBCBCB', fontSize: 14, fontWeight: '400', },
@@ -282,7 +284,7 @@ const styles = StyleSheet.create({
   bodyTitle: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 32, color: '#FFFFFF', marginTop: 60 },
   rememberBlock: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 19 },
   rememberWrap: { flexDirection: 'row', alignItems: 'center' },
-  remember: { color: '#CBCBCB', fontSize: 16, fontWeight: '400', marginLeft: 7 },
+  remember: { color: '#CBCBCB', fontSize: 15, fontWeight: '400', marginLeft: 7 },
   orLineWrap: { flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 15 },
   orLine: { backgroundColor: '#B7B7B7', height: 1, width: '40%' },
   buttonsWrap: { marginTop: 15, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 },

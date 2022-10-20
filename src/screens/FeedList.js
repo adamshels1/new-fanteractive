@@ -50,6 +50,7 @@ export default function About({ route, navigation }) {
 
           <FlatList
             style={{ marginTop: 25 }}
+            ListFooterComponent={<View style={{height: 50}} />}
             data={[1, 1, 1, 1, 1]}
             renderItem={() => <ListItemArticle 
               value='Player Scouting Report' 

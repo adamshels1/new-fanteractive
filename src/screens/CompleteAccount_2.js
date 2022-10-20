@@ -18,6 +18,7 @@ import { loaderAction } from '@redux/actions/loaderActions'
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import LookupModal from 'react-native-lookup-modal'
 import ImagePicker from 'react-native-image-crop-picker';
+import helper from '@services/helper'
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
@@ -96,7 +97,7 @@ export default function Login({ navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
 
