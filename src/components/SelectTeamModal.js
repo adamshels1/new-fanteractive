@@ -44,7 +44,7 @@ export default class LoginModal extends Component {
 
                 <TouchableOpacity
                   style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#EAEAEA', borderRadius: 4, padding: 11 }}
-                  onPress={() => onSelect('local')}
+                  onPress={() => onSelect(local_team)}
                 >
                   <Image source={{ uri: local_team?.thumbnail?.url }} style={{ width: 52, height: 52 }} />
                   <View style={{ marginLeft: 12, top: 2 }}>
@@ -66,7 +66,7 @@ export default class LoginModal extends Component {
 
                 <TouchableOpacity
                   style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#EAEAEA', borderRadius: 4, padding: 11, marginTop: 7 }}
-                  onPress={() => onSelect('visitor')}
+                  onPress={() => onSelect(visitor_team)}
                 >
                   <Image source={{ uri: visitor_team?.thumbnail?.url }} style={{ width: 52, height: 52 }} />
                   <View style={{ marginLeft: 12, top: 2 }}>

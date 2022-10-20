@@ -27,24 +27,10 @@ export default function PlayerSummary({ route, navigation }) {
   const dispatch = useDispatch()
   const item = route?.params?.item
   const team = route?.params?.team
-  const refCarousel = useRef();
-  const refCarousel2 = useRef();
-  const [summary, setSummary] = useState([])
-  const [summaryMeta, setSummaryMeta] = useState([])
-  const [reports, setReports] = useState([])
-  const [activeTab, setActiveTab] = useState('summary')
-  const [avarageType, setAvarageType] = useState('avg')
-  const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
+  console.log('route', route)
 
   const token = useSelector(state => state.userReducer.token)
-  const [dateVisible, setDateVisible] = useState(false)
-  const [date, setDate] = useState(new Date())
-  const [sports, setSports] = useState([])
-  const [visibleSportsModal, setVisibleSportsModal] = useState(false)
-  const [eventName, setEventName] = useState('')
   const [comment, setComment] = useState('')
-  const selectedSport = sports?.find(i => i.selected)
-  const [images, setImages] = useState([])
 
   const [characteristics, setCharacteristics] = useState([])
   const [teamRoster, setTeamRoster] = useState([])
@@ -54,16 +40,13 @@ export default function PlayerSummary({ route, navigation }) {
   const selectedPlayer = teamRoster.find(i => i.selected)
 
   useEffect(() => {
-    // getActivityStadium()
-    // getStadiumReports()
-    // getSports()
     getGameCharacteristics()
     getTeamRoster()
   }, []);
 
   const getTeamRoster = async () => {
     try {
-      const res = await mainApi.getTeamRoster(47)
+      const res = await mainApi.getTeamRoster(team.id)
       console.log('getTeamRoster', res)
       setTeamRoster(res?.data?.data.map(i => {
         return {
@@ -79,7 +62,7 @@ export default function PlayerSummary({ route, navigation }) {
   const getGameCharacteristics = async () => {
     try {
       const res = await mainApi.getGameCharacteristics(token, {
-        gameId: 342, //item?.id 
+        gameId: item?.id //342, 
       })
       const characteristics = res.data.data.map(i => {
         return {
@@ -95,71 +78,6 @@ export default function PlayerSummary({ route, navigation }) {
     }
   }
 
-  const getActivityStadium = async () => {
-    try {
-      const res = await mainApi.getStadiumSummary(item.id)
-      console.log('res.data.data', res.data.data)
-      setSummary(res.data.data)
-      let summaryMeta = []
-      Object.keys(res.data.meta).forEach((key) => {
-        summaryMeta.push({
-          key,
-          value: res.data.meta[key]
-        })
-      });
-      setSummaryMeta(summaryMeta)
-    } catch (e) {
-      console.log('e', e)
-    }
-  }
-
-  const getStadiumReports = async () => {
-    try {
-      const res = await mainApi.getStadiumReports(item.id)
-      console.log('reports', res.data.data)
-      setReports(res.data.data)
-    } catch (e) {
-      console.log('e', e)
-    }
-  }
-
-  const summaryOptions = {
-    average: "Average",
-    median: "Median",
-    percentile_75: "75 Percentile",
-    percentile_90: "95 Percentile",
-    total_reviews: "Total Reviews"
-  }
-
-
-  const onGallery = async () => {
-    try {
-      ImagePicker.openPicker({
-        width: 300,
-        height: 300,
-        multiple: true
-      }).then(image => {
-        // setAvatarFile(image);
-        console.log(image);
-        setImages(image)
-      })
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-
-  const getSports = async () => {
-    try {
-      const res = await mainApi.getSports(token)
-      console.log(res.data.data)
-      setSports(res.data.data)
-    } catch (e) {
-      console.log('e', e)
-    }
-  }
-
-
 
   const onSelectPlayer = item => {
     console.log('item', item)
@@ -170,13 +88,6 @@ export default function PlayerSummary({ route, navigation }) {
       }
     }))
   }
-
-  const onConfirmDate = date => {
-    setDate(new Date(date))
-    console.log('data', date)
-  }
-
-  const dateFormat = moment(date).format('DD MMMM YYYY')
 
   const prepareItem = i => {
     return {
@@ -189,12 +100,10 @@ export default function PlayerSummary({ route, navigation }) {
 
   const addGameReport = async () => {
     try {
-      // console.log(teamRoster.filter(i => i.value))
-      // return
       console.log('characteristics', characteristics)
       const data = {
-        gameId: 342, //item.id,
-        teamId: 47, //team.id,
+        gameId: item.id, //342,
+        teamId: team.id, //47, 
         playerId: selectedPlayer?.id,
         players: teamRoster.filter(i => i.selected).map(prepareItem),
         analyzes: characteristics.filter(i => i.mode === 'analyze').map(prepareItem), // characteristics.filter(i => i.value && i.block === 'Summary Grades').map(prepareItem),
@@ -474,7 +383,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
         <SelectPlayerModal
-          title='Select Sport'
+          title='Select Player'
           isVisible={visibleSelectPlayerModal}
           onClose={() => setVisibleSelectPlayerModal(false)}
           onSelect={onSelectPlayer}

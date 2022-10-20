@@ -40,13 +40,13 @@ export default function GameSummary({ route, navigation }) {
   const getLocalStatsOveral = async () => {
     try {
       const res = await mainApi.getGameStatsOveral(token, {
-        gameId: 342, //item.id,
-        teamId: 47, //item?.game?.local_team?.id
+        gameId: item.id, //342, 
+        teamId: item?.game?.local_team?.id //47, 
       })
 
       const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
-        gameId: 342, //item.id,
-        teamId: 47, //item?.game?.local_team?.id
+        gameId: item.id, //342, 
+        teamId: item?.game?.local_team?.id //47,
       })
 
       console.log('item', item)
@@ -63,13 +63,13 @@ export default function GameSummary({ route, navigation }) {
   const getVisitorStatsOveral = async () => {
     try {
       const res = await mainApi.getGameStatsOveral(token, {
-        gameId: 342, //item.id,
-        teamId: 47, //item?.game?.visitor_team?.id
+        gameId: item.id, //342, 
+        teamId: item?.game?.visitor_team?.id //47, 
       })
 
       const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
-        gameId: 342, //item.id,
-        teamId: 47, //item?.game?.visitor_team?.id
+        gameId: item.id, //342, 
+        teamId: item?.game?.visitor_team?.id // 47,
       })
 
       console.log('item', item)
