@@ -625,7 +625,7 @@ const addGameReport = async (token, {
     var data = JSON.stringify({
         "team_id": teamId,
         "player_id": playerId,
-        "ragings": ratings,
+        "ratings": ratings,
         "players": players,
         "analyzes": analyzes
     });

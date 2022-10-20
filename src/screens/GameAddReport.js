@@ -63,7 +63,7 @@ export default function PlayerSummary({ route, navigation }) {
 
   const getTeamRoster = async () => {
     try {
-      const res = await mainApi.getTeamRoster(28)
+      const res = await mainApi.getTeamRoster(47)
       console.log('getTeamRoster', res)
       setTeamRoster(res?.data?.data.map(i => {
         return {
@@ -84,7 +84,8 @@ export default function PlayerSummary({ route, navigation }) {
       const characteristics = res.data.data.map(i => {
         return {
           ...i.characteristic,
-          block: i.block
+          block: i.block,
+          mode: i.mode,
         }
       })
       console.log('getGameCharacteristics', characteristics)
@@ -180,8 +181,8 @@ export default function PlayerSummary({ route, navigation }) {
   const prepareItem = i => {
     return {
       id: i.id,
-      value: i.value ? helper.formatAvarageNumber(i.value) : null,
-      comment: i.comment ? i.comment : null
+      value: i.value ? helper.formatAvarageNumber(i.value) : '',
+      comment: i.comment ? i.comment : ''
     }
   }
 
@@ -190,13 +191,14 @@ export default function PlayerSummary({ route, navigation }) {
     try {
       // console.log(teamRoster.filter(i => i.value))
       // return
+      console.log('characteristics', characteristics)
       const data = {
-        gameId: 15574, //item.id,
-        teamId: 28, //team.id,
+        gameId: 342, //item.id,
+        teamId: 47, //team.id,
         playerId: selectedPlayer?.id,
-        ratings: characteristics.filter(i => i.value && i.block === 'Summary Grades').map(prepareItem),
-        players: teamRoster.filter(i => i.value).map(prepareItem),
-        analyzes: characteristics.filter(i => i.value && i.block === 'Advance Team Grade').map(prepareItem),
+        players: teamRoster.filter(i => i.selected).map(prepareItem),
+        analyzes: characteristics.filter(i => i.mode === 'analyze').map(prepareItem), // characteristics.filter(i => i.value && i.block === 'Summary Grades').map(prepareItem),
+        ratings: characteristics.filter(i => i.value && i.mode === 'rating').map(prepareItem), // characteristics.filter(i => i.value && i.block === 'Advance Team Grade').map(prepareItem)
       };
 
       console.log('data', data)
@@ -212,7 +214,7 @@ export default function PlayerSummary({ route, navigation }) {
       dispatch(loaderAction({ isLoading: false }))
     } catch (e) {
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e?.response?.data?.message || 'Something went wrong')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
       console.log('e', e)
     }
   }
