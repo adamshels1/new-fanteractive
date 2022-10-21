@@ -55,10 +55,10 @@ export default function StadiumList({ route, navigation }) {
         refreshing={loading}
         onRefresh={getActivityStadiums}
         ListHeaderComponent={<BlockTitle title='Recent Stadium Grades' />}
-        ListFooterComponent={<View style={{height: 50}} />}
+        ListFooterComponent={<View style={{ height: 50 }} />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={stadiums}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
         renderItem={({ item, index }) => {
           console.log('item', item)
           return (

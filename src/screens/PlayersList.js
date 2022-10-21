@@ -59,7 +59,7 @@ export default function About({ route, navigation }) {
         ListFooterComponent={<View style={{height: 50}} />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={players}
-        keyExtractor={(item, index) => item.player_id}
+        keyExtractor={(item, index) => `${item.player_id}-${index}`}
         renderItem={({ item, index }) => {
           console.log('item', item)
           return (

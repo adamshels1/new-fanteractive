@@ -99,9 +99,62 @@ function FeedStackScreen() {
                 name='FeedList'
                 component={FeedList}
             />
+
             <Stack.Screen
                 name='PlayerSummary'
                 component={PlayerSummary}
+            />
+            <Stack.Screen
+                name='PlayerDetail'
+                component={PlayerDetail}
+            />
+            <Stack.Screen
+                name='PlayerReport'
+                component={PlayerReport}
+            />
+            <Stack.Screen
+                name='PlayersScoutings'
+                component={PlayersScoutings}
+            />
+            <Stack.Screen
+                name='PlayerEdit'
+                component={PlayerEdit}
+            />
+            <Stack.Screen
+                name='GameReport'
+                component={GameReport}
+            />
+
+            <Stack.Screen
+                name='GameDetail'
+                component={GameDetail}
+            />
+
+            <Stack.Screen
+                name='GameSummary'
+                component={GameSummary}
+            />
+
+            <Stack.Screen
+                name='GameAddReport'
+                component={GameAddReport}
+            />
+
+            <Stack.Screen
+                name='StadiumSummary'
+                component={StadiumSummary}
+            />
+            <Stack.Screen
+                name='StadiumDetail'
+                component={StadiumDetail}
+            />
+            <Stack.Screen
+                name='StadiumAddReport'
+                component={StadiumAddReport}
+            />
+            <Stack.Screen
+                name='StadiumReport'
+                component={StadiumReport}
             />
         </Stack.Navigator>
     );
@@ -115,12 +168,6 @@ function GamesStackScreen() {
                 headerShown: false
             }}
         >
-
-
-            {/* <Drawer.Screen name="GameReport" component={GameReport} />
-            <Drawer.Screen name="GameDetail" component={GameDetail} />
-            <Drawer.Screen name="GameSummary" component={GameSummary} />
-            <Drawer.Screen name="GamesList" component={GamesList} /> */}
 
             <Stack.Screen
                 name='GamesList'
