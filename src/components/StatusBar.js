@@ -17,6 +17,6 @@ const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 const styles = StyleSheet.create({
   statusBar: {
     height: STATUSBAR_HEIGHT,
-    backgroundColor: '#161F2D',
+    backgroundColor: '#00293B',
   },
 });

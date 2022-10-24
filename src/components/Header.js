@@ -206,7 +206,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
 const styles = StyleSheet.create({
     container: {
         height: 74,
-        backgroundColor: '#161F2D',
+        backgroundColor: '#00293B',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

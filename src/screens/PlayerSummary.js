@@ -229,6 +229,7 @@ export default function PlayerSummary({ route, navigation }) {
             source={{ uri: item?.thumbnail?.url }}
           />
           <View style={styles.nameWrap}>
+            <View style={{ width: 42, height: 42 }} />
             <View>
               <Text style={styles.name} numberOfLines={1}>
                 {item?.name}
@@ -313,14 +314,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.22,
     elevation: 3,
   },
-  nameWrap: { height: 113, width: '100%', backgroundColor: 'rgba(0,0,0,0.5)', position: 'absolute', bottom: 0, paddingLeft: 14, paddingTop: 15, flexDirection: 'row', justifyContent: 'space-between', paddingRight: 20 },
-  name: { fontWeight: '700', fontSize: 32, color: '#FFF', width: 290 },
-  options: { fontWeight: '500', fontSize: 12, color: '#FFF' },
+  nameWrap: { height: 113, width: '100%', position: 'absolute', bottom: 0, paddingHorizontal: 30, paddingBottom: 22, flexDirection: 'row', justifyContent: 'space-between' },
+  name: { fontWeight: '700', fontSize: 32, color: '#FFF', textAlign: 'center', fontFamily: 'Oswald', textTransform: 'uppercase' },
+  options: { fontWeight: '500', fontSize: 12, color: '#FFF', textAlign: 'center', textTransform: 'uppercase' },
   logo1: { width: 42, height: 42, borderRadius: 21 },
   logo2: { width: 42, height: 42, marginTop: 9 },
   avarageValue: { fontFamily: 'Oswald', fontSize: 32, fontWeight: '700', marginTop: 7, color: '#FFFFFF', textAlign: 'center' },
-  image: { height: 387, width: '100%' },
-  bodyHeader: { height: 387, width: '100%' },
+  image: { width: 201, height: 201, borderRadius: 100.5, marginTop: -115, backgroundColor: '#161F2D' },
+  bodyHeader: { height: 335, width: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: '#00293B' },
   wrapCarousel2: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   arrowIcon: { width: 26, height: 26 },
   carousel: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 },
