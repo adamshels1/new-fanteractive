@@ -42,6 +42,7 @@
     "react-native-screens": "^3.17.0",
     "react-native-sms-verifycode": "^2.4.3",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^12.1.1",
     "react-native-webview": "^11.18.2",
     "react-redux": "^7.2.4",

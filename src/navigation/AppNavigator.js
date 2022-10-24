@@ -3,6 +3,8 @@ import { Image, View, Text, Touchable, TouchableOpacity } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SplashScreen from "react-native-splash-screen";
+
 import {
     createDrawerNavigator,
 } from '@react-navigation/drawer'
@@ -50,6 +52,7 @@ import GamesList from '@screens/GamesList'
 import PlayersList from '@screens/PlayersList'
 import FeedList from '@screens/FeedList'
 import GameAddReport from '@screens/GameAddReport'
+
 
 const Stack = createStackNavigator()
 
@@ -349,6 +352,11 @@ function MainStackNavigator() {
     // useEffect(() => {
     //     checkCodePushUpdate();
     // }, []);
+
+    //Hide Splash screen on app load.
+    useEffect(() => {
+        SplashScreen.hide();
+    });
 
 
     if (hideWelcome) return (
