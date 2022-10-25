@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   forgot: { color: '#5EC422', fontFamily: 'Avenir', fontWeight: '800', fontSize: 18 },
   or: { color: '#B7B7B7', fontFamily: 'Avenir', fontWeight: '400', fontSize: 16 },
   image: { width: 56, height: 84, marginTop: 42 },
-  agree: { color: '#CBCBCB', fontSize: 14, fontWeight: '400', },
+  agree: { color: '#CBCBCB', fontSize: 13, fontWeight: '400', },
   agreeWrap: { marginTop: 21, flexDirection: 'row', alignItems: 'center' },
   signup: { marginTop: 35, marginBottom: 50 },
   checkboxIcon: { width: 15, height: 15 },

@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Dimensions,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, AvarageItem, AverageBlock } from '@components'
@@ -16,7 +17,7 @@ import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
-
+const windowWidth = Dimensions.get('window').width;
 
 export default function PlayerSummary({ route, navigation }) {
   // const dispatch = useDispatch()
@@ -115,7 +116,7 @@ export default function PlayerSummary({ route, navigation }) {
 
           <Carousel
             loop
-            width={300}
+            width={windowWidth - 110}
             height={110}
             ref={refCarousel2}
             data={summaryMeta}
@@ -151,6 +152,7 @@ export default function PlayerSummary({ route, navigation }) {
         <View style={styles.carousel}>
 
           <TouchableOpacity
+            style={styles.arrowButton}
             onPress={() => {
               refCarousel.current?.scrollTo({ count: 1, animated: true });
             }}
@@ -174,6 +176,7 @@ export default function PlayerSummary({ route, navigation }) {
           />
 
           <TouchableOpacity
+            style={styles.arrowButton}
             onPress={() => {
               refCarousel.current?.scrollTo({ count: -1, animated: true });
             }}
@@ -328,4 +331,5 @@ const styles = StyleSheet.create({
   avarageShowWrap: { width: 280, height: 20, alignItems: 'center' },
   avarageShowText: { fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' },
   arrowIcon2: { width: 6.72, height: 11.26 },
+  arrowButton: { width: 30, height: 30, justifyContent: 'center', alignItems: 'center', marginLeft: -10 },
 })

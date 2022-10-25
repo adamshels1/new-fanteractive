@@ -1329,6 +1329,24 @@ const recoverPassword = async ({ email }) => {
     return res
 };
 
+// fetch("https://api.fanteractive.com/v1/auth/sign-in/change-password", {
+//   "headers": {
+//     "accept": "application/json",
+//     "accept-language": "ru",
+//     "content-type": "application/json",
+//     "sec-ch-ua": "\"Chromium\";v=\"106\", \"Google Chrome\";v=\"106\", \"Not;A=Brand\";v=\"99\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"macOS\"",
+//     "sec-fetch-dest": "empty",
+//     "sec-fetch-mode": "cors",
+//     "sec-fetch-site": "same-site",
+//     "Referer": "https://www.fanteractive.com/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": "{\"token\":\"12380\",\"password\":\"2277998a\",\"password_confirmation\":\"2277998a\"}",
+//   "method": "POST"
+// });
+
 const getAvailableDailyPoints = async (object) => {
     const headers = {
         'Content-Type': 'application/json',

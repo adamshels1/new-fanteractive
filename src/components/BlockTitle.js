@@ -6,11 +6,13 @@ export default function BlockTitle(props) {
   return (
     <View style={{ height: 33, width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 21 }}>
       <View style={{ backgroundColor: '#fff' }}>
-        <Text style={{ fontWeight: '700', fontSize: 22, color: '#161F2D', paddingRight: 10, textTransform: 'uppercase' }}>
+        <Text style={{ fontWeight: '800', fontSize: 24, color: '#00293B', paddingRight: 10 }}>
           {props?.title}
         </Text>
       </View>
-      <View style={{ width: '100%', height: 1, backgroundColor: '#7D86A9' }} />
+      {props?.showLine && (
+        <View style={{ width: '100%', height: 1, backgroundColor: '#7D86A9' }} />
+      )}
     </View>
   )
 }

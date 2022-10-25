@@ -18,7 +18,7 @@ export default function ListItem(props) {
       <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#EDEEF3', justifyContent: 'center', alignItems: 'center', marginRight: 14, }}>
         <Image source={props.image} resizeMode='contain' style={{ width: 50, height: 50, borderRadius: 25 }} />
         {props.miniImage && (
-          <Image source={props.miniImage} resizeMode='contain' style={{ width: 16, height: 16, borderRadius: 8, position: 'absolute', right: 0, bottom: 0 }} />
+          <Image source={props.miniImage} resizeMode='contain' style={{ width: 20, height: 20, borderRadius: 8, position: 'absolute', right: 0, bottom: 0 }} />
         )}
 
       </View>

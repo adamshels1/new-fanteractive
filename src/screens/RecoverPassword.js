@@ -19,6 +19,7 @@ import helper from '@services/helper'
 export default function EmailVerification({ navigation }) {
   const dispatch = useDispatch()
   const [email, setEmail] = useState('')
+  const [step, setStep] = useState(1)
 
 
   const recoverPassword = async () => {
@@ -26,12 +27,14 @@ export default function EmailVerification({ navigation }) {
       dispatch(loaderAction({ isLoading: true }))
       const res = await mainApi.recoverPassword({ email });
       dispatch(loaderAction({ isLoading: false }))
-      if (res.state === 'success') {
+      console.log('aaaaa', res)
+      if (res.status === 200) {
         setEmail('')
-        AlertAsync('Success', 'Password recovery instructions have been sent to your email')
-        navigation.goBack()
+        // AlertAsync('Success', 'Password recovery instructions have been sent to your email')
+        // navigation.goBack()
+        setStep('change-password')
       } else {
-        AlertAsync(res.reason || 'Something went wrond')
+        AlertAsync(res?.data?.message || 'Something went wrond')
       }
     } catch (e) {
       console.log(e)
@@ -46,6 +49,7 @@ export default function EmailVerification({ navigation }) {
       <Header
         title='Recover Password'
         goBack={navigation.goBack}
+        navigation={navigation}
       />
 
 

@@ -166,7 +166,7 @@ export default function Login({ navigation }) {
 
             <View style={styles.bodyBottom}>
               <Input
-                field='Email address'
+                field='Username'
                 onChangeText={username => setUsername(username)}
                 value={username}
                 autoCapitalize="none"
@@ -238,6 +238,7 @@ export default function Login({ navigation }) {
                   text='Continue with Twitter'
                   inverter
                   // onPress={() => navigation.navigate('Signup')}
+                  onPress={() => AlertAsync('Coming soon')}
                   style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0)' }}
                   textStyle={{ color: '#03A9F4' }}
                   color='#03A9F4'
