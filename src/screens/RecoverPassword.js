@@ -19,20 +19,28 @@ import helper from '@services/helper'
 export default function EmailVerification({ navigation }) {
   const dispatch = useDispatch()
   const [email, setEmail] = useState('')
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState('recoverPassword')
+  const [code, setCode] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
+
+  const resetState = () => {
+    setEmail('')
+    setStep('recoverPassword')
+    setCode('')
+    setPassword('')
+    setPasswordConfirmation('')
+  }
 
   const recoverPassword = async () => {
     try {
       dispatch(loaderAction({ isLoading: true }))
       const res = await mainApi.recoverPassword({ email });
       dispatch(loaderAction({ isLoading: false }))
-      console.log('aaaaa', res)
       if (res.status === 200) {
         setEmail('')
-        // AlertAsync('Success', 'Password recovery instructions have been sent to your email')
-        // navigation.goBack()
-        setStep('change-password')
+        setStep('changePassword')
       } else {
         AlertAsync(res?.data?.message || 'Something went wrond')
       }
@@ -41,6 +49,127 @@ export default function EmailVerification({ navigation }) {
       dispatch(loaderAction({ isLoading: false }))
       helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
+  }
+
+
+  const recoverChangePassword = async () => {
+    try {
+      dispatch(loaderAction({ isLoading: true }))
+      const res = await mainApi.recoverChangePassword({ code, password, passwordConfirmation });
+      dispatch(loaderAction({ isLoading: false }))
+      if (res.status === 200) {
+        setEmail('')
+        await AlertAsync('Success', 'Password changed succesfully')
+        navigation.navigate('Login')
+        resetState()
+      } else {
+        AlertAsync(res?.data?.message || 'Something went wrond')
+      }
+    } catch (e) {
+      console.log(e)
+      dispatch(loaderAction({ isLoading: false }))
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
+    }
+  }
+
+  const renderRecoverPassword = () => {
+    return (
+      <View style={styles.body}>
+        <View style={styles.bodyTop}>
+          <Text style={styles.bodyTitle}>
+            Recover Password
+          </Text>
+          <Image style={styles.image}
+            resizeMode='contain'
+            source={require('@assets/images/email3.png')}
+          />
+          <Text style={styles.desc}>
+            Enter a valid email address that will be used for recover your password.
+            A verification code will be sent to your email on the next step.
+          </Text>
+        </View>
+
+        <View style={styles.bodyBottom}>
+          <Input
+            field='Email'
+            onChangeText={email => setEmail(email)}
+            value={email}
+            autoCapitalize="none"
+          />
+
+          <Button
+            style={styles.confirmButton}
+            text='Send'
+            onPress={recoverPassword}
+          />
+        </View>
+
+
+      </View>
+    )
+  }
+
+  const renderChangePassword = () => {
+    return (
+      <View style={styles.body}>
+        <View style={styles.bodyTop}>
+          <Text style={styles.bodyTitle}>
+            Recover Password
+          </Text>
+          <Image style={styles.image}
+            resizeMode='contain'
+            source={require('@assets/images/email3.png')}
+          />
+          {/* <Text style={styles.desc}>
+            Enter a valid email address that will be used for recover your password.
+            A verification code will be sent to your email on the next step.
+          </Text> */}
+        </View>
+
+        <View style={styles.bodyBottom}>
+          <Input
+            field='Code'
+            onChangeText={text => setCode(text)}
+            value={code}
+            autoCapitalize="none"
+            keyboardType='number-pad'
+            maxLength={5}
+          />
+
+          <Input
+            wrapStyle={{ marginTop: 15 }}
+            field='Password'
+            onChangeText={text => setPassword(text)}
+            value={password}
+            showSecureTextButton
+            secureTextEntry={true}
+            autoCapitalize="none"
+            maxLength={50}
+          />
+
+
+          <Input
+            wrapStyle={{ marginTop: 15 }}
+            field='PasswordConfirmation'
+            onChangeText={text => setPasswordConfirmation(text)}
+            value={passwordConfirmation}
+            showSecureTextButton
+            secureTextEntry={true}
+            autoCapitalize="none"
+            maxLength={50}
+          />
+
+
+          <Button
+            style={styles.confirmButton}
+            text='Send'
+            onPress={recoverChangePassword}
+          />
+        </View>
+
+
+      </View>
+    )
   }
 
   return (
@@ -59,38 +188,9 @@ export default function EmailVerification({ navigation }) {
       >
         <ScrollView keyboardShouldPersistTaps='always'>
 
-          <View style={styles.body}>
-            <View style={styles.bodyTop}>
-              <Text style={styles.bodyTitle}>
-                Recover Password
-              </Text>
-              <Image style={styles.image}
-                resizeMode='contain'
-                source={require('@assets/images/email3.png')}
-              />
-              <Text style={styles.desc}>
-                Enter a valid email address that will be used for recover your password.
-                A verification code will be sent to your email on the next step.
-              </Text>
-            </View>
+          {step === 'recoverPassword' && renderRecoverPassword()}
+          {step === 'changePassword' && renderChangePassword()}
 
-            <View style={styles.bodyBottom}>
-              <Input
-                field='Email'
-                onChangeText={email => setEmail(email)}
-                value={email}
-                autoCapitalize="none"
-              />
-
-              <Button
-                style={styles.confirmButton}
-                text='Send'
-                onPress={recoverPassword}
-              />
-            </View>
-
-
-          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
