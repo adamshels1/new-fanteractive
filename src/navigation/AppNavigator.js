@@ -399,6 +399,9 @@ function MainStackNavigator() {
                 <Stack.Screen name='PlayerSummary' component={PlayerSummary} />
                 <Drawer.Screen name="PlayerDetail" component={PlayerDetail} />
                 <Drawer.Screen name="PlayerReport" component={PlayerReport} />
+                <Drawer.Screen name="PlayersScoutings" component={PlayersScoutings} />
+
+                <Drawer.Screen name="About" component={About} />
 
 
                 {/* import About from '@screens/About'

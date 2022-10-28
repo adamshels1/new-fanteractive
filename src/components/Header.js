@@ -169,7 +169,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
 
 
 
-                {/* {onFilter && (
+                {onFilter && (
                     <TouchableOpacity
                         onPress={onFilter}
                     >
@@ -182,6 +182,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
 
                 )}
 
+                
                 {showClose && (
                     <TouchableOpacity
                         onPress={onClose}
@@ -193,7 +194,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
                         </View>
                     </TouchableOpacity>
 
-                )} */}
+                )}
             </View >
 
 

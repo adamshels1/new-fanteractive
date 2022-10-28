@@ -40,23 +40,15 @@ export default function About({ route, navigation }) {
       <StatusBar barStyle='dark-content' />
       <Header
         showMenu
-        showFilter
         navigation={navigation}
-        onFilter={() => setVisibleFilterModal(true)}
       />
-
-      {/* <FilterModal
-        isVisible={visibleFilterModal}
-        onClose={() => setVisibleFilterModal(false)}
-      /> */}
-
 
 
       <FlatList
         refreshing={loading}
         onRefresh={getArticles}
         ListHeaderComponent={<BlockTitle title='Recent Articles' />}
-        ListFooterComponent={<View style={{height: 50}} />}
+        ListFooterComponent={<View style={{ height: 50 }} />}
         style={{ paddingVertical: 24, paddingHorizontal: 20 }}
         data={articles}
         keyExtractor={(item, index) => item.id}

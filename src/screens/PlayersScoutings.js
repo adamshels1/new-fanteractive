@@ -48,7 +48,7 @@ export default function About({ route, navigation }) {
 
         <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
 
-          <BlockTitle title='Players Scouting' />
+          <BlockTitle title='Players Scouting' showLine />
 
           <Button
             leftComponent={<Image source={require('@assets/icons/shape.png')} style={{ width: 26, height: 29, marginRight: 8 }} />}

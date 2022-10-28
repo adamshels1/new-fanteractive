@@ -32,7 +32,7 @@ export default function FilterModal(props) {
         <ScrollView>
 
 
-          <Text style={{ fontWeight: '700', fontSize: 22, color: '#161F2D', paddingRight: 10, textTransform: 'uppercase', textAlign: 'center', marginTop: 22 }}>
+          <Text style={{ fontWeight: '700', fontSize: 22, color: '#00293B', paddingRight: 10, textTransform: 'uppercase', textAlign: 'center', marginTop: 22, fontFamily: 'Oswald' }}>
             Search by name
           </Text>
 
@@ -44,7 +44,7 @@ export default function FilterModal(props) {
               showSearchIcon
             />
 
-            <Text style={{ fontWeight: '700', fontSize: 22, color: '#161F2D', paddingRight: 10, textTransform: 'uppercase', textAlign: 'center', marginTop: 36 }}>
+            <Text style={{ fontWeight: '700', fontSize: 22, color: '#00293B', paddingRight: 10, textTransform: 'uppercase', textAlign: 'center', marginTop: 22, fontFamily: 'Oswald' }}>
               Advanced Filter
             </Text>
 

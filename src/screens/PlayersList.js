@@ -40,16 +40,8 @@ export default function About({ route, navigation }) {
       <StatusBar barStyle='dark-content' />
       <Header
         showMenu
-        showFilter
         navigation={navigation}
-        onFilter={() => setVisibleFilterModal(true)}
       />
-
-      {/* <FilterModal
-        isVisible={visibleFilterModal}
-        onClose={() => setVisibleFilterModal(false)}
-      /> */}
-
 
 
       <FlatList

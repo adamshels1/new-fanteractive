@@ -74,19 +74,20 @@ export default CustomDrawerContent = (props) => {
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Dash_icon.png')}
                 title='My Fanalyst Dashboard'
-            // onPress={() => props.navigation.navigate('Login')}
+                // onPress={() => props.navigation.navigate('HomeTabs')}
+                onPress={() => props.navigation.navigate('About')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Player_icon.png')}
                 title='Player Scouting'
-            // onPress={() => navigateWithReset('Login')}
+                onPress={() => props.navigation.navigate('PlayersScoutings')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Game_icon.png')}
                 title='Game Fanalyses'
-            // onPress={() => navigateWithReset('Login')}
+                onPress={() => props.navigation.navigate('About')}
             />
 
             <CustomDrawerMenuItem
