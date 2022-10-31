@@ -255,14 +255,41 @@ function ArticleStackScreen() {
 }
 
 
+function DashboardStackScreen() {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen
+                name='About'
+                component={About}
+            />
+        </Stack.Navigator>
+    );
+}
+
+
 
 function HomeTabs() {
     const event = useSelector(state => state.mainReducer.event)
     const logoSource = event?.logo ? { uri: event.logo } : require('@assets/images/no_logo.png')
     return (
         <Tab.Navigator tabBar={props => <CustomTabBar {...props} />} screenOptions={{
-            headerShown: false
+            headerShown: false,
         }}>
+
+            {/* <Tab.Screen
+                name="DashboardStackScreen"
+                component={DashboardStackScreen}
+                options={{
+                    tabBarLabel: 'About',
+                    tabBarIcon: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-gray.png')} />,
+                    tabBarIconActive: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-green.png')} />,
+                    // tabBarVisible: false,
+                }}
+            /> */}
 
             <Tab.Screen
                 name="FeedStackScreen"
@@ -273,15 +300,6 @@ function HomeTabs() {
                     tabBarIconActive: <Image style={{ width: 32, height: 32 }} source={require('@assets/icons/feed-green.png')} />
                 }}
             />
-            {/* <Tab.Screen
-                name="About"
-                component={About}
-                options={{
-                    tabBarLabel: 'About',
-                    tabBarIcon: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-gray.png')} />,
-                    tabBarIconActive: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-green.png')} />
-                }}
-            /> */}
             <Tab.Screen
                 name="PlayerStackScreen"
                 component={PlayerStackScreen}

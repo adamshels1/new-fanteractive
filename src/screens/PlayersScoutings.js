@@ -33,7 +33,7 @@ export default function About({ route, navigation }) {
       <StatusBar barStyle='dark-content' />
       <Header
         title={title}
-        showMenu
+        goBack={navigation.goBack}
         showFilter
         navigation={navigation}
         onFilter={() => setVisibleFilterModal(true)}

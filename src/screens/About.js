@@ -12,6 +12,7 @@ import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem } from '@co
 import { mainApi } from '@api';
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import { loaderAction } from '@redux/actions/loaderActions'
+import moment from 'moment'
 
 export default function About({ route, navigation }) {
   const dispatch = useDispatch()
@@ -51,38 +52,36 @@ export default function About({ route, navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        // title={title}
-        showMenu
-        showCrownIcon
-        showNotificationsIcon
+        // showMenu
         navigation={navigation}
+        goBack={navigation.goBack}
       />
       <ScrollView>
         <View
-          style={{ height: 262, width: '100%' }}
+          style={{ height: 262, width: '100%', backgroundColor: 'rgba(0,0,0,0.3)' }}
         >
           <Image
             style={{ height: 262, width: '100%' }}
             source={{ uri: user?.thumbnail?.url }}
           />
           <View style={{ height: 81, width: '100%', backgroundColor: 'rgba(0,0,0,0.5)', position: 'absolute', bottom: 0, paddingLeft: 14, paddingTop: 15 }}>
-            <Text style={{ fontWeight: '700', fontSize: 32, color: '#FFF' }}>
+            <Text style={{ fontWeight: '700', fontSize: 32, color: '#FFF', textTransform: 'uppercase', fontFamily: 'Oswald' }}>
               {user?.full_name}
             </Text>
-            <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF' }}>Tier: {user?.tier_label}</Text>
+            <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF', textTransform: 'uppercase', fontFamily: 'Oswald' }}>Tier: {user?.tier_label}</Text>
           </View>
         </View>
 
 
         <View style={{ paddingVertical: 24, paddingHorizontal: 20 }}>
-          <BlockTitle title='ABOUT ME' />
+          <BlockTitle title='ABOUT ME' showLine />
           <Text style={{ fontWeight: '400', fontSize: 14, color: '#000', marginTop: 6 }}>
             {user?.about}
           </Text>
 
 
           <View style={{ marginTop: 20 }}>
-            <BlockTitle title='Quick Stats' />
+            <BlockTitle title='Quick Stats' showLine />
 
             <ListItem
               icon={require('@assets/icons/scouting_reports.png')}
@@ -119,33 +118,38 @@ export default function About({ route, navigation }) {
           </View>
 
 
+          {user?.favorite_teams?.length ? (
+            <View style={{ marginTop: 26 }}>
+              <BlockTitle title='My Favorite Teams' showLine />
+              <FlatList
+                style={{ marginTop: 25 }}
+                data={user?.favorite_teams}
+                renderItem={({ item, index }) =>
+                  <TeamListItem
+                    name={item?.name}
+                    image={item?.thumbnail?.url}
+                  />
+                }
+                horizontal
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+          ) : null}
 
-          <View style={{ marginTop: 26 }}>
-            <BlockTitle title='My Favorite Teams' />
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={user?.favorite_teams}
-              renderItem={({ item, index }) =>
-                <TeamListItem
-                  name={item?.name}
-                  image={item?.thumbnail?.url}
-                />
-              }
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
-          </View>
 
 
           <View style={{ marginTop: 20 }}>
-            <BlockTitle title='My Latest Analyses' />
+            <BlockTitle title='My Latest Analyses' showLine />
             <FlatList
               style={{ marginTop: 25 }}
               data={analyses?.articles}
               renderItem={({ item, index }) => <ListItem
+                type='article'
                 amount={item.title}
                 title={item.summary}
                 value='2.3'
+                icon={item?.thumbnail?.url}
+                item={item}
               />
               }
             />
@@ -154,21 +158,25 @@ export default function About({ route, navigation }) {
               style={{ marginTop: 25 }}
               data={analyses?.stadiums}
               renderItem={({ item, index }) => <ListItem
-                amount={item.title}
-                title={item.summary}
-                value='2.3'
-                image={item?.thumbnail?.url}
+                value={parseFloat(item?.avg).toFixed(2)}
+                amount={item?.event?.user?.full_name}
+                title={`${item?.event?.sport?.name} • ${moment(item?.posted).format('DD MMM YYYY')}`}
+                icon={{
+                  uri: item?.thumbnail?.url
+                }}
+                disabled
+              // onPress={() => navigation.navigate('PlayerReport')}
               />
               }
             />
           </View>
 
 
-          <Image
+          {/* <Image
             style={{ width: '100%', height: 335 }}
             source={require('@assets/images/banner.png')}
             resizeMode='center'
-          />
+          /> */}
 
         </View>
 
