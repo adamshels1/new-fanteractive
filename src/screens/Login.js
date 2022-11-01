@@ -67,10 +67,18 @@ export default function Login({ navigation }) {
       const res = await mainApi.login({ username, password });
       dispatch(loaderAction({ isLoading: false }))
       console.log('resresres', res)
-      if (res?.data?.access_token) {
+      const token = res?.data?.access_token
+      if (token) {
+
+        const resUser = await mainApi.getUser(token);
+        const user = resUser?.data?.data
+        if (user) {
+          console.log('user', user)
+          dispatch(setUserAction(user))
+        }
         setUsername('')
         setPassword('')
-        dispatch(setTokenAction(res?.data?.access_token))
+        dispatch(setTokenAction(token))
         navigation.navigate('HomeTabs')
 
         // const user = res.response;

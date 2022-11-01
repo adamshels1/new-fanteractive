@@ -53,6 +53,8 @@ import PlayersList from '@screens/PlayersList'
 import FeedList from '@screens/FeedList'
 import GameAddReport from '@screens/GameAddReport'
 
+import GameReview from '@screens/GameReview'
+
 
 const Stack = createStackNavigator()
 
@@ -439,6 +441,8 @@ function MainStackNavigator() {
                 <Stack.Screen name='EmailVerification' component={EmailVerification} />
                 <Stack.Screen name='VerificationSuccessful' component={VerificationSuccessful} />
                 <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
+
+                <Drawer.Screen name="GameReview" component={GameReview} />
 
             </Drawer.Navigator>
 

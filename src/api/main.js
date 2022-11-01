@@ -669,6 +669,24 @@ const getPlayerScouting = async (token) => {
     return res
 };
 
+const getGameFanalyses = async (token, { userId }) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}profile/user/${userId}/rating/games`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 
 
 
@@ -1770,7 +1788,7 @@ export default {
     getGameCharacteristics,
     addGameReport,
     getPlayerScouting,
-
+    getGameFanalyses,
 
 
     getRestaurant,

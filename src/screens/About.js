@@ -91,6 +91,13 @@ export default function About({ route, navigation }) {
             />
 
             <ListItem
+              icon={require('@assets/icons/scouting_reports.png')}
+              amount={odds?.scouting_reports}
+              title='Scouting Reports'
+              onPress={() => navigation.navigate('GameReview')}
+            />
+
+            <ListItem
               icon={require('@assets/icons/game_report_cards.png')}
               amount={odds?.game_report_cards}
               title='Game Report Cards'
