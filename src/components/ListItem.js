@@ -4,7 +4,6 @@ import { colors } from '@constants'
 import { Text } from '@components'
 
 export default function ListItem(props) {
-  console.log('props', props)
 
   const item = props.item
 
@@ -12,7 +11,7 @@ export default function ListItem(props) {
     <TouchableOpacity {...props} style={styles.wrap}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.wrapImage}>
-          <Image source={{ uri: props?.icon }} style={styles.image} resizeMode='center' />
+          <Image source={props?.icon} style={styles.image} resizeMode='center' />
         </View>
 
         <View>
@@ -37,7 +36,7 @@ export default function ListItem(props) {
     <TouchableOpacity {...props} style={styles.wrap}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.wrapImage}>
-          <Image source={{ uri: props?.icon }} style={styles.image} resizeMode='center' />
+          <Image source={props?.icon} style={styles.image} resizeMode='center' />
         </View>
 
         <View>

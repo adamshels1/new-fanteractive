@@ -146,7 +146,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
 
             <View style={styles.rightWrap}>
 
-                {/* {token ? (
+                {token ? (
                     <TouchableOpacity
                     // onPress={() => navigation.navigate('Login')}
                     >
@@ -165,11 +165,11 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
                             <Text style={{ fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 }}>SIGN IN</Text>
                         </View>
                     </TouchableOpacity>
-                )} */}
+                )}
 
 
 
-                {onFilter && (
+                {/* {onFilter && (
                     <TouchableOpacity
                         onPress={onFilter}
                     >
@@ -194,7 +194,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
                         </View>
                     </TouchableOpacity>
 
-                )}
+                )} */}
             </View >
 
 

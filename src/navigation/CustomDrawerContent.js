@@ -80,13 +80,13 @@ export default CustomDrawerContent = (props) => {
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Player_icon.png')}
-                title='Player Scouting'
+                title='My Player Scouting'
                 onPress={() => props.navigation.navigate('PlayersScoutings')}
             />
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Game_icon.png')}
-                title='Game Fanalyses'
+                title='My Game Fanalyses'
                 onPress={() => props.navigation.navigate('About')}
             />
 

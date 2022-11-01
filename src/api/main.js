@@ -651,6 +651,36 @@ const addGameReport = async (token, {
 
 
 
+const getPlayerScouting = async (token) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}players/scouting`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 const getRestaurants = async () => {
     const headers = {
         'Content-Type': 'application/json',
@@ -1739,6 +1769,7 @@ export default {
     getTeamRoster,
     getGameCharacteristics,
     addGameReport,
+    getPlayerScouting,
 
 
 
