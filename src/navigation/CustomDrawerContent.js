@@ -91,14 +91,14 @@ export default CustomDrawerContent = (props) => {
             />
 
             <CustomDrawerMenuItem
-                icon={require('@assets/icons/Team_icon.png')}
-                title='My Team Ratings'
-            // onPress={() => navigateWithReset('Login')}
+                icon={require('@assets/icons/Venue_icon.png')}
+                title='My Stadium Ratings'
+                onPress={() => props.navigation.navigate('MyStadiumReport')}
             />
 
             <CustomDrawerMenuItem
-                icon={require('@assets/icons/Venue_icon.png')}
-                title='My Stadium Ratings'
+                icon={require('@assets/icons/Team_icon.png')}
+                title='My Team Ratings'
             // onPress={() => navigateWithReset('Login')}
             />
 

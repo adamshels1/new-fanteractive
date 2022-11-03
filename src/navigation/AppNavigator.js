@@ -54,6 +54,7 @@ import FeedList from '@screens/FeedList'
 import GameAddReport from '@screens/GameAddReport'
 
 import GameReview from '@screens/GameReview'
+import MyStadiumReport from '@screens/MyStadiumReport'
 
 
 const Stack = createStackNavigator()
@@ -443,6 +444,7 @@ function MainStackNavigator() {
                 <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
 
                 <Drawer.Screen name="GameReview" component={GameReview} />
+                <Drawer.Screen name="MyStadiumReport" component={MyStadiumReport} />
 
             </Drawer.Navigator>
 

@@ -689,6 +689,26 @@ const getGameFanalyses = async (token, { userId }) => {
 
 
 
+const getMyStadiumReports = async (token) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}stadium-rating/user-grade`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+
 
 
 
@@ -1789,6 +1809,7 @@ export default {
     addGameReport,
     getPlayerScouting,
     getGameFanalyses,
+    getMyStadiumReports,
 
 
     getRestaurant,
