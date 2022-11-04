@@ -139,7 +139,7 @@ export default function MyStadiumReport({ route, navigation }) {
           renderItem={({ item, index }) => <ListItem
             value={parseFloat(item?.your_grade).toFixed(1)}
             amount={item?.name}
-            title={`${item?.city} • ${item?.country}`}
+            title={`${item?.country} • ${item?.city}`}
             icon={{
               uri: item?.thumbnail?.url
             }}
