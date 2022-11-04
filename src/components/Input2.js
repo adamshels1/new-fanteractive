@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Image, TextInput, TouchableWithoutFeedback } from 'react-native';
 import { Text } from '@components'
 import { TextInputMask } from 'react-native-masked-text';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class Input extends Component {
   constructor(props) {

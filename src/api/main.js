@@ -612,8 +612,6 @@ const getGameCharacteristics = async (token, { gameId }) => {
 };
 
 
-
-
 const addGameReport = async (token, {
     gameId,
     teamId,
@@ -647,8 +645,6 @@ const addGameReport = async (token, {
     console.log('res', res)
     return res
 };
-
-
 
 
 const getPlayerScouting = async (token) => {
@@ -720,6 +716,42 @@ const getMyArticles = async (token) => {
     };
 
     console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+const editUser = async (token, {
+    city,
+    country,
+    delete_thumbnail,
+    postcode,
+    state,
+    street,
+}) => {
+
+    var data = JSON.stringify({
+        city,
+        country,
+        delete_thumbnail,
+        postcode,
+        state,
+        street,
+    });
+
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}settings/profile/user-detail`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    console.log('config', config)
     const res = await axios(config)
     console.log('res', res)
     return res
@@ -1829,6 +1861,8 @@ export default {
     getGameFanalyses,
     getMyStadiumReports,
     getMyArticles,
+    editUser,
+    
 
 
     getRestaurant,

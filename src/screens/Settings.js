@@ -17,7 +17,7 @@ import { loaderAction } from '@redux/actions/loaderActions'
 import { logout } from '@redux/actions/userActions'
 import { CommonActions } from '@react-navigation/native'
 
-export default function MyStadiumReport({ route, navigation }) {
+export default function MyStadiumReport(props) {
   const dispatch = useDispatch()
   const [visibleFilterModal, setVisibleFilterModal] = useState(false)
 
@@ -26,7 +26,7 @@ export default function MyStadiumReport({ route, navigation }) {
     {
       title: 'User Details',
       icon: require('@assets/icons/user-3.png'),
-      route: ''
+      route: 'EditUserDetails'
     },
     {
       title: 'Interests',
@@ -66,9 +66,9 @@ export default function MyStadiumReport({ route, navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        goBack={navigation.goBack}
+        goBack={props.navigation.goBack}
         showFilter
-        navigation={navigation}
+        navigation={props.navigation}
         onFilter={() => setVisibleFilterModal(true)}
       />
 
@@ -87,7 +87,10 @@ export default function MyStadiumReport({ route, navigation }) {
           data={items}
           ListHeaderComponent={renderListHeaderComponent}
           keyExtractor={(item, index) => 'gameReview-' + index}
-          renderItem={({ item, index }) => <TouchableOpacity style={{ flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#D9DBE9', height: 78, alignItems: 'center', justifyContent: 'space-between', paddingLeft: 17, paddingRight: 37 }}>
+          renderItem={({ item, index }) => <TouchableOpacity
+            style={{ flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#D9DBE9', height: 78, alignItems: 'center', justifyContent: 'space-between', paddingLeft: 17, paddingRight: 37 }}
+            onPress={() => props.navigation.navigate(item.route)}
+          >
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Image
