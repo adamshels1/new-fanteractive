@@ -1,66 +1,106 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   View,
   SafeAreaView,
   Image,
-  KeyboardAvoidingView,
   ScrollView,
+  FlatList,
   TouchableOpacity,
-  Linking
+  Platform,
+  KeyboardAvoidingView,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, Button, Input, StatusBar, Text } from '@components'
-import { mainApi } from '@api'
-import AlertAsync from 'react-native-alert-async'
+import { Header, StatusBar, Text, Button, FilterModal, Input2, CountriesModal, MultiSelectModal } from '@components'
+import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
-import { setTokenAction, setUserAction } from '@redux/actions/userActions'
+import { logout } from '@redux/actions/userActions'
+import { CommonActions } from '@react-navigation/native'
+import ImagePicker from 'react-native-image-crop-picker'
+import AlertAsync from 'react-native-alert-async'
+import helper from '@services/helper'
 
-export default function Login({ navigation }) {
+export default function Interests({ route, navigation }) {
   const dispatch = useDispatch()
+  const [visibleFilterModal, setVisibleFilterModal] = useState(false)
+  const token = useSelector(state => state.userReducer.token)
+  const user = useSelector(state => state.userReducer.user)
+  console.log('user', user)
+
   const [oldPassword, setOldPassword] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
-  const user = useSelector(state => state.userReducer.user)
-  const token = useSelector(state => state.userReducer.token)
 
-  const onChangePassword = async () => {
-    if ((password && password !== repeatPassword)) {
-      return await AlertAsync('You have entered the repeated password incorrectly')
-    }
+
+  const onSave = async () => {
+
+    const sportIds = sports.filter(i => i.selected).map(i => i.id)
+    const teamIds = teams.filter(i => i.selected).map(i => i.id)
+
+    console.log({
+      sportIds,
+      teamIds,
+      aboutMe,
+    })
     try {
       dispatch(loaderAction({ isLoading: true }))
-
-      const data = await mainApi.changePassword({
-        user_id: user?.userId,
-        token,
-        password: oldPassword,
-        newpassword: password,
-      })
+      const res = await mainApi.saveInterests(token, {
+        sportIds,
+        teamIds,
+        aboutMe,
+      });
+      console.log('resresresres', res)
       dispatch(loaderAction({ isLoading: false }))
-      if (data.state === 'success') {
-        setOldPassword('')
-        setPassword('')
-        setRepeatPassword('')
-        navigation.goBack()
-      } else {
-        await AlertAsync('Error', data?.reason || 'Something went wrond')
-      }
-
+      navigation.goBack()
     } catch (e) {
-      console.log(e.message)
+      console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
+
+
+
+  // const onChangePassword = async () => {
+  //   if ((password && password !== repeatPassword)) {
+  //     return await AlertAsync('You have entered the repeated password incorrectly')
+  //   }
+  //   try {
+  //     dispatch(loaderAction({ isLoading: true }))
+
+  //     const data = await mainApi.changePassword({
+  //       user_id: user?.userId,
+  //       token,
+  //       password: oldPassword,
+  //       newpassword: password,
+  //     })
+  //     dispatch(loaderAction({ isLoading: false }))
+  //     if (data.state === 'success') {
+  //       setOldPassword('')
+  //       setPassword('')
+  //       setRepeatPassword('')
+  //       navigation.goBack()
+  //     } else {
+  //       await AlertAsync('Error', data?.reason || 'Something went wrond')
+  //     }
+
+  //   } catch (e) {
+  //     console.log(e.message)
+  //     dispatch(loaderAction({ isLoading: false }))
+  //     AlertAsync(e.message || 'Something went wrond')
+  //   }
+  // }
+
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        title='Change password'
         goBack={navigation.goBack}
+        showFilter
+        navigation={navigation}
+        onFilter={() => setVisibleFilterModal(true)}
       />
-
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -69,66 +109,68 @@ export default function Login({ navigation }) {
       >
         <ScrollView keyboardShouldPersistTaps='always'>
 
-          <View style={styles.body}>
-            <View style={styles.bodyTop}>
-              <Text style={styles.bodyTitle}>
-              </Text>
-              <Image style={styles.image} resizeMode='contain' source={require('@assets/icons/Sing_log.png')} />
-            </View>
+          <View style={{ paddingVertical: 27, paddingHorizontal: 20, flex: 1 }}>
 
-            <View style={styles.bodyBottom}>
-              <Input
-                field='Old password'
-                onChangeText={oldPassword => setOldPassword(oldPassword)}
+
+            <Text style={{ fontSize: 22, fontWeight: '500', color: '#00293B' }}>
+              Change Password
+            </Text>
+
+            <View style={{ marginTop: 19 }}>
+
+
+              <Input2
+                field='Current Password'
+                maxLength={50}
+
+                onChangeText={setOldPassword}
                 value={oldPassword}
                 showSecureTextButton
                 secureTextEntry={true}
-                autoCapitalize="none"
-                style={{ marginBottom: 24 }}
-                maxLength={50}
+
               />
 
-              <Input
-                field='Password'
-                onChangeText={password => setPassword(password)}
+              <Input2
+                field='New Password'
+                maxLength={50}
+
+                onChangeText={setPassword}
                 value={password}
                 showSecureTextButton
                 secureTextEntry={true}
-                autoCapitalize="none"
-                style={{ marginBottom: 24 }}
-                maxLength={50}
+
               />
 
-              <Input
-                field='Repeat Password'
-                onChangeText={repeatPassword => setRepeatPassword(repeatPassword)}
+
+              <Input2
+                field='Confirm New Password'
+                maxLength={50}
+
+                onChangeText={setRepeatPassword}
                 value={repeatPassword}
                 showSecureTextButton
                 secureTextEntry={true}
-                autoCapitalize="none"
-                maxLength={50}
+
               />
 
-              <TouchableOpacity
-                onPress={() => navigation.navigate('RecoverPassword')}
-              >
-                <Text style={styles.forgot}>
-                  Forgot your password?
-                </Text>
-              </TouchableOpacity>
 
               <Button
-                disabled={!oldPassword || !password || !repeatPassword}
-                style={styles.signup}
-                text='Change'
-                onPress={onChangePassword}
+                text='Save Changes'
+                style={{ marginTop: 17 }}
+                textStyle={{ fontFamily: 'Oswald' }}
+                onPress={onSave}
               />
+
+
             </View>
 
-
           </View>
+
         </ScrollView>
       </KeyboardAvoidingView>
+
+
+
     </View>
   )
 }
@@ -138,13 +180,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
-  body: { alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 17, flex: 1 },
-  bodyTop: { marginTop: 46, alignItems: 'center' },
-  bodyBottom: { marginTop: 40, width: '100%' },
-  bodyTitle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 24, color: '#121212' },
-  image: { width: 56, height: 84, marginTop: 42 },
-  forgot: { color: '#378BED', fontFamily: 'Avenir', fontWeight: '600', fontSize: 14, marginLeft: 8, textAlign: 'right', marginTop: 17 },
-  agreeWrap: { marginTop: 21, flexDirection: 'row', alignItems: 'center' },
-  signup: { marginTop: 35, marginBottom: 50 },
-  checkboxIcon: { width: 18, height: 18 }
+  filterItem: { flexDirection: 'row', alignItems: 'center' },
+  filterText: { fontWeight: '900', fontSize: 12, color: '#00293B' },
+  filterIcon: { width: 7.53, height: 4.34, top: 1, marginLeft: 3.24 },
+  filtersWrap: { height: 30, width: '100%', backgroundColor: '#EDF1F9', borderRadius: 3, paddingHorizontal: 11, flexDirection: 'row', justifyContent: 'space-between' },
+
+  inputButton: { width: '100%', height: 50, borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.32)', borderRadius: 4, marginTop: 23, alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, flexDirection: 'row' },
+  inputButtonField: { left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },
+  inputButtonFieldText: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 12, color: '#00293B', paddingHorizontal: 5 },
+  inputButtonText: { fontSize: 16, fontFamily: 'Avenir', color: '#00293B', fontWeight: '400' },
 })

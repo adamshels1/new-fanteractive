@@ -452,7 +452,8 @@ function MainStackNavigator() {
                 <Drawer.Screen name="Settings" component={Settings} />
                 <Drawer.Screen name="EditUserDetails" component={EditUserDetails} />
                 <Drawer.Screen name="Interests" component={Interests} />
-                
+                <Drawer.Screen name="ChangePassword" component={ChangePassword} />
+
             </Drawer.Navigator>
 
 

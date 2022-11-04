@@ -16,6 +16,7 @@ import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import { logout } from '@redux/actions/userActions'
 import { CommonActions } from '@react-navigation/native'
+import AlertAsync from 'react-native-alert-async'
 
 export default function MyStadiumReport(props) {
   const dispatch = useDispatch()
@@ -35,7 +36,8 @@ export default function MyStadiumReport(props) {
     },
     {
       title: 'Security',
-      icon: require('@assets/icons/keys.png')
+      icon: require('@assets/icons/keys.png'),
+      // route: 'ChangePassword'
     },
     {
       title: 'Notifications',
@@ -90,7 +92,7 @@ export default function MyStadiumReport(props) {
           keyExtractor={(item, index) => 'gameReview-' + index}
           renderItem={({ item, index }) => <TouchableOpacity
             style={{ flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#D9DBE9', height: 78, alignItems: 'center', justifyContent: 'space-between', paddingLeft: 17, paddingRight: 37 }}
-            onPress={() => props.navigation.navigate(item.route)}
+            onPress={() => item.route ? props.navigation.navigate(item.route) : AlertAsync('Coming soon')}
           >
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
