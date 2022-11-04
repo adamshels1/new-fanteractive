@@ -30,7 +30,8 @@ export default function MyStadiumReport(props) {
     },
     {
       title: 'Interests',
-      icon: require('@assets/icons/info-3.png')
+      icon: require('@assets/icons/info-3.png'),
+      route: 'Interests'
     },
     {
       title: 'Security',

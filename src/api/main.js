@@ -757,6 +757,35 @@ const editUser = async (token, {
     return res
 };
 
+const saveInterests = async (token, {
+    aboutMe,
+    sportIds,
+    teamIds,
+}) => {
+
+    var data = JSON.stringify({
+        about: aboutMe,
+        sport_ids: sportIds,
+        team_ids: teamIds
+    });
+
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}settings/profile/interests`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 
 
 
@@ -1862,7 +1891,8 @@ export default {
     getMyStadiumReports,
     getMyArticles,
     editUser,
-    
+    saveInterests,
+
 
 
     getRestaurant,
