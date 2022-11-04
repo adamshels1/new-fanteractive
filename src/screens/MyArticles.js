@@ -55,8 +55,6 @@ export default function MyStadiumReport({ route, navigation }) {
     navigation.dispatch(resetAction);
   }
 
-  const { title = '', content = '' } = page;
-
 
   const renderListHeaderComponent = () => {
     return (
@@ -113,7 +111,6 @@ export default function MyStadiumReport({ route, navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        title={title}
         goBack={navigation.goBack}
         showFilter
         navigation={navigation}

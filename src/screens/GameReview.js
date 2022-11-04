@@ -68,6 +68,7 @@ export default function About({ route, navigation }) {
           text='Fanalyze NEW GAME'
           style={{ marginTop: 17 }}
           textStyle={{ fontFamily: 'Oswald' }}
+          onPress={() => navigation.navigate('GamesStackScreen')}
         />
 
         <View style={styles.filtersWrap}>

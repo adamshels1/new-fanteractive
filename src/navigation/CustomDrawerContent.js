@@ -71,12 +71,12 @@ export default CustomDrawerContent = (props) => {
                 <Text style={styles.title}>CLOSE</Text>
             </TouchableOpacity>
 
-            <CustomDrawerMenuItem
+            {/* <CustomDrawerMenuItem
                 icon={require('@assets/icons/Dash_icon.png')}
                 title='My Fanalyst Dashboard'
                 // onPress={() => props.navigation.navigate('HomeTabs')}
                 onPress={() => props.navigation.navigate('About')}
-            />
+            /> */}
 
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Player_icon.png')}
@@ -99,7 +99,7 @@ export default CustomDrawerContent = (props) => {
             <CustomDrawerMenuItem
                 icon={require('@assets/icons/Articles_icon.png')}
                 title='My Articles'
-                onPress={() => navigateWithReset('MyArticles')}
+                onPress={() => props.navigation.navigate('MyArticles')}
             />
 
             {/* <CustomDrawerMenuItem
@@ -113,7 +113,7 @@ export default CustomDrawerContent = (props) => {
                 <CustomDrawerMenuItem
                     icon={require('@assets/icons/Seetting_icon.png')}
                     title='Profile Settings'
-                onPress={() => navigateWithReset('Settings')}
+                    onPress={() => props.navigation.navigate('SettingsStackScreen')}
                 />
             )}
 

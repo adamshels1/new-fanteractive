@@ -55,7 +55,7 @@ import GameAddReport from '@screens/GameAddReport'
 
 import GameReview from '@screens/GameReview'
 import MyStadiumReport from '@screens/MyStadiumReport'
-import MyArticles from '@screens/EditUserDetails'
+import MyArticles from '@screens/MyArticles'
 import EditUserDetails from '@screens/EditUserDetails'
 import Interests from '@screens/Interests'
 
@@ -86,10 +86,6 @@ function PlayerStackScreen() {
                 component={PlayerReport}
             />
             <Stack.Screen
-                name='PlayersScoutings'
-                component={PlayersScoutings}
-            />
-            <Stack.Screen
                 name='PlayerEdit'
                 component={PlayerEdit}
             />
@@ -109,11 +105,8 @@ function FeedStackScreen() {
                 component={FeedList}
             />
 
-            <Stack.Screen
-                name='PlayerSummary'
-                component={PlayerSummary}
-            />
-            <Stack.Screen
+
+            {/* <Stack.Screen
                 name='PlayerDetail'
                 component={PlayerDetail}
             />
@@ -164,7 +157,7 @@ function FeedStackScreen() {
             <Stack.Screen
                 name='StadiumReport'
                 component={StadiumReport}
-            />
+            /> */}
         </Stack.Navigator>
     );
 }
@@ -260,6 +253,36 @@ function ArticleStackScreen() {
     );
 }
 
+function SettingsStackScreen() {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen
+                name='Settings'
+                component={Settings}
+            />
+
+            <Stack.Screen
+                name='EditUserDetails'
+                component={EditUserDetails}
+            />
+
+            <Stack.Screen
+                name='Interests'
+                component={Interests}
+            />
+
+            <Stack.Screen
+                name='ChangePassword'
+                component={ChangePassword}
+            />
+        </Stack.Navigator>
+    );
+}
+
 
 function DashboardStackScreen() {
     return (
@@ -272,6 +295,29 @@ function DashboardStackScreen() {
                 name='About'
                 component={About}
             />
+            <Stack.Screen
+                name='PlayersScoutings'
+                component={PlayersScoutings}
+            />
+            <Stack.Screen
+                name='PlayerSummary'
+                component={PlayerSummary}
+            />
+            <Stack.Screen
+                name='GameReview'
+                component={GameReview}
+            />
+
+            <Stack.Screen
+                name='MyStadiumReport'
+                component={MyStadiumReport}
+            />
+
+            <Stack.Screen
+                name='MyArticles'
+                component={MyArticles}
+            />
+
         </Stack.Navigator>
     );
 }
@@ -286,7 +332,7 @@ function HomeTabs() {
             headerShown: false,
         }}>
 
-            {/* <Tab.Screen
+            <Tab.Screen
                 name="DashboardStackScreen"
                 component={DashboardStackScreen}
                 options={{
@@ -295,7 +341,7 @@ function HomeTabs() {
                     tabBarIconActive: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-green.png')} />,
                     // tabBarVisible: false,
                 }}
-            /> */}
+            />
 
             <Tab.Screen
                 name="FeedStackScreen"
@@ -325,7 +371,7 @@ function HomeTabs() {
                 }}
             />
             <Tab.Screen
-                name="EveStadiumStackScreenntFAQ"
+                name="StadiumStackScreen"
                 component={StadiumStackScreen}
                 options={{
                     tabBarLabel: 'StadiumStackScreen',
@@ -408,7 +454,8 @@ function MainStackNavigator() {
             >
 
                 <Drawer.Screen name="HomeTabs" component={HomeTabs} />
-                <Drawer.Screen name="Articles" component={Articles} />
+
+                {/* <Drawer.Screen name="Articles" component={Articles} />
                 <Drawer.Screen name="Article" component={Article} />
                 <Drawer.Screen name="StadiumReport" component={StadiumReport} />
                 <Drawer.Screen name="StadiumSummary" component={StadiumSummary} />
@@ -422,10 +469,9 @@ function MainStackNavigator() {
 
                 <Stack.Screen name='PlayerSummary' component={PlayerSummary} />
                 <Drawer.Screen name="PlayerDetail" component={PlayerDetail} />
-                <Drawer.Screen name="PlayerReport" component={PlayerReport} />
-                <Drawer.Screen name="PlayersScoutings" component={PlayersScoutings} />
+                <Drawer.Screen name="PlayerReport" component={PlayerReport} /> */}
 
-                <Drawer.Screen name="About" component={About} />
+                {/* <Drawer.Screen name="About" component={About} /> */}
 
 
                 {/* import About from '@screens/About'
@@ -446,13 +492,15 @@ function MainStackNavigator() {
                 <Stack.Screen name='VerificationSuccessful' component={VerificationSuccessful} />
                 <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
 
+                <Stack.Screen name='SettingsStackScreen' component={SettingsStackScreen} />
+
+
+                {/* <Drawer.Screen name="PlayersScoutings" component={PlayersScoutings} />
                 <Drawer.Screen name="GameReview" component={GameReview} />
                 <Drawer.Screen name="MyStadiumReport" component={MyStadiumReport} />
-                <Drawer.Screen name="MyArticles" component={MyArticles} />
-                <Drawer.Screen name="Settings" component={Settings} />
-                <Drawer.Screen name="EditUserDetails" component={EditUserDetails} />
-                <Drawer.Screen name="Interests" component={Interests} />
-                <Drawer.Screen name="ChangePassword" component={ChangePassword} />
+                <Drawer.Screen name="MyArticles" component={MyArticles} /> */}
+
+
 
             </Drawer.Navigator>
 

@@ -65,6 +65,7 @@ export default function About({ route, navigation }) {
           text='Issue A New Scouting Report'
           style={{ marginTop: 17 }}
           textStyle={{ fontFamily: 'Oswald' }}
+          onPress={() => navigation.navigate('PlayerStackScreen')}
         />
 
         <View style={styles.filtersWrap}>
@@ -92,10 +93,10 @@ export default function About({ route, navigation }) {
   const ListFooterComponent = () => {
     return (
       <View>
-        <Button
+        {/* <Button
           text='Load More'
           inverter
-        />
+        /> */}
 
         <Image
           style={{ width: '100%', height: 335 }}

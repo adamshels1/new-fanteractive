@@ -52,9 +52,9 @@ export default function About({ route, navigation }) {
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
       <Header
-        // showMenu
+        showMenu
         navigation={navigation}
-        goBack={navigation.goBack}
+      // goBack={navigation.goBack}
       />
       <ScrollView>
         <View
@@ -91,35 +91,31 @@ export default function About({ route, navigation }) {
             />
 
             <ListItem
-              icon={require('@assets/icons/scouting_reports.png')}
-              amount={odds?.scouting_reports}
-              title='Scouting Reports'
-              onPress={() => navigation.navigate('GameReview')}
-            />
-
-            <ListItem
               icon={require('@assets/icons/game_report_cards.png')}
               amount={odds?.game_report_cards}
               title='Game Report Cards'
-            />
-
-            <ListItem
-              icon={require('@assets/icons/articles.png')}
-              amount={odds?.articles}
-              title='Articles'
+              onPress={() => navigation.navigate('GameReview')}
             />
 
             <ListItem
               icon={require('@assets/icons/stadium_ratings.png')}
               amount={odds?.stadium_ratings}
               title='Stadium Ratings'
+              onPress={() => navigation.navigate('MyStadiumReport')}
             />
 
             <ListItem
+              icon={require('@assets/icons/articles.png')}
+              amount={odds?.articles}
+              title='Articles'
+              onPress={() => navigation.navigate('MyArticles')}
+            />
+
+            {/* <ListItem
               icon={require('@assets/icons/teams_grades.png')}
               amount={odds?.teams_grades}
               title='Teams Grades'
-            />
+            /> */}
 
 
 

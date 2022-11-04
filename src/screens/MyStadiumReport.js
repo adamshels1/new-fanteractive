@@ -68,6 +68,7 @@ export default function MyStadiumReport({ route, navigation }) {
           text='New STADIUM Report'
           style={{ marginTop: 17 }}
           textStyle={{ fontFamily: 'Oswald' }}
+          onPress={() => navigation.navigate('StadiumStackScreen')}
         />
 
         <View style={styles.filtersWrap}>

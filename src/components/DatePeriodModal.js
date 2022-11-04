@@ -33,6 +33,7 @@ export default function DatePeriodModal(props) {
               selectedBackgroundColor='#51B9E5'
               // onSelect={onClose}
               onConfirm={onConfirm}
+              isHistorical={true}
             />
           ) : (
             <SingleDatepicker 
@@ -43,6 +44,7 @@ export default function DatePeriodModal(props) {
               selectedBackgroundColor='#51B9E5'
               onSelect={onConfirm}
               // onConfirm={onConfirm}
+              isHistorical={true}
             />
           )}
 
