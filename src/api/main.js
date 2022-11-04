@@ -707,6 +707,24 @@ const getMyStadiumReports = async (token) => {
     return res
 };
 
+const getMyArticles = async (token) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}article?mine=1`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        }
+    };
+
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 
 
 
@@ -1810,6 +1828,7 @@ export default {
     getPlayerScouting,
     getGameFanalyses,
     getMyStadiumReports,
+    getMyArticles,
 
 
     getRestaurant,

@@ -97,11 +97,16 @@ export default CustomDrawerContent = (props) => {
             />
 
             <CustomDrawerMenuItem
+                icon={require('@assets/icons/Articles_icon.png')}
+                title='My Articles'
+                onPress={() => navigateWithReset('MyArticles')}
+            />
+
+            {/* <CustomDrawerMenuItem
                 icon={require('@assets/icons/Team_icon.png')}
                 title='My Team Ratings'
             // onPress={() => navigateWithReset('Login')}
-            />
-
+            /> */}
 
 
             {isloggedin && (
