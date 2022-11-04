@@ -26,7 +26,7 @@ import VerificationSuccessful from '@screens/VerificationSuccessful'
 import Welcome from '@screens/Welcome'
 import Explore from '@screens/Explore'
 import ExploreCard from '@screens/ExploreCard'
-// import Settings from '@screens/Settings'
+import Settings from '@screens/Settings'
 import ChangePassword from '@screens/ChangePassword'
 import RecoverPassword from '@screens/RecoverPassword'
 
@@ -447,6 +447,7 @@ function MainStackNavigator() {
                 <Drawer.Screen name="GameReview" component={GameReview} />
                 <Drawer.Screen name="MyStadiumReport" component={MyStadiumReport} />
                 <Drawer.Screen name="MyArticles" component={MyArticles} />
+                <Drawer.Screen name="Settings" component={Settings} />
                 
             </Drawer.Navigator>
 

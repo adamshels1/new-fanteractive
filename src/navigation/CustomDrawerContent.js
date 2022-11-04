@@ -113,7 +113,7 @@ export default CustomDrawerContent = (props) => {
                 <CustomDrawerMenuItem
                     icon={require('@assets/icons/Seetting_icon.png')}
                     title='Profile Settings'
-                // onPress={() => navigateWithReset('ProfileStackScreen')}
+                onPress={() => navigateWithReset('Settings')}
                 />
             )}
 
