@@ -37,7 +37,7 @@ export default function MyStadiumReport(props) {
     {
       title: 'Security',
       icon: require('@assets/icons/keys.png'),
-      // route: 'ChangePassword'
+      route: 'ChangePassword'
     },
     {
       title: 'Notifications',

@@ -110,7 +110,7 @@ export default class Input extends Component {
 
 const styles = StyleSheet.create({
   input: { width: '100%', height: 50, borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.32)', fontSize: 16, fontFamily: 'Avenir', color: '#00293B', fontWeight: '400', borderRadius: 4, paddingHorizontal: 14, paddingTop: 14, paddingBottom: 14 },
-  secureTextButton: { position: 'absolute', right: 0, top: 0, width: 56, height: 56, justifyContent: 'center', alignItems: 'center' },
+  secureTextButton: { position: 'absolute', right: 0, top: 0, width: 50, height: 50, justifyContent: 'center', alignItems: 'center' },
   closedEye: { height: 19, width: 22 },
   openEye: { height: 16, width: 22 },
   wrapFiedl: { left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },

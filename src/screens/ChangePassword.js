@@ -27,30 +27,22 @@ export default function Interests({ route, navigation }) {
   const user = useSelector(state => state.userReducer.user)
   console.log('user', user)
 
-  const [oldPassword, setOldPassword] = useState('')
   const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('')
 
 
   const onSave = async () => {
-
-    const sportIds = sports.filter(i => i.selected).map(i => i.id)
-    const teamIds = teams.filter(i => i.selected).map(i => i.id)
-
-    console.log({
-      sportIds,
-      teamIds,
-      aboutMe,
-    })
     try {
       dispatch(loaderAction({ isLoading: true }))
-      const res = await mainApi.saveInterests(token, {
-        sportIds,
-        teamIds,
-        aboutMe,
+      const res = await mainApi.changePassword(token, {
+        newPassword,
+        newPasswordConfirmation,
+        password,
       });
       console.log('resresresres', res)
       dispatch(loaderAction({ isLoading: false }))
+      await AlertAsync('Password changed successfully')
       navigation.goBack()
     } catch (e) {
       console.log(e)
@@ -123,8 +115,8 @@ export default function Interests({ route, navigation }) {
                 field='Current Password'
                 maxLength={50}
 
-                onChangeText={setOldPassword}
-                value={oldPassword}
+                onChangeText={setPassword}
+                value={password}
                 showSecureTextButton
                 secureTextEntry={true}
 
@@ -134,8 +126,8 @@ export default function Interests({ route, navigation }) {
                 field='New Password'
                 maxLength={50}
 
-                onChangeText={setPassword}
-                value={password}
+                onChangeText={setNewPassword}
+                value={newPassword}
                 showSecureTextButton
                 secureTextEntry={true}
 
@@ -146,8 +138,8 @@ export default function Interests({ route, navigation }) {
                 field='Confirm New Password'
                 maxLength={50}
 
-                onChangeText={setRepeatPassword}
-                value={repeatPassword}
+                onChangeText={setNewPasswordConfirmation}
+                value={newPasswordConfirmation}
                 showSecureTextButton
                 secureTextEntry={true}
 

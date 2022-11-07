@@ -787,6 +787,36 @@ const saveInterests = async (token, {
 };
 
 
+const changePassword = async (token, {
+    newPassword,
+    newPasswordConfirmation,
+    password,
+}) => {
+    var data = JSON.stringify({
+        new_password: newPassword,
+        new_password_confirmation: newPasswordConfirmation,
+        password
+    });
+
+    var config = {
+        method: 'post',
+        url: `${server.BASE_URL_API}settings/profile/change-password`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
+
+
 
 
 
@@ -1269,26 +1299,6 @@ const getLeaderboard = async (object) => {
     return data;
 };
 
-const changePassword = async (object) => {
-    const headers = {
-        'Content-Type': 'application/json',
-    };
-
-    const params = {
-        method: 'GET',
-        headers,
-    };
-
-    const paramsUrl = new URLSearchParams(object).toString();
-
-    const url = `${server.BASE_URL_API}/password_change/?${paramsUrl}`;
-    console.log('url', url);
-    const response = await fetch(url, params);
-    const data = await response.json();
-    console.log('data', data)
-
-    return data;
-};
 
 const saveFcmToken = async (object) => {
     const headers = {

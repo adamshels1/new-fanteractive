@@ -24,7 +24,7 @@ import helper from '@services/helper'
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
   const [username, setUsername] = useState('shels_a') //penob45180 / dev: shels_a //penob45180
-  const [password, setPassword] = useState('test1234') //test1234 //test1234
+  const [password, setPassword] = useState('test1111') //test1234 //test1234
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [remember, setRemember] = useState(false)
   const token = useSelector(state => state.userReducer.token)
