@@ -13,6 +13,8 @@ import { mainApi } from '@api';
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import { loaderAction } from '@redux/actions/loaderActions'
 import moment from 'moment'
+import { logout } from '@redux/actions/userActions'
+import { CommonActions } from '@react-navigation/native'
 
 export default function About({ route, navigation }) {
   const dispatch = useDispatch()
@@ -45,7 +47,20 @@ export default function About({ route, navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
+      if (e.response.status === 403) {
+        console.log('logout')
+        onLogout()
+      }
     }
+  }
+
+  const onLogout = () => {
+    dispatch(logout())
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'Login' }]
+    });
+    navigation.dispatch(resetAction);
   }
 
   return (
