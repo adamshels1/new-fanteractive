@@ -9,6 +9,7 @@ import {
   ScrollView,
   FlatList,
   TouchableOpacity,
+  Switch,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, FilterModal } from '@components'
@@ -41,8 +42,7 @@ export default function MyStadiumReport(props) {
     },
     {
       title: 'Notifications',
-      icon: require('@assets/icons/notifications-3.png'),
-      route: 'NotificationsSettings'
+      icon: require('@assets/icons/notifications-3.png')
     },
   ]
 
@@ -89,7 +89,7 @@ export default function MyStadiumReport(props) {
         <FlatList
           style={{ marginTop: 25 }}
           data={items}
-          ListHeaderComponent={renderListHeaderComponent}
+          // ListHeaderComponent={renderListHeaderComponent}
           keyExtractor={(item, index) => 'gameReview-' + index}
           renderItem={({ item, index }) => <TouchableOpacity
             style={{ flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, borderColor: '#D9DBE9', height: 78, alignItems: 'center', justifyContent: 'space-between', paddingLeft: 17, paddingRight: 37 }}
@@ -97,19 +97,26 @@ export default function MyStadiumReport(props) {
           >
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Image
+              {/* <Image
                 style={{ width: 26 }}
                 source={item.icon}
                 resizeMode='center'
-              />
+              /> */}
               <Text style={{ fontWeight: '400', fontSize: 18, color: '#081735', marginLeft: 16 }}>
                 {item.title}
               </Text>
             </View>
-            <Image
+            {/* <Image
               style={{ width: 13, height: 25 }}
               source={require('@assets/icons/green-arrow.png')}
               resizeMode='center'
+            /> */}
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={false ? "#5EC422" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              // onValueChange={toggleSwitch}
+              // value={isEnabled}
             />
           </TouchableOpacity>
           }

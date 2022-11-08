@@ -58,6 +58,7 @@ import MyStadiumReport from '@screens/MyStadiumReport'
 import MyArticles from '@screens/MyArticles'
 import EditUserDetails from '@screens/EditUserDetails'
 import Interests from '@screens/Interests'
+import NotificationsSettings from '@screens/NotificationsSettings'
 
 
 const Stack = createStackNavigator()
@@ -278,6 +279,10 @@ function SettingsStackScreen() {
             <Stack.Screen
                 name='ChangePassword'
                 component={ChangePassword}
+            />
+            <Stack.Screen
+                name='NotificationsSettings'
+                component={NotificationsSettings}
             />
         </Stack.Navigator>
     );
