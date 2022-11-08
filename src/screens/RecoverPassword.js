@@ -150,7 +150,7 @@ export default function EmailVerification({ navigation }) {
 
           <Input
             wrapStyle={{ marginTop: 15 }}
-            field='PasswordConfirmation'
+            field='Password Confirmation'
             onChangeText={text => setPasswordConfirmation(text)}
             value={passwordConfirmation}
             showSecureTextButton

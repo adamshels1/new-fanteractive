@@ -80,7 +80,7 @@ export default function PlayerSummary({ route, navigation }) {
           keyExtractor={(item, index) => 'report-' + index}
           renderItem={({ item }) => (
             <ListItem
-              value={parseFloat(item?.avg).toFixed(2)}
+              value={parseFloat(item?.avg).toFixed(1)}
               amount={item?.full_name}
               title={`${item?.tier} •`}
               icon={{
