@@ -202,6 +202,7 @@ export default function Login({ navigation }) {
                 text='Continue with Twitter'
                 inverter
                 // onPress={() => navigation.navigate('Signup')}
+                onPress={() => AlertAsync('', 'Coming soon')}
                 style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0)' }}
                 textStyle={{ color: '#03A9F4' }}
                 color='#03A9F4'
@@ -213,7 +214,7 @@ export default function Login({ navigation }) {
               style={{ marginBottom: 30 }}
               onPress={() => navigation.navigate('Login')}
             >
-              <Text style={styles.bottomText}>Don’t have an account? <Text style={{ color: '#5FC522' }}>Sign Up</Text></Text>
+              <Text style={styles.bottomText}>Don’t have an account? <Text style={{ color: '#5FC522' }}>Sign In</Text></Text>
             </TouchableOpacity>
 
           </View>

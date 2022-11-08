@@ -94,6 +94,27 @@ function PlayerStackScreen() {
     );
 }
 
+function LoginStack() {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen name='Login' component={Login} />
+            <Stack.Screen name='RecoverPassword' component={RecoverPassword} />
+            <Stack.Screen name='Signup' component={Signup} />
+
+            <Stack.Screen name='CompleteAccount' component={CompleteAccount} />
+            <Stack.Screen name='CompleteAccount_2' component={CompleteAccount_2} />
+
+            <Stack.Screen name='EmailVerification' component={EmailVerification} />
+            <Stack.Screen name='VerificationSuccessful' component={VerificationSuccessful} />
+            <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
+        </Stack.Navigator>
+    );
+}
+
 function FeedStackScreen() {
     return (
         <Stack.Navigator
@@ -484,20 +505,8 @@ function MainStackNavigator() {
                 import PlayerEdit from '@screens/PlayerEdit'
                 import Player from '@screens/Player' */}
 
-
-
-                <Stack.Screen name='CompleteAccount' component={CompleteAccount} />
-                <Stack.Screen name='CompleteAccount_2' component={CompleteAccount_2} />
-
-                <Stack.Screen name='Login' component={Login} />
-                <Stack.Screen name='RecoverPassword' component={RecoverPassword} />
-                <Stack.Screen name='Signup' component={Signup} />
-
-                <Stack.Screen name='EmailVerification' component={EmailVerification} />
-                <Stack.Screen name='VerificationSuccessful' component={VerificationSuccessful} />
-                <Stack.Screen name='ConfirmEmail' component={ConfirmEmail} />
-
                 <Stack.Screen name='SettingsStackScreen' component={SettingsStackScreen} />
+                <Stack.Screen name='Login' component={LoginStack} />
 
 
                 {/* <Drawer.Screen name="PlayersScoutings" component={PlayersScoutings} />

@@ -18,6 +18,7 @@ import { loaderAction } from '@redux/actions/loaderActions'
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import LookupModal from 'react-native-lookup-modal'
 import ImagePicker from 'react-native-image-crop-picker';
+import helper from '@services/helper'
 
 export default function CompleteAccount({ navigation }) {
   const dispatch = useDispatch()
@@ -44,12 +45,13 @@ export default function CompleteAccount({ navigation }) {
   const getCountries = async () => {
     try {
       const res = await mainApi.getCountries(token)
-      const countries = Object.entries(res.data).map(i => {
+      let countries = Object.entries(res.data).map(i => {
         return {
           code: i[0],
           name: i[1]
         }
       })
+      countries = [countries.find(i => i.code === 'USA'), ...countries.filter(i => i.code !== 'USA')]
       console.log(countries)
       setCountries(countries)
     } catch (e) {
@@ -90,7 +92,7 @@ export default function CompleteAccount({ navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
 
@@ -114,7 +116,7 @@ export default function CompleteAccount({ navigation }) {
       console.log(e)
     }
   }
-  
+
 
   return (
     <ImageBackground
@@ -213,7 +215,7 @@ export default function CompleteAccount({ navigation }) {
                     itemStyle={styles.lookumItemStyle}
                     itemTextStyle={styles.lookumItemTextStyle}
                   /> */}
-                  <Image style={{ width: 18, height: 10, marginRight: 10 }} source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={{ width: 10, height: 18, marginRight: 10 }} source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
 
 

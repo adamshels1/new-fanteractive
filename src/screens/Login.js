@@ -246,7 +246,7 @@ export default function Login({ navigation }) {
                   text='Continue with Twitter'
                   inverter
                   // onPress={() => navigation.navigate('Signup')}
-                  onPress={() => AlertAsync('Coming soon')}
+                  onPress={() => AlertAsync('', 'Coming soon')}
                   style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0)' }}
                   textStyle={{ color: '#03A9F4' }}
                   color='#03A9F4'
