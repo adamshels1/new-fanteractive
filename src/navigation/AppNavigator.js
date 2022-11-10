@@ -9,7 +9,7 @@ import {
     createDrawerNavigator,
 } from '@react-navigation/drawer'
 import { useSelector } from 'react-redux'
-// import codePush from 'react-native-code-push'
+import codePush from 'react-native-code-push'
 
 const Tab = createBottomTabNavigator();
 import Loader from '@components/Loader';
@@ -429,25 +429,25 @@ function MainStackNavigator() {
     const [isVisibleUpdatesModal, setUpdatesModal] = useState(false);
     const [downloadResultUpdates, setDownloadResultUpdates] = useState(null);
 
-    // checkCodePushUpdate = async () => {
-    //     const updates = await codePush.checkForUpdate();
-    //     console.log('updates', updates)
-    //     if (updates) {
-    //         const resDownloadResultUpdates = await updates.download();
-    //         setDownloadResultUpdates(resDownloadResultUpdates);
-    //         setUpdatesModal(true);
-    //     }
-    // }
+    checkCodePushUpdate = async () => {
+        const updates = await codePush.checkForUpdate();
+        console.log('updates', updates)
+        if (updates) {
+            const resDownloadResultUpdates = await updates.download();
+            setDownloadResultUpdates(resDownloadResultUpdates);
+            setUpdatesModal(true);
+        }
+    }
+    
+    applyUpdates = async () => {
+        setUpdatesModal(false);
+        await downloadResultUpdates.install();
+        codePush.restartApp()
+    };
 
-    // applyUpdates = async () => {
-    //     setUpdatesModal(false);
-    //     await downloadResultUpdates.install();
-    //     codePush.restartApp()
-    // };
-
-    // useEffect(() => {
-    //     checkCodePushUpdate();
-    // }, []);
+    useEffect(() => {
+        checkCodePushUpdate();
+    }, []);
 
     //Hide Splash screen on app load.
     useEffect(() => {

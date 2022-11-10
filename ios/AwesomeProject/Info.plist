@@ -18,6 +18,8 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CodePushDeploymentKey</key>
+	<string>J9H2kwzTRCX3_z6a46fQDmAE5Y6qVhRfgpb-Y</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

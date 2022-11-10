@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import getStore from './src/redux/store/index';
 const { store, persistor } = getStore();
-// import codePush from "react-native-code-push";
+import codePush from "react-native-code-push";
 
 function App() {
   return (
@@ -17,6 +17,6 @@ function App() {
   )
 }
 
-// let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
 
-export default App;
+export default codePush(codePushOptions)(App);
