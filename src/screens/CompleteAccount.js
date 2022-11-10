@@ -80,9 +80,9 @@ export default function CompleteAccount({ navigation }) {
         street,
         selectedCountry
       });
-      if (avatarFile) {
-        await mainApi.uploadAvatar(token, { file: avatarFile })
-      }
+      // if (avatarFile) {
+      //   await mainApi.uploadAvatar(token, { file: avatarFile })
+      // }
       dispatch(loaderAction({ isLoading: false }))
       if (res.status === 200) {
         navigation.navigate('CompleteAccount_2')
@@ -159,22 +159,26 @@ export default function CompleteAccount({ navigation }) {
               </View>
 
               <View style={styles.stepWrap}>
-                <Image style={styles.stepIcon} source={require('@assets/icons/oval-green.png')} />
+                <View style={{ width: 20, height: 20, borderRadius: 11, borderColor: '#fff', borderWidth: 1.67, backgroundColor: 'rgba(0,0,0,0)' }} />
                 <Text style={styles.stepText}>Introduce Yourself</Text>
               </View>
 
               <View style={styles.stepWrap}>
-                <Image style={styles.stepIcon} source={require('@assets/icons/oval-white.png')} />
+                {/* <Image style={styles.stepIcon} source={require('@assets/icons/oval-white.png')} /> */}
+                <View style={{ width: 20, height: 20, borderRadius: 11, borderColor: '#fff', borderWidth: 1.67, backgroundColor: 'rgba(0,0,0,0)' }} />
                 <Text style={styles.stepText}>Complete</Text>
               </View>
             </View>
 
-            <TouchableOpacity style={styles.setProfileWrap} onPress={uploadAvatar}>
+            <TouchableOpacity
+              style={styles.setProfileWrap}
+              onPress={avatarFile?.path ? () => setAvatarFile(null) : uploadAvatar}
+            >
               <Image
                 style={{ width: 50, height: 50, borderRadius: 25 }}
                 source={avatarFile?.path ? { uri: avatarFile.path } : require('@assets/icons/user.png')}
               />
-              <Text style={styles.setProfileText}>Set Profile Image</Text>
+              <Text style={styles.setProfileText}>{avatarFile?.path ? 'Clear' : 'Set Profile Image'}</Text>
             </TouchableOpacity>
 
             <View style={styles.bodyBottom}>
@@ -303,7 +307,7 @@ const styles = StyleSheet.create({
   bottomText: { fontWeight: '800', fontSize: 14, color: '#fff', textAlign: 'center' },
 
   desc: { marginTop: 41, fontFamily: 'Avenir', fontWeight: '800', color: '#FFFFFF', fontSize: 18, lineHeight: 27 },
-  stepWrap: { alignItems: 'center', width: 82 },
+  stepWrap: { alignItems: 'center', width: 100 },
   stepText: { fontFamily: 'Avenir', fontWeight: '800', color: '#FFFFFF', marginTop: 11, fontSize: 10 },
   stepIcon: { width: 21.67, height: 21.67 },
   setProfileWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 70 },

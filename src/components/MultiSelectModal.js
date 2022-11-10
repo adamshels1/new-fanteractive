@@ -33,7 +33,7 @@ export default function CountriesModal(props) {
         {showSearch && (
           <View style={{ paddingHorizontal: 22 }}>
             <Input
-              placeholder='MultiSelectModal'
+              placeholder='Start typing'
               onChangeText={onChangeSearchText}
               value={searchValue}
               autoCapitalize="none"

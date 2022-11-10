@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
 
 
   useEffect(() => {
-    getTeams()
+    // getTeams()
     getSports()
   }, []);
 
@@ -188,7 +188,7 @@ export default function Login({ navigation }) {
               </View>
 
               <View style={styles.stepWrap}>
-                <Image style={styles.stepIcon} source={require('@assets/icons/oval-white.png')} />
+              <View style={{ width: 20, height: 20, borderRadius: 11, borderColor: '#fff', borderWidth: 1.67, backgroundColor: 'rgba(0,0,0,0)' }} />
                 <Text style={styles.stepText}>Complete</Text>
               </View>
             </View>
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   bottomText: { fontWeight: '800', fontSize: 14, color: '#fff', textAlign: 'center' },
 
   desc: { marginTop: 41, fontFamily: 'Avenir', fontWeight: '800', color: '#FFFFFF', fontSize: 18, lineHeight: 27 },
-  stepWrap: { alignItems: 'center', width: 82 },
+  stepWrap: { alignItems: 'center', width: 100 },
   stepText: { fontFamily: 'Avenir', fontWeight: '800', color: '#FFFFFF', marginTop: 11, fontSize: 10 },
   stepIcon: { width: 21.67, height: 21.67 },
   setProfileWrap: { flexDirection: 'row', alignItems: 'center', marginTop: 70 },
