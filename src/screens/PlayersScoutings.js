@@ -140,7 +140,7 @@ export default function About({ route, navigation }) {
             icon={{
               uri: item?.thumbnail?.url
             }}
-            onPress={() => navigation.navigate('PlayerSummary', { item })}
+            onPress={() => navigation.navigate('PlayerSummary', { item, playerId: item.id })}
           />
           }
         />

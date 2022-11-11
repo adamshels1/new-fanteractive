@@ -359,11 +359,15 @@ export default function GameSummary({ route, navigation }) {
         local_team={item?.game?.local_team}
         visitor_team={item?.game?.visitor_team}
         onSelect={onTeamAddReport}
+        onClose={() => setVisibleSelectTeamModal(false)}
       />
 
-      <AddReportButton
-        onPress={setVisibleSelectTeamModal}
-      />
+      {token && (
+        <AddReportButton
+          onPress={setVisibleSelectTeamModal}
+        />
+      )}
+
 
       <ScrollView>
         <View

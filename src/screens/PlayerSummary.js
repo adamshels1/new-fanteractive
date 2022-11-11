@@ -22,6 +22,7 @@ const windowWidth = Dimensions.get('window').width;
 export default function PlayerSummary({ route, navigation }) {
   // const dispatch = useDispatch()
   const item = route?.params?.item
+  const playerId = route?.params?.playerId
   const refCarousel = useRef();
   const refCarousel2 = useRef();
   const [summary, setSummary] = useState([])
@@ -32,13 +33,24 @@ export default function PlayerSummary({ route, navigation }) {
   const avarageTypes = ['avg', 'median', 'percentile_75', 'percentile_90']
 
   useEffect(() => {
+    // getPlayer()
     getActivityPlayes()
     getPlayerReports()
   }, []);
 
+  // const getPlayer = async () => {
+  //   try {
+  //     const res = await mainApi.getPlayer(item.id)
+  //     console.log('player', res.data.data)
+  //   } catch (e) {
+  //     console.log('e', e)
+  //   }
+  // }
+
+
   const getActivityPlayes = async () => {
     try {
-      const res = await mainApi.getPlayerSummary(item.player_id)
+      const res = await mainApi.getPlayerSummary(playerId)
       setSummary(res.data.data)
       let summaryMeta = []
       Object.keys(res.data.meta).forEach((key) => {
@@ -55,7 +67,7 @@ export default function PlayerSummary({ route, navigation }) {
 
   const getPlayerReports = async () => {
     try {
-      const res = await mainApi.getPlayerReports(item.player_id)
+      const res = await mainApi.getPlayerReports(playerId)
       console.log('resres', res.data.data)
       setReports(res.data.data)
     } catch (e) {

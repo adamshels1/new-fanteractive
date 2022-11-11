@@ -21,6 +21,7 @@ const userReducer = (state = initialState, action) => {
             }
 
         case types.LOGOUT:
+            console.log('types.LOGOUT')
             return {
                 ...state,
                 user: null,

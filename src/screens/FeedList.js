@@ -119,7 +119,7 @@ export default function About({ route, navigation }) {
         value5={moment(item.rating_posted_at).format('DD MMM, YYYY')}
         image={{ uri: item?.thumbnail?.url }}
         miniImage={{ uri: item?.team?.thumbnail?.url }}
-        onPress={() => navigation.navigate('PlayerSummary', { item })}
+        onPress={() => navigation.navigate('PlayerSummary', { item, playerId: item.player_id })}
       />
     )
 

@@ -83,6 +83,14 @@ export default function Login({ navigation }) {
       <ScrollView keyboardShouldPersistTaps='always'>
 
         <View style={styles.body}>
+
+          <TouchableOpacity onPress={navigation.goBack} >
+            <View style={styles.buttonWrap}>
+              <Image style={{ width: 20, height: 13.55 }} source={require('@assets/icons/back.png')} />
+              <Text style={styles.leftButtonText}>BACK</Text>
+            </View>
+          </TouchableOpacity>
+
           <Text style={styles.bodyTitle}>
             Sign Up to Fanteractive
           </Text>
@@ -232,7 +240,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0C2738'
   },
-  body: { justifyContent: 'space-between', marginHorizontal: 17, flex: 1, marginTop: 56 },
+  body: { justifyContent: 'space-between', marginHorizontal: 17, flex: 1, marginTop: 10 },
   bodyBottom: { marginTop: 40, width: '100%' },
   forgot: { color: '#5EC422', fontFamily: 'Avenir', fontWeight: '800', fontSize: 18 },
   or: { color: '#B7B7B7', fontFamily: 'Avenir', fontWeight: '400', fontSize: 16 },
@@ -254,4 +262,7 @@ const styles = StyleSheet.create({
   orLine: { backgroundColor: '#B7B7B7', height: 1, width: '40%' },
   buttonsWrap: { marginTop: 15, flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 },
   bottomText: { fontWeight: '800', fontSize: 14, color: '#fff', textAlign: 'center' },
+
+  buttonWrap: { flexDirection: 'row', alignItems: 'center' },
+  leftButtonText: { fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 },
 })

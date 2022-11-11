@@ -113,7 +113,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
                     </TouchableOpacity>
                 )}
 
-                {showMenu && (
+                {(showMenu && token) && (
                     <TouchableOpacity onPress={navigation && navigation.openDrawer} >
                         <View style={styles.buttonWrap}>
                             <Image style={{ width: 18, height: 14 }} source={require('@assets/icons/menu.png')} />

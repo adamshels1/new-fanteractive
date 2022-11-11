@@ -22,6 +22,7 @@ import moment from 'moment';
 export default function StadiumSummary({ route, navigation }) {
   // const dispatch = useDispatch()
   const item = route?.params?.item
+  const token = useSelector(state => state.userReducer.token)
   const refCarousel = useRef();
   const refCarousel2 = useRef();
   const [summary, setSummary] = useState([])
@@ -223,9 +224,11 @@ export default function StadiumSummary({ route, navigation }) {
         goBack={navigation.goBack}
       />
 
-      <AddReportButton
-        onPress={() => navigation.navigate('StadiumAddReport', {item})}
-      />
+      {token && (
+        <AddReportButton
+          onPress={() => navigation.navigate('StadiumAddReport', { item })}
+        />
+      )}
 
       <ScrollView>
 

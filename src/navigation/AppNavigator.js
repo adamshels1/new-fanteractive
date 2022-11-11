@@ -128,7 +128,7 @@ function FeedStackScreen() {
             />
 
 
-            {/* <Stack.Screen
+            <Stack.Screen
                 name='PlayerDetail'
                 component={PlayerDetail}
             />
@@ -179,7 +179,7 @@ function FeedStackScreen() {
             <Stack.Screen
                 name='StadiumReport'
                 component={StadiumReport}
-            /> */}
+            />
         </Stack.Navigator>
     );
 }
@@ -344,6 +344,51 @@ function DashboardStackScreen() {
                 component={MyArticles}
             />
 
+
+
+            <Stack.Screen
+                name='GameReport'
+                component={GameReport}
+            />
+
+            <Stack.Screen
+                name='GameDetail'
+                component={GameDetail}
+            />
+
+            <Stack.Screen
+                name='GameSummary'
+                component={GameSummary}
+            />
+
+            <Stack.Screen
+                name='GameAddReport'
+                component={GameAddReport}
+            />
+
+
+            <Stack.Screen
+                name='StadiumSummary'
+                component={StadiumSummary}
+            />
+            <Stack.Screen
+                name='StadiumDetail'
+                component={StadiumDetail}
+            />
+            <Stack.Screen
+                name='StadiumAddReport'
+                component={StadiumAddReport}
+            />
+            <Stack.Screen
+                name='StadiumReport'
+                component={StadiumReport}
+            />
+
+            <Stack.Screen
+                name='Article'
+                component={Article}
+            />
+
         </Stack.Navigator>
     );
 }
@@ -353,21 +398,23 @@ function DashboardStackScreen() {
 function HomeTabs() {
     const event = useSelector(state => state.mainReducer.event)
     const logoSource = event?.logo ? { uri: event.logo } : require('@assets/images/no_logo.png')
+    const token = useSelector(state => state.userReducer.token)
     return (
         <Tab.Navigator tabBar={props => <CustomTabBar {...props} />} screenOptions={{
             headerShown: false,
         }}>
-
-            <Tab.Screen
-                name="DashboardStackScreen"
-                component={DashboardStackScreen}
-                options={{
-                    tabBarLabel: 'About',
-                    tabBarIcon: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-gray.png')} />,
-                    tabBarIconActive: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-green.png')} />,
-                    // tabBarVisible: false,
-                }}
-            />
+            {token && (
+                <Tab.Screen
+                    name="DashboardStackScreen"
+                    component={DashboardStackScreen}
+                    options={{
+                        tabBarLabel: 'About',
+                        tabBarIcon: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-gray.png')} />,
+                        tabBarIconActive: <Image style={{ width: 27.75, height: 23.12 }} source={require('@assets/icons/Shape-green.png')} />,
+                        // tabBarVisible: false,
+                    }}
+                />
+            )}
 
             <Tab.Screen
                 name="FeedStackScreen"
@@ -438,7 +485,7 @@ function MainStackNavigator() {
             setUpdatesModal(true);
         }
     }
-    
+
     applyUpdates = async () => {
         setUpdatesModal(false);
         await downloadResultUpdates.install();

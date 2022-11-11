@@ -144,7 +144,7 @@ export default function MyStadiumReport({ route, navigation }) {
             icon={{
               uri: item?.thumbnail?.url
             }}
-            onPress={() => navigation.navigate('PlayerSummary', { item })}
+            onPress={() => navigation.navigate('StadiumSummary', { item })}
           />
           }
         />

@@ -370,6 +370,23 @@ const getPlayerReports = async (id) => {
     return res
 };
 
+const getPlayer = async (id) => {
+
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}player/${id}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+
+    console.log('config', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
+
 const getStadiumReports = async (id) => {
 
     var config = {
@@ -1882,6 +1899,7 @@ export default {
     getActivityPlayes,
     getPlayerSummary,
     getPlayerReports,
+    getPlayer,
     getStadiumReports,
     getArticles,
     getActivityStadiums,

@@ -140,6 +140,7 @@ export default function MyStadiumReport({ route, navigation }) {
             // value='2.3'
             icon={{ uri: item?.thumbnail?.url }}
             item={item}
+            onPress={() => navigation.navigate('Article', { item })}
           />
           }
         />
