@@ -10,6 +10,7 @@ import { CommonActions } from '@react-navigation/native'
 import { logout } from '@redux/actions/userActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { ConfirmLogoutModal, Text } from '@components'
+import codePush from 'react-native-code-push'
 
 const Drawer = createDrawerNavigator();
 
@@ -32,15 +33,24 @@ export default CustomDrawerContent = (props) => {
     const dispatch = useDispatch()
     const [visibleConfirmLogoutModal, setVisibleConfirmLogoutModal] = useState(false)
     const token = useSelector(state => state.userReducer.token)
+    const [updates, setUpdates] = useState(false)
     const onLogout = () => {
         dispatch(logout())
         props.navigation.closeDrawer()
         navigateWithReset('Login')
     }
     const [isloggedin, setLoggedin] = useState([false])
+
     useEffect(() => {
         setLoggedin(token)
+        getAppVersion()
     });
+
+    const getAppVersion = async () => {
+        const updates = await codePush.checkForUpdate();
+        setUpdates(updates)
+        console.log('updates', updates)
+    }
 
     const navigateWithReset = route => {
         const resetAction = CommonActions.reset({
@@ -149,6 +159,10 @@ export default CustomDrawerContent = (props) => {
                 />
             )} */}
             <View style={{ height: 50 }} />
+            <View style={{ height: 100, paddingLeft: 20 }}>
+                <Text style={{ color: 'gray', fontSize: 12 }}>App Version: {updates?.appVersion}</Text>
+                <Text style={{ color: 'gray', fontSize: 12 }}>Code Push: {updates?.label}</Text>
+            </View>
         </DrawerContentScrollView>
     );
 };
