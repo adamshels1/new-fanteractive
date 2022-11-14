@@ -271,7 +271,7 @@ export default function MyStadiumReport({ route, navigation }) {
 
               <Button
                 text='Save Changes'
-                style={{ marginTop: 17 }}
+                style={{ marginTop: 17, marginBottom: 100 }}
                 textStyle={{ fontFamily: 'Oswald' }}
                 onPress={onSave}
               />
