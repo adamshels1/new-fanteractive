@@ -160,8 +160,8 @@ export default CustomDrawerContent = (props) => {
             )} */}
             <View style={{ height: 50 }} />
             <View style={{ height: 100, paddingLeft: 20 }}>
-                <Text style={{ color: 'gray', fontSize: 12 }}>App Version: {updates?.appVersion}</Text>
-                <Text style={{ color: 'gray', fontSize: 12 }}>Code Push: {updates?.label}</Text>
+                <Text style={{ color: '#0b5f84', fontSize: 12 }}>App Version: {updates?.appVersion}</Text>
+                <Text style={{ color: '#0b5f84', fontSize: 12 }}>Code Push: {updates?.label}</Text>
             </View>
         </DrawerContentScrollView>
     );
