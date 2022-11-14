@@ -42,7 +42,7 @@ export default function MyStadiumReport(props) {
     {
       title: 'Notifications',
       icon: require('@assets/icons/notifications-3.png'),
-      route: 'NotificationsSettings'
+      // route: 'NotificationsSettings'
     },
   ]
 

@@ -49,12 +49,13 @@ export default function MyStadiumReport({ route, navigation }) {
   const getCountries = async () => {
     try {
       const res = await mainApi.getCountries(token)
-      const countries = Object.entries(res.data).map(i => {
+      let countries = Object.entries(res.data).map(i => {
         return {
           code: i[0],
           name: i[1]
         }
       })
+      countries = [countries.find(i => i.code === 'USA'), ...countries.filter(i => i.code !== 'USA')]
       console.log(countries)
       setCountries(countries)
     } catch (e) {

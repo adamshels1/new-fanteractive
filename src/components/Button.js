@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
 
   elevation: 3,
  },
-  text: { fontSize: 18, color: '#FFFFFF', fontFamily: 'Avenir', fontWeight: '700', textTransform: 'uppercase' }
+  text: { fontSize: 16, color: '#FFFFFF', fontFamily: 'Avenir', fontWeight: '700', textTransform: 'uppercase' }
 });
