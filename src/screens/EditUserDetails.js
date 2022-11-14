@@ -18,6 +18,7 @@ import { logout } from '@redux/actions/userActions'
 import { CommonActions } from '@react-navigation/native'
 import ImagePicker from 'react-native-image-crop-picker'
 import AlertAsync from 'react-native-alert-async'
+import helper from '@services/helper'
 
 export default function MyStadiumReport({ route, navigation }) {
   const dispatch = useDispatch()
@@ -114,7 +115,7 @@ export default function MyStadiumReport({ route, navigation }) {
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
-      AlertAsync(e.message || 'Something went wrond')
+      helper.alertErrors(e.response.data.errors, e.response.data.message)
     }
   }
 
