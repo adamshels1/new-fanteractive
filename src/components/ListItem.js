@@ -6,12 +6,13 @@ import { Text } from '@components'
 export default function ListItem(props) {
 
   const item = props.item
+  const image = props?.icon?.uri ? props?.icon : require('@assets/images/no_image.png')
 
   if (props.type === 'article') return (
     <TouchableOpacity {...props} style={styles.wrap}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.wrapImage}>
-          <Image source={props?.icon} style={styles.image} resizeMode='center' />
+          <Image source={image} style={styles.image} resizeMode='center' />
         </View>
 
         <View>
@@ -36,7 +37,7 @@ export default function ListItem(props) {
     <TouchableOpacity {...props} style={styles.wrap}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.wrapImage}>
-          <Image source={props?.icon} style={styles.image} resizeMode='center' />
+          <Image source={image} style={styles.image} resizeMode='center' />
         </View>
 
         <View>
@@ -51,7 +52,7 @@ export default function ListItem(props) {
 
       {props?.value ? (
         <Text style={styles.value}>{props?.value}</Text>
-      ) : <Image source={require('@assets/icons/arrow-right.png')} style={{ width: 12.51, height: 22.52 }} />}
+      ) : <Image source={require('@assets/icons/green-arrow.png')} style={{ width: 13.6, height: 24 }} />}
 
     </TouchableOpacity>
   )

@@ -4,12 +4,12 @@ import { colors } from '@constants'
 import { Text } from '@components'
 
 export default function TeamListItem(props) {
+  const image = props?.image ? { uri: props?.image } : require('@assets/icons/entypo_camera.png')
   return (
-
     <View style={{ marginRight: 30 }}>
       <View style={{ width: 105, height: 105, backgroundColor: '#EDEEF3', justifyContent: 'center', alignItems: 'center' }}>
         <Image
-          source={{ uri: props?.image }}
+          source={image}
           resizeMode='contain'
           style={{ width: '100%', height: '100%' }}
         />

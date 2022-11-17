@@ -75,87 +75,88 @@ export default function Login({ navigation }) {
       /> */}
 
 
-      {/* <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      <KeyboardAvoidingView
+        // behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior="padding"
         style={{ flex: 1 }}
       // keyboardVerticalOffset={50}
-      > */}
-      <ScrollView keyboardShouldPersistTaps='always'>
+      >
+        <ScrollView keyboardShouldPersistTaps='always'>
 
-        <View style={styles.body}>
+          <View style={styles.body}>
 
-          <TouchableOpacity onPress={navigation.goBack} >
-            <View style={styles.buttonWrap}>
-              <Image style={{ width: 20, height: 13.55 }} source={require('@assets/icons/back.png')} />
-              <Text style={styles.leftButtonText}>BACK</Text>
-            </View>
-          </TouchableOpacity>
-
-          <Text style={styles.bodyTitle}>
-            Sign Up to Fanteractive
-          </Text>
-
-          <View style={styles.bodyBottom}>
-            <Input
-              field='User Name'
-              onChangeText={username => setUsername(username)}
-              value={username}
-              autoCapitalize="none"
-              style={{ marginBottom: 24 }}
-            />
-
-            <Input
-              field='Email'
-              onChangeText={email => setEmail(email)}
-              value={email}
-              autoCapitalize="none"
-              style={{ marginBottom: 24 }}
-            />
-
-            <Input
-              field='Password'
-              onChangeText={password => setPassword(password)}
-              value={password}
-              showSecureTextButton
-              secureTextEntry={true}
-              autoCapitalize="none"
-              style={{ marginBottom: 24 }}
-              maxLength={50}
-            />
-
-            <Input
-              field='Repeat Password'
-              onChangeText={repeatPassword => setRepeatPassword(repeatPassword)}
-              value={repeatPassword}
-              showSecureTextButton
-              secureTextEntry={true}
-              autoCapitalize="none"
-              maxLength={50}
-            />
-
-            <TouchableOpacity
-              style={styles.agreeWrap}
-              onPress={() => setPrivacyPolicy(!privacyPolicy)}
-            >
-              <Image
-                style={styles.checkboxIcon}
-                source={checkboxIcon}
-              />
-              <Text style={styles.agree}>
-                {'  '}I agree with
-              </Text>
-              <TouchableOpacity onPress={onTermAndConditions}>
-                <Text style={{ ...styles.agree, color: '#5EC422' }}> Terms and Conditions</Text>
-              </TouchableOpacity>
-              <Text style={styles.agree}>
-                {' '}&{' '}
-              </Text>
-              <TouchableOpacity onPress={onPrivacyPolicy}>
-                <Text style={{ ...styles.agree, color: '#5EC422' }}>Privacy Policy</Text>
-              </TouchableOpacity>
+            <TouchableOpacity onPress={navigation.goBack} >
+              <View style={styles.buttonWrap}>
+                <Image style={{ width: 20, height: 13.55 }} source={require('@assets/icons/back.png')} />
+                <Text style={styles.leftButtonText}>BACK</Text>
+              </View>
             </TouchableOpacity>
 
-            {/* <TouchableOpacity
+            <Text style={styles.bodyTitle}>
+              Sign Up to Fanteractive
+            </Text>
+
+            <View style={styles.bodyBottom}>
+              <Input
+                field='User Name'
+                onChangeText={username => setUsername(username)}
+                value={username}
+                autoCapitalize="none"
+                style={{ marginBottom: 24 }}
+              />
+
+              <Input
+                field='Email'
+                onChangeText={email => setEmail(email)}
+                value={email}
+                autoCapitalize="none"
+                style={{ marginBottom: 24 }}
+              />
+
+              <Input
+                field='Password'
+                onChangeText={password => setPassword(password)}
+                value={password}
+                showSecureTextButton
+                secureTextEntry={true}
+                autoCapitalize="none"
+                style={{ marginBottom: 24 }}
+                maxLength={50}
+              />
+
+              <Input
+                field='Repeat Password'
+                onChangeText={repeatPassword => setRepeatPassword(repeatPassword)}
+                value={repeatPassword}
+                showSecureTextButton
+                secureTextEntry={true}
+                autoCapitalize="none"
+                maxLength={50}
+              />
+
+              <TouchableOpacity
+                style={styles.agreeWrap}
+                onPress={() => setPrivacyPolicy(!privacyPolicy)}
+              >
+                <Image
+                  style={styles.checkboxIcon}
+                  source={checkboxIcon}
+                />
+                <Text style={styles.agree}>
+                  {'  '}I agree with
+                </Text>
+                <TouchableOpacity onPress={onTermAndConditions}>
+                  <Text style={{ ...styles.agree, color: '#5EC422' }}> Terms and Conditions</Text>
+                </TouchableOpacity>
+                <Text style={styles.agree}>
+                  {' '}&{' '}
+                </Text>
+                <TouchableOpacity onPress={onPrivacyPolicy}>
+                  <Text style={{ ...styles.agree, color: '#5EC422' }}>Privacy Policy</Text>
+                </TouchableOpacity>
+              </TouchableOpacity>
+
+              {/* <TouchableOpacity
                 style={styles.agreeWrap}
                 onPress={() => setPrivacyPolicy(!privacyPolicy)}
               >
@@ -177,7 +178,7 @@ export default function Login({ navigation }) {
                 </TouchableOpacity>
               </TouchableOpacity> */}
 
-            {/* <View style={styles.rememberBlock}>
+              {/* <View style={styles.rememberBlock}>
                 <View style={styles.rememberWrap}>
                   <Image style={{ width: 15, height: 15 }} resizeMode='contain' source={require('@assets/icons/Oval.png')} />
                   <Text style={styles.remember}>Remember me</Text>
@@ -190,47 +191,47 @@ export default function Login({ navigation }) {
               </View> */}
 
 
-            <Button
-              style={{ marginTop: 26 }}
-              text='Continue'
-              disabled={!privacyPolicy}
-              onPress={onSignup}
-            />
-
-
-
-            <View style={styles.orLineWrap}>
-              <View style={styles.orLine} />
-              <Text style={styles.or}>or</Text>
-              <View style={styles.orLine} />
-            </View>
-
-            <View style={styles.buttonsWrap}>
               <Button
-                text='Continue with Twitter'
-                inverter
-                // onPress={() => navigation.navigate('Signup')}
-                onPress={() => AlertAsync('', 'Coming soon')}
-                style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0)' }}
-                textStyle={{ color: '#03A9F4' }}
-                color='#03A9F4'
-                leftComponent={<Image style={{ width: 20, height: 16, marginRight: 22 }} resizeMode='contain' source={require('@assets/icons/twitter.png')} />}
+                style={{ marginTop: 26 }}
+                text='Continue'
+                disabled={!privacyPolicy}
+                onPress={onSignup}
               />
+
+
+
+              <View style={styles.orLineWrap}>
+                <View style={styles.orLine} />
+                <Text style={styles.or}>or</Text>
+                <View style={styles.orLine} />
+              </View>
+
+              <View style={styles.buttonsWrap}>
+                <Button
+                  text='Continue with Twitter'
+                  inverter
+                  // onPress={() => navigation.navigate('Signup')}
+                  onPress={() => AlertAsync('', 'Coming soon')}
+                  style={{ width: '100%', backgroundColor: 'rgba(0,0,0,0)' }}
+                  textStyle={{ color: '#03A9F4' }}
+                  color='#03A9F4'
+                  leftComponent={<Image style={{ width: 20, height: 16, marginRight: 22 }} resizeMode='contain' source={require('@assets/icons/twitter.png')} />}
+                />
+              </View>
+
+              <TouchableOpacity
+                style={{ marginBottom: 30 }}
+                onPress={() => navigation.navigate('Login')}
+              >
+                <Text style={styles.bottomText}>Don’t have an account? <Text style={{ color: '#5FC522' }}>Sign In</Text></Text>
+              </TouchableOpacity>
+
             </View>
 
-            <TouchableOpacity
-              style={{ marginBottom: 30 }}
-              onPress={() => navigation.navigate('Login')}
-            >
-              <Text style={styles.bottomText}>Don’t have an account? <Text style={{ color: '#5FC522' }}>Sign In</Text></Text>
-            </TouchableOpacity>
 
           </View>
-
-
-        </View>
-      </ScrollView>
-      {/* </KeyboardAvoidingView> */}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </ImageBackground>
   )
 }
