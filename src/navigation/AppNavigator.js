@@ -478,7 +478,6 @@ function MainStackNavigator() {
 
     checkCodePushUpdate = async () => {
         const updates = await codePush.checkForUpdate();
-        console.log('updates', updates)
         if (updates) {
             const resDownloadResultUpdates = await updates.download();
             setDownloadResultUpdates(resDownloadResultUpdates);

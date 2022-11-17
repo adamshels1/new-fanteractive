@@ -43,8 +43,11 @@ export default CustomDrawerContent = (props) => {
 
     useEffect(() => {
         setLoggedin(token)
-        getAppVersion()
     });
+
+    useEffect(() => {
+        getAppVersion()
+    }, []);
 
     const getAppVersion = async () => {
         const updates = await codePush.checkForUpdate();
