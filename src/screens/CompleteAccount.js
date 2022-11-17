@@ -11,7 +11,7 @@ import {
   ImageBackground
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, Button, Input, StatusBar, Text, CountriesModal } from '@components'
+import { Header, Button, Input, StatusBar, Text, CountriesModal, StatesModal } from '@components'
 import { mainApi } from '@api'
 import AlertAsync from 'react-native-alert-async'
 import { loaderAction } from '@redux/actions/loaderActions'
@@ -26,7 +26,6 @@ export default function CompleteAccount({ navigation }) {
   const [phone, setPhone] = useState('')
   const [postcode, setPostcode] = useState('')
 
-  const [state, setState] = useState('')
   const [city, setCity] = useState('')
   const [street, setStreet] = useState('')
 
@@ -35,6 +34,12 @@ export default function CompleteAccount({ navigation }) {
   const [countriesVisible, setCountriesVisible] = useState(false)
   const [avatarFile, setAvatarFile] = useState(null)
   const token = useSelector(state => state.userReducer.token)
+
+
+  const [statesVisible, setStatesVisible] = useState(false)
+  const [state, setState] = useState(null)
+  const [states, setStates] = useState([])
+
 
 
 
@@ -64,7 +69,7 @@ export default function CompleteAccount({ navigation }) {
       fullName,
       phone,
       postcode,
-      state,
+      state: state?.code,
       city,
       street,
       selectedCountry
@@ -75,7 +80,7 @@ export default function CompleteAccount({ navigation }) {
         fullName,
         phone,
         postcode,
-        state,
+        state: state?.code,
         city,
         street,
         selectedCountry
@@ -96,10 +101,25 @@ export default function CompleteAccount({ navigation }) {
     }
   }
 
-  const onSelectCountry = item => {
-    setSelectedCountry(item)
-    setCountriesVisible(false)
+  const onSelectCountry = async item => {
+    try {
+      setSelectedCountry(item)
+      setCountriesVisible(false)
+      console.log('item', item)
+      const res = await mainApi.getStates(1)
+      console.log(res.data.data)
+      setStates(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
   }
+
+  const onSelectState = async item => {
+    setState(item)
+    setStatesVisible(false)
+    console.log('item', item)
+  }
+
 
   const uploadAvatar = () => {
     try {
@@ -134,6 +154,13 @@ export default function CompleteAccount({ navigation }) {
         onClose={() => setCountriesVisible(false)}
         onSelect={onSelectCountry}
         countries={countries}
+      />
+
+      <StatesModal
+        isVisible={statesVisible}
+        onClose={() => setStatesVisible(false)}
+        onSelect={onSelectState}
+        countries={states}
       />
 
 
@@ -200,6 +227,8 @@ export default function CompleteAccount({ navigation }) {
               />
 
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+
                 <TouchableOpacity
                   onPress={() => setCountriesVisible(true)}
                   style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422', }}
@@ -236,13 +265,22 @@ export default function CompleteAccount({ navigation }) {
               </View>
 
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Input
+                {/* <Input
                   onChangeText={state => setState(state)}
                   value={state}
                   autoCapitalize="none"
                   wrapStyle={{ marginBottom: 10, width: '47%', }}
                   placeholder='State'
-                />
+                /> */}
+                <TouchableOpacity
+                  onPress={() => setStatesVisible(true)}
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422', }}
+                >
+                  <Text style={{ fontWeight: '400', fontSize: 16, color: '#CBCBCB' }}>
+                    {state ? state?.name : 'State'}
+                  </Text>
+                  <Image style={{ width: 10, height: 18, marginRight: 10 }} source={require('@assets/icons/arrow-right.png')} />
+                </TouchableOpacity>
                 <Input
                   onChangeText={city => setCity(city)}
                   value={city}

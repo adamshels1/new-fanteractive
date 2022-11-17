@@ -832,8 +832,22 @@ const changePassword = async (token, {
     return res
 };
 
+const getStates = async (countryId) => {
 
+    var config = {
+        method: 'get',
+        url: `${server.BASE_URL_API}location/states/${countryId}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
 
+    console.log('_____', config)
+    const res = await axios(config)
+    console.log('res', res)
+    return res
+};
 
 
 
@@ -1920,6 +1934,7 @@ export default {
     getMyArticles,
     editUser,
     saveInterests,
+    getStates,
 
 
 

@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, Button, FilterModal, Input2, CountriesModal } from '@components'
+import { Header, StatusBar, Text, Button, FilterModal, Input2, CountriesModal, StatesModal } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import { logout } from '@redux/actions/userActions'
@@ -33,7 +33,11 @@ export default function MyStadiumReport({ route, navigation }) {
   const [avatarFile, setAvatarFile] = useState({
     path: user?.thumbnail?.url
   })
+
+  const [statesVisible, setStatesVisible] = useState(false)
   const [state, setState] = useState(user?.state)
+  const [states, setStates] = useState([])
+
   const [postcode, setPostcode] = useState(user?.post_code)
   const [city, setCity] = useState(user?.city)
   const [street, setStreet] = useState(user?.address)
@@ -91,9 +95,23 @@ export default function MyStadiumReport({ route, navigation }) {
     }
   }
 
-  const onSelectCountry = item => {
-    setSelectedCountry(item)
-    setCountriesVisible(false)
+  const onSelectCountry = async item => {
+    try {
+      setSelectedCountry(item)
+      setCountriesVisible(false)
+      console.log('item', item)
+      const res = await mainApi.getStates(1)
+      console.log(res.data.data)
+      setStates(res.data.data)
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
+  const onSelectState = async item => {
+    setState(item)
+    setStatesVisible(false)
+    console.log('item', item)
   }
 
 
@@ -105,7 +123,7 @@ export default function MyStadiumReport({ route, navigation }) {
         country: selectedCountry?.code,
         delete_thumbnail: deleteThumbnail,
         postcode,
-        state,
+        state: state?.code,
         street,
       });
       if (avatarFile?.mime) {
@@ -147,6 +165,13 @@ export default function MyStadiumReport({ route, navigation }) {
         onClose={() => setCountriesVisible(false)}
         onSelect={onSelectCountry}
         countries={countries}
+      />
+
+      <StatesModal
+        isVisible={statesVisible}
+        onClose={() => setStatesVisible(false)}
+        onSelect={onSelectState}
+        countries={states}
       />
 
       <KeyboardAvoidingView
@@ -242,11 +267,21 @@ export default function MyStadiumReport({ route, navigation }) {
                 <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
               </TouchableOpacity>
 
-              <Input2
-                field='State'
-                onChangeText={setState}
-                value={state}
-              />
+
+              <TouchableOpacity
+                style={styles.inputButton}
+                onPress={() => setStatesVisible(true)}
+              >
+                <View style={styles.inputButtonField}>
+                  <Text style={styles.inputButtonFieldText}>
+                    State
+                  </Text>
+                </View>
+                <Text style={styles.inputButtonText}>
+                  {state ? state?.name : 'State'}
+                </Text>
+                <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+              </TouchableOpacity>
 
 
               <Input2

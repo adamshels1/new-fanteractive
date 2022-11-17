@@ -51,6 +51,7 @@ import StatsOverviewItem from './StatsOverviewItem.js'
 import DatePeriodModal from './DatePeriodModal.js'
 import SelectPlayerModal from './SelectPlayerModal'
 import SelectTeamModal from './SelectTeamModal'
+import StatesModal from './StatesModal'
 
 export {
     Header,
@@ -104,4 +105,5 @@ export {
     DatePeriodModal,
     SelectPlayerModal,
     SelectTeamModal,
+    StatesModal,
 }
