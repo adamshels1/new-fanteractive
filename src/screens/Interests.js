@@ -290,7 +290,7 @@ export default function Interests({ route, navigation }) {
                 onChangeText={setAboutMe}
                 value={aboutMe}
                 multiline={true}
-                style={{ height: 164 }}
+                style={{ height: 164, textAlignVertical: 'top' }}
                 maxLength={180}
               />
 
