@@ -15,6 +15,9 @@ import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
 import moment from 'moment';
 import AutoHeightWebView from 'react-native-autoheight-webview'
+import Share from 'react-native-share'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { server } from '@constants'
 
 export default function About({ route, navigation }) {
   // const dispatch = useDispatch()
@@ -32,6 +35,23 @@ export default function About({ route, navigation }) {
   const { title = '', content = '' } = page;
   const item = route?.params?.item
   console.log('item', item)
+
+
+  const onShare = async (socialType = Share.Social.FACEBOOK) => {
+    try {
+      const shareOptions = {
+        title: item?.title,
+        message: item?.summary,
+        url: `${server.BASE_URL}arcticle/${item?.slug}`,
+        social: socialType,
+      };
+
+      const shareResponse = await Share.shareSingle(shareOptions);
+    } catch (e) {
+      console.log('e', e)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle='dark-content' />
@@ -93,8 +113,15 @@ export default function About({ route, navigation }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ fontWeight: '900', fontSize: 14, color: '#7D86A9', marginRight: 7 }}>Share:</Text>
-              <Image source={require('@assets/icons/facebook_2.png')} style={{ width: 20, height: 20, borderRadius: 18.5, marginRight: 10 }} />
-              <Image source={require('@assets/icons/twitter.png')} style={{ width: 20, height: 16 }} />
+
+              <TouchableOpacity onPress={() => onShare(Share.Social.FACEBOOK)}>
+                <Image source={require('@assets/icons/facebook_2.png')} style={{ width: 20, height: 20, borderRadius: 18.5, marginRight: 10 }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => onShare(Share.Social.TWITTER)}>
+                <Image source={require('@assets/icons/twitter.png')} style={{ width: 20, height: 16 }} />
+              </TouchableOpacity>
+
             </View>
           </View>
           <View style={{ height: 1, backgroundColor: '#00293B', opacity: 0.19, marginTop: 20, marginLeft: 18 }} />
@@ -107,18 +134,18 @@ export default function About({ route, navigation }) {
 
 
         <AutoHeightWebView
-                    style={{ width: '90%', marginTop: 14, marginLeft: 21, marginRight: 21 }}
-                    originWhitelist={['*']}
-                    onShouldStartLoadWithRequest={event => {
-                      console.log('event', event)
-                      if (event?.navigationType === 'click' && event?.url) {
-                        Linking.openURL(event.url)
-                        return false
-                      }
-                      return true
-                    }}
-                    source={{
-                      html: `${item?.content} 
+          style={{ width: '90%', marginTop: 14, marginLeft: 21, marginRight: 21 }}
+          originWhitelist={['*']}
+          onShouldStartLoadWithRequest={event => {
+            console.log('event', event)
+            if (event?.navigationType === 'click' && event?.url) {
+              Linking.openURL(event.url)
+              return false
+            }
+            return true
+          }}
+          source={{
+            html: `${item?.content} 
                       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
                       <link href='https://fonts.googleapis.com/css?family=Avenir' rel='stylesheet'>
                       <style>
@@ -137,8 +164,8 @@ export default function About({ route, navigation }) {
                       }
                       </style>
                     `
-                    }}
-                  />
+          }}
+        />
 
         <View style={{ height: 100 }}></View>
 
