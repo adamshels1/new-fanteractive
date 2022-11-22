@@ -79,26 +79,30 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
 
             <View style={styles.rightWrap}>
 
-                {token ? (
-                    <TouchableOpacity
-                    // onPress={() => navigation.navigate('Login')}
-                    >
-                        <View style={styles.buttonWrap}>
-                            <Text style={{ fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 }}>
-                                {user?.username}
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                ) : (
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Login')}
-                    >
-                        <View style={styles.buttonWrap}>
-                            <Image style={{ width: 21, height: 21 }} source={require('@assets/icons/sign.png')} />
-                            <Text style={{ fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 }}>SIGN IN</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
+                {!token ?
+                    (
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Login')}
+                        >
+                            <View style={styles.buttonWrap}>
+                                <Image style={{ width: 21, height: 21 }} source={require('@assets/icons/sign.png')} />
+                                <Text style={{ fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 }}>SIGN IN</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )
+                    : null
+                    // (
+                    //     <TouchableOpacity
+                    //     // onPress={() => navigation.navigate('Login')}
+                    //     >
+                    //         <View style={styles.buttonWrap}>
+                    //             <Text style={{ fontSize: 12, fontWeight: '800', lineHeight: 24, color: '#FFF', paddingLeft: 8.9 }}>
+                    //                 {user?.username}
+                    //             </Text>
+                    //         </View>
+                    //     </TouchableOpacity>
+                    // )
+                }
 
 
 

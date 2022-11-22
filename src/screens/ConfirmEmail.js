@@ -89,7 +89,7 @@ export default function ConfirmEmail({ route, navigation }) {
           <View style={styles.body}>
             <View style={styles.bodyTop}>
               <Text style={styles.bodyTitle}>
-                Verification link sent!
+                Verification code!
               </Text>
               <Text style={styles.desc}>
                 We’we sent you five-digit confirmation code to email <Text style={{ color: '#5EC422' }}>
