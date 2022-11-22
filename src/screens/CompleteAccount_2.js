@@ -228,7 +228,7 @@ export default function Login({ navigation }) {
                 onChangeText={aboutMe => setAboutMe(aboutMe)}
                 value={aboutMe}
                 autoCapitalize="none"
-                style={{ marginBottom: 10, height: 100 }}
+                style={{ marginBottom: 10, height: 100, textAlignVertical: 'top' }}
                 multiline
               />
 

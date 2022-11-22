@@ -244,8 +244,8 @@ export default function PlayerSummary({ route, navigation }) {
             source={{ uri: item?.thumbnail?.url }}
           />
           <View style={styles.nameWrap}>
-            <View style={{ width: 42, height: 42 }} />
-            <View>
+            <View style={{ width: 32, height: 42 }} />
+            <View style={{ width: '80%' }}>
               <Text style={styles.name} numberOfLines={1}>
                 {item?.name}
               </Text>
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   nameWrap: { height: 113, width: '100%', position: 'absolute', bottom: 0, paddingHorizontal: 30, paddingBottom: 22, flexDirection: 'row', justifyContent: 'space-between' },
-  name: { fontWeight: '700', fontSize: 32, color: '#FFF', textAlign: 'center', fontFamily: 'Oswald', textTransform: 'uppercase' },
+  name: { fontWeight: '700', fontSize: 26, color: '#FFF', textAlign: 'center', fontFamily: 'Oswald', textTransform: 'uppercase' },
   options: { fontWeight: '500', fontSize: 12, color: '#FFF', textAlign: 'center', textTransform: 'uppercase' },
   logo1: { width: 42, height: 42, borderRadius: 21 },
   logo2: { width: 42, height: 42, marginTop: 9 },
@@ -342,6 +342,6 @@ const styles = StyleSheet.create({
   carousel: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 34, marginBottom: 26 },
   avarageShowWrap: { width: 280, height: 20, alignItems: 'center' },
   avarageShowText: { fontFamily: 'Oswald', fontweight: '700', fontSize: 16, textTransform: 'uppercase', color: '#00293B' },
-  arrowIcon2: { width: 6.72, height: 11.26 },
+  arrowIcon2: { width: 6.72, height: 11.80 },
   arrowButton: { width: 30, height: 30, justifyContent: 'center', alignItems: 'center', marginLeft: -10 },
 })

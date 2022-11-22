@@ -77,7 +77,7 @@ export default function Login({ navigation }) {
 
       <KeyboardAvoidingView
         // behavior={Platform.OS === "ios" ? "padding" : "height"}
-        behavior="padding"
+        // behavior="padding"
         style={{ flex: 1 }}
       // keyboardVerticalOffset={50}
       >

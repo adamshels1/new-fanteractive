@@ -52,11 +52,16 @@ export default function CustomTabBar({ state, descriptors, navigation, icon }) {
                         style={styles.button}
                         key={'tab-bar-' + route.key}
                     >
-                        {isFocused ? options.tabBarIconActive : options.tabBarIcon}
+                        <View style={{ justifyContent: 'center', height: 37 }}>
+                            {isFocused ? options.tabBarIconActive : options.tabBarIcon}
+                        </View>
+                        <Text style={{ fontWeight: '900', fontSize: 12, color: isFocused ? '#5EC422' : '#7D86A9' }}>
+                            {options.tabBarLabel}
+                        </Text>
                     </TouchableOpacity>
                 );
             })}
-        </SafeAreaView>
+        </SafeAreaView >
     );
 }
 
@@ -80,8 +85,8 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         alignItems: 'center',
-        height: 55,
+        height: 61,
         paddingTop: 8,
-        justifyContent: 'center'
+        justifyContent: 'space-between'
     }
 })

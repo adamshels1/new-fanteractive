@@ -28,76 +28,9 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
         navigation.dispatch(resetAction);
     }
 
-    const getAvailableDailyPoints = async () => {
-        try {
-            if (!token) return
-            const data = await mainApi.getAvailableDailyPoints({
-                user_id: user?.userId,
-                token,
-            })
-            if (data?.state === 'error' && data?.reason === 'User or Token not correct') {
-                console.log('User or Token not correct-> Logout')
-                // dispatch(logout())
-            } else {
-                setAvailableDailyPoints(data)
-            }
-        } catch (e) {
-            console.log(e.message)
-        }
-    }
-
-    const getShowingSponsor = async () => {
-        if (!token) return
-        try {
-            const data = await mainApi.getShowingSponsor({
-                user_id: user?.userId,
-                token,
-            })
-            setShowingSponsor(data)
-        } catch (e) {
-            console.log(e.message)
-        }
-    }
-
-    const claimDailyPoints = async () => {
-
-        const resetAction = CommonActions.reset({
-            index: 0,
-            routes: [{ name: 'RewardsDashboardStackScreen' }]
-        });
-        navigation.dispatch(resetAction);
-        navigation.navigate('CollectPoints')
-
-
-        // try {
-        //     dispatch(loaderAction({ isLoading: true }))
-
-        //     const data = await mainApi.acceptDailyPoints({
-        //         user_id: user?.userId,
-        //         token,
-        //         id: availableDailyPoints?.day?.id
-        //     })
-        //     dispatch(loaderAction({ isLoading: false }))
-        //     if (data?.day) {
-        //         setResClaimDailyPoints(data?.day)
-        //         setVisibleSuccessModal(true)
-        //         await getAvailableDailyPoints()
-        //     } else {
-        //         await AlertAsync('Error', data?.reason || 'Something went wrond')
-        //     }
-        // } catch (e) {
-        //     console.log(e.message)
-        //     dispatch(loaderAction({ isLoading: false }))
-        // }
-    }
-
-    const onSponsor = async () => {
-        setShowingSponsor(false)
-        navigation.navigate('Sponsor', { sponsor: showingSponsor?.sponsor })
-        // await analytics().logEvent('Sponsor_BTN_Splash', {
-        //     id: showingSponsor?.sponsor?.id,
-        //     title: showingSponsor?.sponsor?.title
-        // })
+    const openDrawerMenu = () => {
+        navigation.navigate('About')
+        navigation && navigation.openDrawer()
     }
 
     return (
@@ -114,7 +47,7 @@ export default function Header({ title, goBack, showMenu, showFilter, navigation
                 )}
 
                 {(showMenu && token) && (
-                    <TouchableOpacity onPress={navigation && navigation.openDrawer} >
+                    <TouchableOpacity onPress={openDrawerMenu} >
                         <View style={styles.buttonWrap}>
                             <Image style={{ width: 18, height: 14 }} source={require('@assets/icons/menu.png')} />
                             <Text style={styles.leftButtonText}>PROFILE</Text>

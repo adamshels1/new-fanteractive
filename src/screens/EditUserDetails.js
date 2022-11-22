@@ -48,6 +48,7 @@ export default function MyStadiumReport({ route, navigation }) {
 
   useEffect(() => {
     getCountries()
+    getStates({ code: 'USA' })
   }, []);
 
   const getCountries = async () => {
@@ -95,14 +96,21 @@ export default function MyStadiumReport({ route, navigation }) {
     }
   }
 
+  const getStates = async (country) => {
+    if (country?.code === 'USA') {
+      const res = await mainApi.getStates(1)
+      console.log(res.data.data)
+      setStates(res.data.data)
+    } else {
+      setStates([])
+    }
+  }
+
   const onSelectCountry = async item => {
     try {
       setSelectedCountry(item)
       setCountriesVisible(false)
-      console.log('item', item)
-      const res = await mainApi.getStates(1)
-      console.log(res.data.data)
-      setStates(res.data.data)
+      getStates(item)
     } catch (e) {
       console.log('e', e)
     }

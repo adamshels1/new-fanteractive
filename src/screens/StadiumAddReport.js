@@ -266,6 +266,11 @@ export default function PlayerSummary({ route, navigation }) {
   }
 
 
+  const onDeleteImage = item => {
+    setImages(images.filter(i => i.path !== item.path))
+  }
+
+
   const renderStep1 = () => {
     return (
       <View style={{ padding: 15, paddingTop: 31 }}>
@@ -291,8 +296,8 @@ export default function PlayerSummary({ route, navigation }) {
           field='Comment'
           onChangeText={text => setComment(text)}
           value={comment}
-          style={{ height: 100 }}
-          multiline
+          multiline={true}
+          style={{ height: 100, textAlignVertical: 'top' }}
         />
 
 
@@ -348,18 +353,51 @@ export default function PlayerSummary({ route, navigation }) {
           You can attach images or video from your visit below to have them display together with your ratings!
         </Text>
 
-        <TouchableOpacity
-          onPress={onGallery}
-          style={{ height: 176, width: '100%', borderColor: '#7D86A9', borderWidth: 1, borderRadius: 4, justifyContent: 'center', alignItems: 'center', marginTop: 6, marginBottom: 21 }}
-        >
 
-          <Image source={require('@assets/icons/upload-gray.png')} style={{ width: 100, height: 66 }} />
 
-          <Text style={{ marginTop: 18, fontWeight: '900', fontSize: 14, color: '#7D86A9' }}>
-            Tap here to upload{`\n`}your Photos or Videos
-          </Text>
 
-        </TouchableOpacity>
+        {images.length ? (
+          <FlatList
+            style={{ marginBottom: 21 }}
+            showsVerticalScrollIndicator={false}
+            horizontal={true}
+            data={images}
+            keyExtractor={(item, index) => 'image-' + item.id}
+            renderItem={({ item, index }) => {
+              return (
+                <View style={{ width: 100, height: 100, marginTop: 10, marginRight: 10 }}>
+                  <TouchableOpacity
+                    style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: -7, right: -7, zIndex: 1 }}
+                    onPress={() => onDeleteImage(item)}
+                  >
+                    {/* <Image style={styles.colseIcon} resizeMode='contain' source={require('@assets/icons/x.png')} /> */}
+                    <Text style={{ color: '#fff', lineHeight: 16, fontWeight: 'bold' }}>x</Text>
+                  </TouchableOpacity>
+                  <Image
+                    style={{ width: 100, height: 100, borderRadius: 3 }}
+                    source={{ uri: item.path }}
+                  />
+                </View>
+              )
+            }}
+          />
+        ) : (
+          <TouchableOpacity
+            onPress={onGallery}
+            style={{ height: 176, width: '100%', borderColor: '#7D86A9', borderWidth: 1, borderRadius: 4, justifyContent: 'center', alignItems: 'center', marginTop: 6, marginBottom: 21 }}
+          >
+            <Image source={require('@assets/icons/upload-gray.png')} style={{ width: 100, height: 66 }} />
+            <Text style={{ marginTop: 18, fontWeight: '900', fontSize: 14, color: '#7D86A9' }}>
+              Tap here to upload{`\n`}your Photos or Videos
+            </Text>
+          </TouchableOpacity>
+        )}
+
+
+
+
+
+
 
 
 
@@ -501,5 +539,5 @@ const styles = StyleSheet.create({
   inputButtonFieldText: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 12, color: '#00293B', paddingHorizontal: 5 },
   inputButtonText: { fontSize: 16, fontFamily: 'Avenir', color: '#00293B', fontWeight: '400' },
 
-
+  colseIcon: { width: 20, height: 20 },
 })

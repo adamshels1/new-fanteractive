@@ -137,10 +137,6 @@ function FeedStackScreen() {
                 component={PlayerReport}
             />
             <Stack.Screen
-                name='PlayersScoutings'
-                component={PlayersScoutings}
-            />
-            <Stack.Screen
                 name='PlayerEdit'
                 component={PlayerEdit}
             />
@@ -420,7 +416,7 @@ function HomeTabs() {
                 name="FeedStackScreen"
                 component={FeedStackScreen}
                 options={{
-                    tabBarLabel: 'FeedStackScreen',
+                    tabBarLabel: 'Feed',
                     tabBarIcon: <Image style={{ width: 32, height: 32 }} source={require('@assets/icons/feed-gray.png')} />,
                     tabBarIconActive: <Image style={{ width: 32, height: 32 }} source={require('@assets/icons/feed-green.png')} />
                 }}
@@ -429,7 +425,7 @@ function HomeTabs() {
                 name="PlayerStackScreen"
                 component={PlayerStackScreen}
                 options={{
-                    tabBarLabel: 'PlayerStackScreen',
+                    tabBarLabel: 'Players',
                     tabBarIcon: <Image style={{ width: 26.16, height: 29.92 }} source={require('@assets/icons/player-gray.png')} />,
                     tabBarIconActive: <Image style={{ width: 26.16, height: 29.92 }} source={require('@assets/icons/player-green.png')} />
                 }}
@@ -438,7 +434,7 @@ function HomeTabs() {
                 name="GamesStackScreen"
                 component={GamesStackScreen}
                 options={{
-                    tabBarLabel: 'GamesStackScreen',
+                    tabBarLabel: 'Games',
                     tabBarIcon: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/game-gray.png')} />,
                     tabBarIconActive: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/game-green.png')} />
                 }}
@@ -447,7 +443,7 @@ function HomeTabs() {
                 name="StadiumStackScreen"
                 component={StadiumStackScreen}
                 options={{
-                    tabBarLabel: 'StadiumStackScreen',
+                    tabBarLabel: 'Stadiums',
                     tabBarIcon: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/stadium-gray.png')} />,
                     tabBarIconActive: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/stadium-green.png')} />
                 }}
@@ -456,7 +452,7 @@ function HomeTabs() {
                 name="ArticleStackScreen"
                 component={ArticleStackScreen}
                 options={{
-                    tabBarLabel: 'ArticleStackScreen',
+                    tabBarLabel: 'Articles',
                     tabBarIcon: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/article-gray.png')} />,
                     tabBarIconActive: <Image style={{ width: 37, height: 37 }} source={require('@assets/icons/article-green.png')} />
                 }}
