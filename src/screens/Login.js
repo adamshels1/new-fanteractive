@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
   const login = async () => {
     try {
       dispatch(loaderAction({ isLoading: true }))
-      const res = await mainApi.login({ username, password });
+      const res = await mainApi.login({ username, password, remember });
       dispatch(loaderAction({ isLoading: false }))
       console.log('resresres', res)
       const token = res?.data?.access_token

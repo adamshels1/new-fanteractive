@@ -201,6 +201,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
           <Button
+            // disabled={!characteristics.find(i => i?.value)?.id}
             text='Fanalyze'
             style={{ width: '100%', marginTop: 36 }}
             onPress={addGameReport}
@@ -314,6 +315,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
           <Button
+            disabled={!teamRoster.find(i => i?.value)?.id}
             text='Save and Continue'
             style={{ width: '100%', marginTop: 36 }}
             onPress={() => setStep(3)}
@@ -434,21 +436,22 @@ export default function PlayerSummary({ route, navigation }) {
 
         <View style={styles.block}>
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
-          <TextInput
-            style={styles.writeInput} 
+          <Input2
+            style={styles.writeInput}
             multiline
             showMaxLength
             maxLength={255}
-          // value={props?.comment}
-          // onChangeText={props.onChangeComment}
+            value={comment}
+            onChangeText={setComment}
           />
         </View>
 
 
 
         <Button
+          disabled={!selectedPlayer}
           text='Save and Continue'
-          style={{ marginBottom: 100 }}
+          style={{ marginBottom: 100, marginTop: 20 }}
           onPress={() => setStep(2)}
         />
 

@@ -51,7 +51,7 @@ export default function Interests({ route, navigation }) {
   }))
   const [visibleTeamsModal, setVisibleTeamsModal] = useState(false)
   const [searchTeamValue, setSearchTeamValue] = useState('')
-  const [aboutMe, setAboutMe] = useState('')
+  const [aboutMe, setAboutMe] = useState(user?.about)
 
   const [sports, setSports] = useState([])
   const [selectedCountry, setSelectedCountry] = useState(null)

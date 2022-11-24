@@ -19,12 +19,15 @@ import { CommonActions } from '@react-navigation/native'
 import ImagePicker from 'react-native-image-crop-picker'
 import AlertAsync from 'react-native-alert-async'
 import helper from '@services/helper'
+import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 
 export default function MyStadiumReport({ route, navigation }) {
   const dispatch = useDispatch()
   const [visibleFilterModal, setVisibleFilterModal] = useState(false)
   const token = useSelector(state => state.userReducer.token)
   const user = useSelector(state => state.userReducer.user)
+  console.log('user', user)
+  const adressData = user?.addresses && user.addresses[0]
 
 
   const [countries, setCountries] = useState([])
@@ -35,11 +38,11 @@ export default function MyStadiumReport({ route, navigation }) {
   })
 
   const [statesVisible, setStatesVisible] = useState(false)
-  const [state, setState] = useState(user?.state)
+  const [state, setState] = useState({ code: adressData?.state })
   const [states, setStates] = useState([])
 
-  const [postcode, setPostcode] = useState(user?.post_code)
-  const [city, setCity] = useState(user?.city)
+  const [postcode, setPostcode] = useState(adressData?.postcode)
+  const [city, setCity] = useState(adressData?.city)
   const [street, setStreet] = useState(user?.address)
   const [deleteThumbnail, setDeleteThumbnail] = useState(false)
   const [username, setUsername] = useState(user?.username)
@@ -63,6 +66,8 @@ export default function MyStadiumReport({ route, navigation }) {
       countries = [countries.find(i => i.code === 'USA'), ...countries.filter(i => i.code !== 'USA')]
       console.log(countries)
       setCountries(countries)
+      const selectedCountry = countries.find(i => i.code === adressData.country)
+      setSelectedCountry(selectedCountry)
     } catch (e) {
       console.log('e', e)
     }
@@ -101,6 +106,10 @@ export default function MyStadiumReport({ route, navigation }) {
       const res = await mainApi.getStates(1)
       console.log(res.data.data)
       setStates(res.data.data)
+
+      const newState = res.data.data.find(i => i?.code === state?.code)
+      console.log('newState', state)
+      setState(newState)
     } else {
       setStates([])
     }
@@ -137,8 +146,14 @@ export default function MyStadiumReport({ route, navigation }) {
       if (avatarFile?.mime) {
         await mainApi.uploadAvatar(token, { file: avatarFile })
       }
+      const resUser = await mainApi.getUser(token);
+      const user = resUser?.data?.data
+      if (user) {
+        console.log('user', user)
+        dispatch(setUserAction(user))
+      }
       dispatch(loaderAction({ isLoading: false }))
-      props.navigation.goBack()
+      navigation.goBack()
     } catch (e) {
       console.log(e)
       dispatch(loaderAction({ isLoading: false }))
@@ -302,8 +317,8 @@ export default function MyStadiumReport({ route, navigation }) {
 
               <Input2
                 field='City'
-                onChangeText={city}
-                value={setCity}
+                onChangeText={setCity}
+                value={city}
               />
 
               <Input2

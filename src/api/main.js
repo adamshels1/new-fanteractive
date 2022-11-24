@@ -3,12 +3,13 @@ import axios from 'axios'
 import qs from 'qs'
 
 
-const login = async ({ username = '', password = '' }) => {
+const login = async ({ username = '', password = '', remember = false }) => {
 
 
     var data = qs.stringify({
         username,
-        password
+        password,
+        // remember
     });
     var config = {
         method: 'post',
@@ -754,7 +755,7 @@ const editUser = async (token, {
         delete_thumbnail,
         postcode,
         state,
-        street,
+        address: street,
     });
 
     var config = {

@@ -244,6 +244,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
           <Button
+            disabled={!characteristics.find(i => i?.value)?.id}
             text='Fanalyze'
             style={{ width: '100%', marginTop: 36 }}
             onPress={addStadiumRating}
@@ -402,6 +403,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
         <Button
+          disabled={!eventName || !comment || !sports?.length}
           text='Save and Continue'
           style={{ marginBottom: 100 }}
           onPress={() => setStep(2)}
