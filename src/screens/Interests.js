@@ -292,6 +292,7 @@ export default function Interests({ route, navigation }) {
                 multiline={true}
                 style={{ height: 164, textAlignVertical: 'top' }}
                 maxLength={180}
+                showMaxLength
               />
 
 

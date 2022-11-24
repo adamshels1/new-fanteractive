@@ -95,6 +95,7 @@ export default function EmailVerification({ navigation }) {
             onChangeText={email => setEmail(email)}
             value={email}
             autoCapitalize="none"
+            style={{color: '#000'}}
           />
 
           <Button

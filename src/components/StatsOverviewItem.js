@@ -48,7 +48,7 @@ export default function StatsOverviewItem(props) {
           // customMarker={() => <Image source={require('@assets/icons/slider-marker.png')} style={{ width: 40, height: 40 }} />}
           unselectedStyle={{ backgroundColor: '#CBD5EA' }}
           selectedStyle={{ backgroundColor: 'rgba(0,0,0,0)' }}
-          markerStyle={{ backgroundColor: '#fff', borderWidth: 0, borderColor: 'gray' }}
+          markerStyle={styles.markerStyle}
           values={[
             value,
           ]}
@@ -193,4 +193,14 @@ const styles = StyleSheet.create({
   },
   writeFieldTitle: { fontWeight: '800', fontSize: 12, color: '#00293B', position: 'absolute', backgroundColor: '#fff', top: 5, left: 25, zIndex: 1 },
   writeInput: { borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.32)', borderRadius: 4, height: 86, padding: 11, paddingTop: 11, fontWeight: '400', fontSize: 16, color: '#00293B', textAlignVertical: 'top' },
+  markerStyle: {
+    backgroundColor: '#fff', borderWidth: 0, borderColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: -2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.22,
+    elevation: 3,
+  },
 });

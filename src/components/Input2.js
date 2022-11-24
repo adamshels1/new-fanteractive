@@ -103,6 +103,11 @@ export default class Input extends Component {
           </View>
         )}
 
+        {this.props.showMaxLength && (
+          <Text style={styles.maxLength}>
+            {this?.props?.value?.length} / {this.props.maxLength}
+          </Text>
+        )}
       </View>
     )
   }
@@ -115,5 +120,6 @@ const styles = StyleSheet.create({
   openEye: { height: 16, width: 22 },
   wrapFiedl: { left: 16, top: -9, backgroundColor: '#fff', zIndex: 2, position: 'absolute' },
   textFiedl: { fontFamily: 'Avenir', fontWeight: '900', fontSize: 12, color: '#00293B', paddingHorizontal: 5 },
-  wrapStyle: { marginTop: 23 }
+  wrapStyle: { marginTop: 23 },
+  maxLength: { position: 'absolute', right: 5, bottom: 5, color: '#D0021B', fontWeight: '900', fontSize: 12 },
 });

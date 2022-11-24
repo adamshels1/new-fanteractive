@@ -437,6 +437,8 @@ export default function PlayerSummary({ route, navigation }) {
           <TextInput
             style={styles.writeInput} 
             multiline
+            showMaxLength
+            maxLength={255}
           // value={props?.comment}
           // onChangeText={props.onChangeComment}
           />
