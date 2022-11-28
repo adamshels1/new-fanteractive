@@ -63,7 +63,7 @@ export default function StatsOverviewItem(props) {
             backgroundColor: 'red',
           }}
           sliderLength={windowWidth - 155}
-          onValuesChange={props?.onValuesChange}
+          onValuesChangeFinish={props?.onValuesChange}
         // onValuesChange={api.debounce(
         //   (values) =>
         //     this.setState({

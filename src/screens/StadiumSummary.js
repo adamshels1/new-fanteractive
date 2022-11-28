@@ -158,6 +158,7 @@ export default function StadiumSummary({ route, navigation }) {
             onPress={() => {
               refCarousel.current?.scrollTo({ count: 1, animated: true });
             }}
+            style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center'}}
           >
             <Image source={require('@assets/icons/arrow-left.png')} style={styles.arrowIcon2} />
           </TouchableOpacity>
@@ -181,6 +182,7 @@ export default function StadiumSummary({ route, navigation }) {
             onPress={() => {
               refCarousel.current?.scrollTo({ count: -1, animated: true });
             }}
+            style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center'}}
           >
             <Image source={require('@assets/icons/arrow-right.png')} style={styles.arrowIcon2} />
           </TouchableOpacity>

@@ -159,83 +159,98 @@ export default function About({ route, navigation }) {
 
           <View style={{ marginTop: 20 }}>
             <BlockTitle title='My Latest Analyses' showLine />
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={analyses?.articles}
-              renderItem={({ item, index }) => <ListItem
-                type='article'
-                amount={item.title}
-                title={item.summary}
-                // value='2.3'
-                icon={{ uri: item?.thumbnail?.url }}
-                item={item}
-              />
-              }
-            />
 
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={analyses?.games}
-              renderItem={({ item, index }) => <ListItem
-                value={helper.fixAlphabetical(item?.avg)}
-                amount={item?.fanager?.full_name}
-                title={`${item?.fanager?.tier_label} • ${moment(item?.reated_at).format('DD MMM YYYY')}`}
-                icon={{
-                  uri: item?.fanager?.thumbnail?.url
-                }}
-                disabled
-              // onPress={() => navigation.navigate('PlayerReport')}
+            {analyses?.articles?.length ? (
+              <FlatList
+                style={{ marginTop: 10 }}
+                data={analyses?.articles}
+                renderItem={({ item, index }) => <ListItem
+                  type='article'
+                  amount={item.title}
+                  title={item.summary}
+                  // value='2.3'
+                  icon={{ uri: item?.thumbnail?.url }}
+                  item={item}
+                />
+                }
               />
-              }
-            />
-
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={analyses?.players}
-              renderItem={({ item, index }) => <ListItem
-                value={parseFloat(item?.avg).toFixed(2)}
-                amount={item?.full_name}
-                title={`${item?.tier} •`}
-                icon={{
-                  uri: item?.thumbnail?.url
-                }}
-                disabled
-              // onPress={() => navigation.navigate('PlayerReport')}
-              />
-              }
-            />
-
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={analyses?.stadiums}
-              renderItem={({ item, index }) => <ListItem
-                type='stadium'
-                value={parseFloat(item?.avg).toFixed(2)}
-                amount={item?.fanager?.full_name}
-                title={`${item?.event?.event_name} • ${moment(item?.posted).format('DD MMM YYYY')}`}
-                icon={{
-                  uri: item?.thumbnail?.url
-                }}
-                disabled
-              // onPress={() => navigation.navigate('PlayerReport')}
-              />
-              }
-            />
+            ) : null}
 
 
-            <FlatList
-              style={{ marginTop: 25 }}
-              data={analyses?.teams}
-              renderItem={({ item, index }) => <ListItem
-                type='article'
-                amount={item.title}
-                title={item.summary}
-                // value='2.3'
-                icon={{ uri: item?.thumbnail?.url }}
-                item={item}
+            {analyses?.games?.length ? (
+              <FlatList
+                style={{ marginTop: 10 }}
+                data={analyses?.games}
+                renderItem={({ item, index }) => <ListItem
+                  value={helper.fixAlphabetical(item?.avg)}
+                  amount={item?.fanager?.full_name}
+                  title={`${item?.fanager?.tier_label} • ${moment(item?.reated_at).format('DD MMM YYYY')}`}
+                  icon={{
+                    uri: item?.fanager?.thumbnail?.url
+                  }}
+                  disabled
+                // onPress={() => navigation.navigate('PlayerReport')}
+                />
+                }
               />
-              }
-            />
+            ) : null}
+
+
+            {analyses?.players?.length ? (
+              <FlatList
+                style={{ marginTop: 10 }}
+                data={analyses?.players}
+                renderItem={({ item, index }) => <ListItem
+                  value={parseFloat(item?.avg).toFixed(2)}
+                  amount={item?.full_name}
+                  title={`${item?.tier} •`}
+                  icon={{
+                    uri: item?.thumbnail?.url
+                  }}
+                  disabled
+                // onPress={() => navigation.navigate('PlayerReport')}
+                />
+                }
+              />
+            ) : null}
+
+
+            {analyses?.stadiums?.length ? (
+              <FlatList
+                style={{ marginTop: 10 }}
+                data={analyses?.stadiums}
+                renderItem={({ item, index }) => <ListItem
+                  type='stadium'
+                  value={parseFloat(item?.avg).toFixed(2)}
+                  amount={item?.fanager?.full_name}
+                  title={`${item?.event?.event_name} • ${moment(item?.posted).format('DD MMM YYYY')}`}
+                  icon={{
+                    uri: item?.thumbnail?.url
+                  }}
+                  disabled
+                // onPress={() => navigation.navigate('PlayerReport')}
+                />
+                }
+              />
+            ) : null}
+
+
+            {analyses?.teams?.length ? (
+              <FlatList
+                style={{ marginTop: 10 }}
+                data={analyses?.teams}
+                renderItem={({ item, index }) => <ListItem
+                  type='article'
+                  amount={item.title}
+                  title={item.summary}
+                  // value='2.3'
+                  icon={{ uri: item?.thumbnail?.url }}
+                  item={item}
+                />
+                }
+              />
+            ) : null}
+
 
           </View>
 

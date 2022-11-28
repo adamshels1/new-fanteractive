@@ -21,6 +21,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import AlertAsync from 'react-native-alert-async';
 // import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import helper from '@services/helper';
+import { logout } from '@redux/actions/userActions'
+import { CommonActions } from '@react-navigation/native'
 
 
 export default function PlayerSummary({ route, navigation }) {
@@ -63,7 +65,20 @@ export default function PlayerSummary({ route, navigation }) {
       setCharacteristics(res.data.data)
     } catch (e) {
       console.log('e', e)
+      if (e.response.status === 403) {
+        console.log('logout')
+        onLogout()
+      }
     }
+  }
+
+  const onLogout = () => {
+    dispatch(logout())
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'Login' }]
+    });
+    navigation.dispatch(resetAction);
   }
 
   const getActivityStadium = async () => {

@@ -138,7 +138,7 @@ export default function About({ route, navigation }) {
           ListFooterComponent={ListFooterComponent}
           keyExtractor={(item, index) => 'gameReview-' + index}
           renderItem={({ item, index }) => <ListItem
-            value={parseFloat(item?.your_grade).toFixed(1)}
+            value={item?.your_grade ? parseFloat(item?.your_grade).toFixed(1) : ' '}
             amount={item?.team?.name}
             // title={`${item?.sport?.name} • ${item?.position?.name}`}
             icon={{

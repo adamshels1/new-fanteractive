@@ -21,6 +21,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import AlertAsync from 'react-native-alert-async';
 // import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import helper from '@services/helper';
+import { logout } from '@redux/actions/userActions'
+import { CommonActions } from '@react-navigation/native'
 
 
 export default function PlayerSummary({ route, navigation }) {
@@ -62,7 +64,7 @@ export default function PlayerSummary({ route, navigation }) {
   const getGameCharacteristics = async () => {
     try {
       const res = await mainApi.getGameCharacteristics(token, {
-        gameId: item?.id //342, 
+        gameId: item?.game?.id //342, 
       })
       const characteristics = res.data.data.map(i => {
         return {
@@ -74,8 +76,21 @@ export default function PlayerSummary({ route, navigation }) {
       console.log('getGameCharacteristics', characteristics)
       setCharacteristics(characteristics)
     } catch (e) {
-      console.log('e', e)
+      console.log('e getGameCharacteristics', e)
+      if (e.response.status === 403) {
+        console.log('logout')
+        onLogout()
+      }
     }
+  }
+
+  const onLogout = () => {
+    dispatch(logout())
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'Login' }]
+    });
+    navigation.dispatch(resetAction);
   }
 
 
@@ -102,7 +117,7 @@ export default function PlayerSummary({ route, navigation }) {
     try {
       console.log('characteristics', characteristics)
       const data = {
-        gameId: item.id, //342,
+        gameId: item?.game?.id, //342, 
         teamId: team.id, //47, 
         playerId: selectedPlayer?.id,
         players: teamRoster.filter(i => i.selected).map(prepareItem),
@@ -147,6 +162,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
   const renderStep3 = () => {
+    console.log('characteristics', characteristics)
     return (
       <View>
 
