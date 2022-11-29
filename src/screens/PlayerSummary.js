@@ -118,7 +118,7 @@ export default function PlayerSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel2.current?.scrollTo({ count: 1, animated: true });
+              refCarousel2.current?.scrollTo({ count: -1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/cicle-arrow-left.png')} style={styles.arrowIcon} />
@@ -136,6 +136,7 @@ export default function PlayerSummary({ route, navigation }) {
             // onSnapToItem={(index) => setAvarageType(avarageTypes[index])}
             renderItem={({ item, index }) => (
               <AverageBlock
+                key={'av-' + index}
                 title={summaryOptions[item.key]}
                 value={item.value}
               />
@@ -145,7 +146,7 @@ export default function PlayerSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel2.current?.scrollTo({ count: -1, animated: true });
+              refCarousel2.current?.scrollTo({ count: 1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/cicle-arrow-right.png')} style={styles.arrowIcon} />
@@ -166,7 +167,7 @@ export default function PlayerSummary({ route, navigation }) {
           <TouchableOpacity
             style={styles.arrowButton}
             onPress={() => {
-              refCarousel.current?.scrollTo({ count: 1, animated: true });
+              refCarousel.current?.scrollTo({ count: -1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/arrow-left.png')} style={styles.arrowIcon2} />
@@ -190,7 +191,7 @@ export default function PlayerSummary({ route, navigation }) {
           <TouchableOpacity
             style={styles.arrowButton}
             onPress={() => {
-              refCarousel.current?.scrollTo({ count: -1, animated: true });
+              refCarousel.current?.scrollTo({ count: 1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/arrow-right.png')} style={styles.arrowIcon2} />

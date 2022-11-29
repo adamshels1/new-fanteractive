@@ -248,7 +248,7 @@ export default function CompleteAccount({ navigation }) {
                     itemStyle={styles.lookumItemStyle}
                     itemTextStyle={styles.lookumItemTextStyle}
                   /> */}
-                  <Image style={{ width: 10, height: 18, marginRight: 10 }} source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
 
 
@@ -279,7 +279,7 @@ export default function CompleteAccount({ navigation }) {
                   <Text style={{ fontWeight: '400', fontSize: 16, color: '#CBCBCB' }}>
                     {state ? state?.name : 'State'}
                   </Text>
-                  <Image style={{ width: 10, height: 18, marginRight: 10 }} source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
                 <Input
                   onChangeText={city => setCity(city)}
@@ -355,4 +355,5 @@ const styles = StyleSheet.create({
   lookumItemTextStyle: { fontFamily: 'Avenir', fontWeight: '400', fontSize: 14 },
   lookumContentStyle: { height: '80%', borderRadius: 12 },
   cityButtonText: { fontWeight: '400', fontFamily: 'Avenir', fontSize: 14, color: '#747272' },
+  selectIcon: { width: 11.5, height: 18, marginRight: 10 },
 })

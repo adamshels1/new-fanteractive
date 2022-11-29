@@ -108,7 +108,7 @@ export default function StadiumSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel2.current?.scrollTo({ count: 1, animated: true });
+              refCarousel2.current?.scrollTo({ count: -1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/cicle-arrow-left.png')} style={styles.arrowIcon} />
@@ -136,7 +136,7 @@ export default function StadiumSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel2.current?.scrollTo({ count: -1, animated: true });
+              refCarousel2.current?.scrollTo({ count: 1, animated: true });
             }}
           >
             <Image source={require('@assets/icons/cicle-arrow-right.png')} style={styles.arrowIcon} />
@@ -156,7 +156,7 @@ export default function StadiumSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel.current?.scrollTo({ count: 1, animated: true });
+              refCarousel.current?.scrollTo({ count: -1, animated: true });
             }}
             style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center'}}
           >
@@ -180,7 +180,7 @@ export default function StadiumSummary({ route, navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              refCarousel.current?.scrollTo({ count: -1, animated: true });
+              refCarousel.current?.scrollTo({ count: 1, animated: true });
             }}
             style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center'}}
           >

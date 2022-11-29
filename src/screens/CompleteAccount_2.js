@@ -205,7 +205,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.selectText}>
                     {sportsLine ? sportsLine : 'Your Sport Rating'}
                   </Text>
-                  <Image style={styles.selectIcon} source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
               </View>
 
@@ -218,7 +218,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.selectText}>
                     {teamsLine ? teamsLine : 'Favorite Teams'}
                   </Text>
-                  <Image style={styles.selectIcon} source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
               </View>
 
@@ -292,5 +292,5 @@ const styles = StyleSheet.create({
   selectWrap: { flexDirection: 'row', justifyContent: 'space-between' },
   selectButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '100%', marginTop: 20, borderBottomWidth: 2, borderColor: '#D6D6D6', },
   selectText: { fontWeight: '400', fontSize: 16, color: '#CBCBCB' },
-  selectIcon: { width: 10, height: 18, marginRight: 10 },
+  selectIcon: { width: 11.5, height: 18, marginRight: 10 },
 })
