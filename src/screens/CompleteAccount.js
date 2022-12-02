@@ -85,9 +85,9 @@ export default function CompleteAccount({ navigation }) {
         street,
         selectedCountry
       });
-      // if (avatarFile) {
-      //   await mainApi.uploadAvatar(token, { file: avatarFile })
-      // }
+      if (avatarFile) {
+        await mainApi.uploadAvatar(token, { file: avatarFile })
+      }
       dispatch(loaderAction({ isLoading: false }))
       if (res.status === 200) {
         navigation.navigate('CompleteAccount_2')

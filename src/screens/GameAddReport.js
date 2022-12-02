@@ -175,7 +175,7 @@ export default function PlayerSummary({ route, navigation }) {
         <View style={{ paddingHorizontal: 26, marginTop: 45 }}>
 
 
-          {characteristics.filter(i => i.block === 'Advance Team Grade').map((i, index) => {
+          {characteristics.filter(i => i.block === 'Advance Team Grades').map((i, index) => {
             return (
               <StatsOverviewItem
                 key={i.id}

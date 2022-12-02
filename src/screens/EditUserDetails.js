@@ -43,7 +43,7 @@ export default function MyStadiumReport({ route, navigation }) {
 
   const [postcode, setPostcode] = useState(adressData?.postcode)
   const [city, setCity] = useState(adressData?.city)
-  const [street, setStreet] = useState(user?.address)
+  const [street, setStreet] = useState(adressData?.street)
   const [deleteThumbnail, setDeleteThumbnail] = useState(false)
   const [username, setUsername] = useState(user?.username)
   const [fullName, setFullName] = useState(user?.full_name)
@@ -52,6 +52,7 @@ export default function MyStadiumReport({ route, navigation }) {
   useEffect(() => {
     getCountries()
     getStates({ code: 'USA' })
+    getUser()
   }, []);
 
   const getCountries = async () => {
@@ -70,6 +71,19 @@ export default function MyStadiumReport({ route, navigation }) {
       setSelectedCountry(selectedCountry)
     } catch (e) {
       console.log('e', e)
+    }
+  }
+
+  const getUser = async () => {
+    try {
+      const resUser = await mainApi.getUser(token);
+      const user = resUser?.data?.data
+      if (user) {
+        console.log('user', user)
+        dispatch(setUserAction(user))
+      }
+    } catch (e) {
+      console.log(e)
     }
   }
 
