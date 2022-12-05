@@ -747,6 +747,8 @@ const editUser = async (token, {
     postcode,
     state,
     street,
+    username,
+    full_name,
 }) => {
 
     var data = JSON.stringify({
@@ -756,6 +758,8 @@ const editUser = async (token, {
         postcode,
         state,
         address: street,
+        username,
+        full_name,
     });
 
     var config = {

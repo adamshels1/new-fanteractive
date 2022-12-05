@@ -450,7 +450,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
-        <View style={styles.block}>
+        <View style={[styles.block, {height: 140}]}>
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
           <Input2
             style={styles.writeInput}

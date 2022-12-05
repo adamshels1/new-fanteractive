@@ -43,7 +43,8 @@ export default function MyStadiumReport({ route, navigation }) {
 
   const [postcode, setPostcode] = useState(adressData?.postcode)
   const [city, setCity] = useState(adressData?.city)
-  const [street, setStreet] = useState(adressData?.street)
+  const initialStreet = user?.address ? user?.address : adressData.street
+  const [street, setStreet] = useState(initialStreet)
   const [deleteThumbnail, setDeleteThumbnail] = useState(false)
   const [username, setUsername] = useState(user?.username)
   const [fullName, setFullName] = useState(user?.full_name)
@@ -156,6 +157,8 @@ export default function MyStadiumReport({ route, navigation }) {
         postcode,
         state: state?.code,
         street,
+        username,
+        full_name: fullName
       });
       if (avatarFile?.mime) {
         await mainApi.uploadAvatar(token, { file: avatarFile })
@@ -343,6 +346,7 @@ export default function MyStadiumReport({ route, navigation }) {
 
 
               <Button
+                disabled={!street}
                 text='Save Changes'
                 style={{ marginTop: 17, marginBottom: 100 }}
                 textStyle={{ fontFamily: 'Oswald' }}
