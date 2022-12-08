@@ -142,7 +142,7 @@ export default function About({ route, navigation }) {
               <BlockTitle title='My Favorite Teams' showLine />
               <FlatList
                 style={{ marginTop: 25, marginHorizontal: -19, paddingHorizontal: 19 }}
-                data={[...user?.favorite_teams, ...user?.favorite_teams, ...user?.favorite_teams, ...user?.favorite_teams]}
+                data={user?.favorite_teams}
                 renderItem={({ item, index }) =>
                   <TeamListItem
                     name={item?.name}
