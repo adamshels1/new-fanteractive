@@ -89,7 +89,9 @@ export default function CompleteAccount({ navigation }) {
         await mainApi.uploadAvatar(token, { file: avatarFile })
       }
       dispatch(loaderAction({ isLoading: false }))
+      console.log('resresres', res)
       if (res.status === 200) {
+        console.log('ok')
         navigation.navigate('CompleteAccount_2')
       } else {
         AlertAsync(res.reason || 'Something went wrond')
@@ -106,9 +108,14 @@ export default function CompleteAccount({ navigation }) {
       setSelectedCountry(item)
       setCountriesVisible(false)
       console.log('item', item)
-      const res = await mainApi.getStates(1)
-      console.log(res.data.data)
-      setStates(res.data.data)
+      if (item.code === 'USA') {
+        const res = await mainApi.getStates(1)
+        console.log(res.data.data)
+        setStates(res.data.data)
+      }else{
+        setStates([])
+      }
+
     } catch (e) {
       console.log('e', e)
     }
@@ -176,7 +183,7 @@ export default function CompleteAccount({ navigation }) {
               Thank you for Signing Up
             </Text>
             <Text style={styles.bodyTitle}>
-              Comlete your Account
+              Complete your Account
             </Text>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 }}>
@@ -231,7 +238,7 @@ export default function CompleteAccount({ navigation }) {
 
                 <TouchableOpacity
                   onPress={() => setCountriesVisible(true)}
-                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422', }}
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 37, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422', }}
                 >
                   <Text style={{ fontWeight: '400', fontSize: 16, color: '#CBCBCB' }}>
                     {selectedCountry ? selectedCountry?.name : 'Country'}
@@ -274,7 +281,7 @@ export default function CompleteAccount({ navigation }) {
                 /> */}
                 <TouchableOpacity
                   onPress={() => setStatesVisible(true)}
-                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 30, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422', }}
+                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 37, width: '47%', marginTop: 20, borderBottomWidth: 2, borderColor: '#5EC422' }}
                 >
                   <Text style={{ fontWeight: '400', fontSize: 16, color: '#CBCBCB' }}>
                     {state ? state?.name : 'State'}

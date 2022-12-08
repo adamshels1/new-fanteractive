@@ -173,7 +173,7 @@ export default function Login({ navigation }) {
               Thank you for Signing Up
             </Text>
             <Text style={styles.bodyTitle}>
-              Comlete your Account
+              Complete your Account
             </Text>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 }}>
@@ -188,7 +188,7 @@ export default function Login({ navigation }) {
               </View>
 
               <View style={styles.stepWrap}>
-              <View style={{ width: 20, height: 20, borderRadius: 11, borderColor: '#fff', borderWidth: 1.67, backgroundColor: 'rgba(0,0,0,0)' }} />
+                <View style={{ width: 20, height: 20, borderRadius: 11, borderColor: '#fff', borderWidth: 1.67, backgroundColor: 'rgba(0,0,0,0)' }} />
                 <Text style={styles.stepText}>Complete</Text>
               </View>
             </View>
@@ -202,7 +202,7 @@ export default function Login({ navigation }) {
                   onPress={() => setVisibleSportsModal(true)}
                   style={styles.selectButton}
                 >
-                  <Text style={styles.selectText}>
+                  <Text style={styles.selectText} numberOfLines={1}>
                     {sportsLine ? sportsLine : 'Your Sport Rating'}
                   </Text>
                   <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
@@ -215,7 +215,7 @@ export default function Login({ navigation }) {
                   onPress={() => setVisibleTeamsModal(true)}
                   style={styles.selectButton}
                 >
-                  <Text style={styles.selectText}>
+                  <Text style={styles.selectText} numberOfLines={1}>
                     {teamsLine ? teamsLine : 'Favorite Teams'}
                   </Text>
                   <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />

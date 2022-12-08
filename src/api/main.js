@@ -201,11 +201,11 @@ const uploadAvatar = async (token, { file }) => {
     const url = `${server.BASE_URL_API}file/thumbnail`;
     console.log(url, params);
     const response = await fetch(url, params);
-    console.log('response', response)
-    const res = await response.json();
-    console.log('data', res)
+    // console.log('response', response)
+    // const res = await response.json();
+    // console.log('data', res)
 
-    return res
+    return response
 };
 
 
