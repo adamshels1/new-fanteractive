@@ -90,7 +90,8 @@ export default function Login({ navigation }) {
       console.log('resresresres', res)
       dispatch(loaderAction({ isLoading: false }))
       if (res.status === 200) {
-        navigation.navigate('HomeTabs')
+        await helper.sleep(500)
+        navigation.navigate('DashboardStackScreen')
       } else {
         AlertAsync(res.reason || 'Something went wrond')
       }
