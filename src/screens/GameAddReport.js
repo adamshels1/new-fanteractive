@@ -30,6 +30,7 @@ export default function PlayerSummary({ route, navigation }) {
   const item = route?.params?.item
   const team = route?.params?.team
   console.log('route', route)
+  const refScrollView = useRef();
 
   const token = useSelector(state => state.userReducer.token)
   const [comment, setComment] = useState('')
@@ -226,7 +227,11 @@ export default function PlayerSummary({ route, navigation }) {
             text='BACK'
             style={{ width: '100%', marginTop: 17 }}
             inverter
-            onPress={() => setStep(2)}
+            onPress={() => {
+              console.log('refScrollView', refScrollView)
+              setStep(2)
+              refScrollView?.current?.scrollTo(0, false)
+            }}
           />
 
           <View style={{ height: 100 }} />
@@ -334,13 +339,21 @@ export default function PlayerSummary({ route, navigation }) {
             disabled={!teamRoster.find(i => i?.value)?.id}
             text='Save and Continue'
             style={{ width: '100%', marginTop: 36 }}
-            onPress={() => setStep(3)}
+            onPress={() => {
+              console.log('refScrollView', refScrollView)
+              setStep(3)
+              refScrollView?.current?.scrollTo(0, false)
+            }}
           />
           <Button
             text='BACK'
             style={{ width: '100%', marginTop: 17 }}
             inverter
-            onPress={() => setStep(1)}
+            onPress={() => {
+              console.log('refScrollView', refScrollView)
+              setStep(1)
+              refScrollView?.current?.scrollTo(0, false)
+            }}
           />
 
           <View style={{ height: 100 }} />
@@ -450,7 +463,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
 
-        <View style={[styles.block, {height: 140}]}>
+        <View style={[styles.block, { height: 140 }]}>
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
           <Input2
             style={styles.writeInput}
@@ -468,7 +481,11 @@ export default function PlayerSummary({ route, navigation }) {
           disabled={!selectedPlayer}
           text='Save and Continue'
           style={{ marginBottom: 100, marginTop: 20 }}
-          onPress={() => setStep(2)}
+          onPress={() => {
+            console.log('refScrollView', refScrollView)
+            setStep(2)
+            refScrollView?.current?.scrollTo(0, false)
+          }}
         />
 
 
@@ -486,7 +503,7 @@ export default function PlayerSummary({ route, navigation }) {
         goBack={navigation.goBack}
       />
 
-      <ScrollView>
+      <ScrollView ref={refScrollView}>
 
 
         <View

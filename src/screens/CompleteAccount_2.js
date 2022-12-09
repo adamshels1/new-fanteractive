@@ -19,6 +19,7 @@ import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import LookupModal from 'react-native-lookup-modal'
 import ImagePicker from 'react-native-image-crop-picker';
 import helper from '@services/helper'
+import { CommonActions } from '@react-navigation/native'
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
@@ -88,11 +89,18 @@ export default function Login({ navigation }) {
         aboutMe,
       });
       console.log('resresresres', res)
-      dispatch(loaderAction({ isLoading: false }))
       if (res.status === 200) {
         await helper.sleep(500)
-        navigation.navigate('DashboardStackScreen')
+        // navigation.navigate('DashboardStackScreen')
+        dispatch(loaderAction({ isLoading: false }))
+        const resetAction = CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'HomeTabs' }]
+        });
+        navigation.dispatch(resetAction);
+
       } else {
+        dispatch(loaderAction({ isLoading: false }))
         AlertAsync(res.reason || 'Something went wrond')
       }
     } catch (e) {

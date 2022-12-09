@@ -10,7 +10,7 @@ import {
   Dimensions,
 } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button } from '@components'
+import { Header, StatusBar, Text, BlockTitle, ListItem, TeamListItem, Button, Input2 } from '@components'
 import { mainApi } from '@api';
 import { loaderAction } from '@redux/actions/loaderActions'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -87,10 +87,13 @@ export default function StatsOverviewItem(props) {
       </View>
 
       {visibleComment && (
-        <View style={styles.block}>
+          <View style={[styles.block, { height: 140 }]}>
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
-          <TextInput
-            style={styles.writeInput} multiline
+          <Input2
+            style={styles.writeInput}
+            multiline
+            showMaxLength
+            maxLength={255}
             value={props?.comment}
             onChangeText={props.onChangeComment}
           />
@@ -153,10 +156,13 @@ export default function StatsOverviewItem(props) {
       </View>
 
       {visibleComment && (
-        <View style={styles.block}>
+        <View style={[styles.block, { height: 140 }]}>
           <Text style={styles.writeFieldTitle}>Write Your Comment</Text>
-          <TextInput
-            style={styles.writeInput} multiline
+          <Input2
+            style={styles.writeInput}
+            multiline
+            showMaxLength
+            maxLength={255}
             value={props?.comment}
             onChangeText={props.onChangeComment}
           />

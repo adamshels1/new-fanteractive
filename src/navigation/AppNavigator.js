@@ -158,6 +158,7 @@ function FeedStackScreen() {
             <Stack.Screen
                 name='GameAddReport'
                 component={GameAddReport}
+                options={{ gestureEnabled: false }}
             />
 
             <Stack.Screen
@@ -171,6 +172,7 @@ function FeedStackScreen() {
             <Stack.Screen
                 name='StadiumAddReport'
                 component={StadiumAddReport}
+                options={{ gestureEnabled: false }}
             />
             <Stack.Screen
                 name='StadiumReport'
@@ -212,6 +214,7 @@ function GamesStackScreen() {
             <Stack.Screen
                 name='GameAddReport'
                 component={GameAddReport}
+                options={{ gestureEnabled: false }}
             />
 
 
@@ -242,6 +245,7 @@ function StadiumStackScreen() {
             <Stack.Screen
                 name='StadiumAddReport'
                 component={StadiumAddReport}
+                options={{ gestureEnabled: false }}
             />
             <Stack.Screen
                 name='StadiumReport'
@@ -360,6 +364,7 @@ function DashboardStackScreen() {
             <Stack.Screen
                 name='GameAddReport'
                 component={GameAddReport}
+                options={{ gestureEnabled: false }}
             />
 
 
@@ -374,6 +379,7 @@ function DashboardStackScreen() {
             <Stack.Screen
                 name='StadiumAddReport'
                 component={StadiumAddReport}
+                options={{ gestureEnabled: false }}
             />
             <Stack.Screen
                 name='StadiumReport'
@@ -501,7 +507,7 @@ function MainStackNavigator() {
         <NavigationContainer>
             <Drawer.Navigator
                 initialRouteName="Welcome"
-                drawerPosition="right"
+                drawerPosition="left"
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
             >
                 <Drawer.Screen name="Welcome" component={Welcome} />
@@ -517,7 +523,8 @@ function MainStackNavigator() {
                 drawerPosition="left"
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
+                    swipeEnabled: false
                 }}
             >
 

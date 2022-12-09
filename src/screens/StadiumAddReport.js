@@ -30,6 +30,7 @@ export default function PlayerSummary({ route, navigation }) {
   const item = route?.params?.item
   const refCarousel = useRef();
   const refCarousel2 = useRef();
+  const refScrollView = useRef();
   const [summary, setSummary] = useState([])
   const [summaryMeta, setSummaryMeta] = useState([])
   const [reports, setReports] = useState([])
@@ -421,7 +422,11 @@ export default function PlayerSummary({ route, navigation }) {
           disabled={!eventName || !comment || !sports?.length}
           text='Save and Continue'
           style={{ marginBottom: 100 }}
-          onPress={() => setStep(2)}
+          onPress={() => {
+            console.log('refScrollView', refScrollView)
+            setStep(2)
+            refScrollView?.current?.scrollTo(0, false)
+          }}
         />
 
 
@@ -447,7 +452,7 @@ export default function PlayerSummary({ route, navigation }) {
         data={sports}
       />
 
-      <ScrollView>
+      <ScrollView ref={refScrollView}>
 
 
         <View

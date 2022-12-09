@@ -65,12 +65,12 @@ export default function Login({ navigation }) {
     try {
       dispatch(loaderAction({ isLoading: true }))
       const res = await mainApi.login({ username, password, remember });
-      dispatch(loaderAction({ isLoading: false }))
       console.log('resresres', res)
       const token = res?.data?.access_token
       if (token) {
 
         const resUser = await mainApi.getUser(token);
+        dispatch(loaderAction({ isLoading: false }))
         const user = resUser?.data?.data
         if (user) {
           console.log('user', user)
@@ -94,6 +94,7 @@ export default function Login({ navigation }) {
         //   navigation.navigate('ConfirmEmail', { userId: user.user_id, ...user })
         // }
       } else {
+        dispatch(loaderAction({ isLoading: false }))
         AlertAsync(res.reason || 'Something went wrond')
       }
     } catch (e) {

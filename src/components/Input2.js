@@ -105,7 +105,7 @@ export default class Input extends Component {
 
         {this.props.showMaxLength && (
           <Text style={styles.maxLength}>
-            {this?.props?.value?.length} / {this.props.maxLength}
+            {(!this?.props?.value?.length && this?.props?.value?.length !== 0) ? 0 : this?.props?.value?.length} / {this.props.maxLength}
           </Text>
         )}
       </View>
