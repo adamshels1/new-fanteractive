@@ -14,6 +14,7 @@ export default function CountriesModal(props) {
       onSwipeComplete={onClose}
       // swipeDirection={['down', 'up']}
       onBackdropPress={onClose}
+      onBackButtonPress={onClose}
       {...props}
     >
       <ImageBackground
