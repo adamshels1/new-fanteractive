@@ -199,12 +199,13 @@ export default function PlayerSummary({ route, navigation }) {
         // navigation.navigate('StadiumSummary', { activeTab: 'reports' })
         navigation.goBack()
       } else {
-        AlertAsync('Something went wrong')
+        AlertAsync('', 'Something went wrong')
       }
       dispatch(loaderAction({ isLoading: false }))
     } catch (e) {
       dispatch(loaderAction({ isLoading: false }))
       console.log('e', e)
+      AlertAsync('', e.message || 'Something went wrong')
     }
   }
 
@@ -419,7 +420,7 @@ export default function PlayerSummary({ route, navigation }) {
 
 
         <Button
-          disabled={!eventName || !comment || !sports?.length}
+          disabled={!eventName || !comment || !sports?.length || !selectedSport}
           text='Save and Continue'
           style={{ marginBottom: 100 }}
           onPress={() => {

@@ -189,8 +189,8 @@ const uploadAvatar = async (token, { file }) => {
     formData.append('thumbnail', {
         uri: file.path,
         type: file.mime,
-        name: file.filename
-        // name: 'file.jpeg',
+        // name: file.filename
+        name: 'file.jpeg',
     });
 
     const params = {
@@ -201,11 +201,11 @@ const uploadAvatar = async (token, { file }) => {
     const url = `${server.BASE_URL_API}file/thumbnail`;
     console.log(url, params);
     const response = await fetch(url, params);
-    // console.log('response', response)
-    // const res = await response.json();
-    // console.log('data', res)
+    console.log('response', response)
+    const res = await response.json();
+    console.log('data', res)
 
-    return response
+    return res
 };
 
 
@@ -489,7 +489,7 @@ const addStadiumRating = async (token, { stadiumId, comment, eventName, date, sp
     let formData = new FormData();
     formData.append('general_comment', comment)
     formData.append('event_name', eventName)
-    formData.append('visited_at', date)
+    formData.append('visited_at', date.toString())
     formData.append('sport_id', sportId)
     formData.append('characteristics', characteristics)
 
@@ -497,8 +497,8 @@ const addStadiumRating = async (token, { stadiumId, comment, eventName, date, sp
         formData.append('images[]', {
             uri: i.path,
             type: i.mime,
-            name: i.filename
-            // name: 'file.jpeg',
+            // name: i.filename
+            name: 'file.jpeg',
         });
     });
 

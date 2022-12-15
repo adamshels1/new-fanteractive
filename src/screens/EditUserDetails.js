@@ -82,6 +82,11 @@ export default function MyStadiumReport({ route, navigation }) {
       if (user) {
         console.log('user', user)
         dispatch(setUserAction(user))
+        if (user?.thumbnail?.url) {
+          setAvatarFile({
+            path: user?.thumbnail?.url
+          })
+        }
       }
     } catch (e) {
       console.log(e)
