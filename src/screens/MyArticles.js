@@ -70,7 +70,7 @@ export default function MyStadiumReport({ route, navigation }) {
 
         <View style={styles.filtersWrap}>
           <TouchableOpacity style={styles.filterItem}>
-            <Text style={styles.filterText}>Player</Text>
+            <Text style={styles.filterText}>Articles</Text>
             <Image
               style={styles.filterIcon}
               source={require('@assets/icons/Sort_Down_icon.png')}

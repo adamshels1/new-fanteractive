@@ -40,12 +40,12 @@ export default function GameSummary({ route, navigation }) {
   const getLocalStatsOveral = async () => {
     try {
       const res = await mainApi.getGameStatsOveral(token, {
-        gameId: item.id, //342, 
+        gameId: item.game.id, //342, 
         teamId: item?.game?.local_team?.id //47, 
       })
 
       const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
-        gameId: item.id, //342, 
+        gameId: item.game.id, //342, 
         teamId: item?.game?.local_team?.id //47,
       })
 
@@ -63,12 +63,12 @@ export default function GameSummary({ route, navigation }) {
   const getVisitorStatsOveral = async () => {
     try {
       const res = await mainApi.getGameStatsOveral(token, {
-        gameId: item.id, //342, 
+        gameId: item.game.id, //342, 
         teamId: item?.game?.visitor_team?.id //47, 
       })
 
       const resPlayer = await mainApi.getGameStatsOveralPlayer(token, {
-        gameId: item.id, //342, 
+        gameId: item.game.id, //342, 
         teamId: item?.game?.visitor_team?.id // 47,
       })
 
@@ -91,7 +91,7 @@ export default function GameSummary({ route, navigation }) {
 
   const getGame = async () => {
     try {
-      const res = await mainApi.getGame(item.id)
+      const res = await mainApi.getGame(item.game.id)
       console.log('item', item)
       setGame(res?.data?.data)
     } catch (e) {
@@ -102,7 +102,8 @@ export default function GameSummary({ route, navigation }) {
 
   const getGameReports = async () => {
     try {
-      const res = await mainApi.getGameReports(342)
+      console.log('item', item)
+      const res = await mainApi.getGameReports(item.game.id)
       console.log('resres', res.data.data)
       setReports(res.data.data)
     } catch (e) {
