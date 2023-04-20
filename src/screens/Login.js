@@ -18,6 +18,7 @@ import AlertAsync from 'react-native-alert-async'
 import { loaderAction } from '@redux/actions/loaderActions'
 import { setTokenAction, setUserAction } from '@redux/actions/userActions'
 import helper from '@services/helper'
+import { CommonActions } from '@react-navigation/native'
 // import messaging from '@react-native-firebase/messaging'
 // import { LoginManager, Settings, AccessToken, AuthenticationToken } from "react-native-fbsdk-next"
 
@@ -70,16 +71,21 @@ export default function Login({ navigation }) {
       if (token) {
 
         const resUser = await mainApi.getUser(token);
-        dispatch(loaderAction({ isLoading: false }))
         const user = resUser?.data?.data
         if (user) {
           console.log('user', user)
           dispatch(setUserAction(user))
+          dispatch(setTokenAction(token))
         }
         setUsername('')
         setPassword('')
-        dispatch(setTokenAction(token))
-        navigation.navigate('HomeTabs')
+        dispatch(loaderAction({ isLoading: false }))
+        // navigation.navigate('HomeTabs')
+        const resetAction = CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'HomeTabs' }]
+        });
+        navigation.dispatch(resetAction);
 
         // const user = res.response;
         // if (user.user_email_confirmation === 'Confirmed') {
