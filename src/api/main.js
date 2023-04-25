@@ -33,7 +33,8 @@ const signup = async ({ email = '', password = '', username = '' }) => {
         username,
         email,
         password,
-        password_confirmation: password
+        password_confirmation: password,
+        affiliate_agree: '0'
     });
     var config = {
         method: 'post',

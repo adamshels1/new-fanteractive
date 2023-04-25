@@ -140,7 +140,7 @@ export default function Login({ navigation }) {
               >
                 <Image
                   style={styles.checkboxIcon}
-                  source={checkboxIcon}
+                  source={privacyPolicy ? require('@assets/icons/oval-green.png') : require('@assets/icons/Oval.png')}
                 />
                 <Text style={styles.agree}>
                   {'  '}I agree with
