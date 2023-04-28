@@ -309,7 +309,7 @@ export default function MyStadiumReport({ route, navigation }) {
                 <Text style={styles.inputButtonText}>
                   {selectedCountry ? selectedCountry?.name : 'Country'}
                 </Text>
-                <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+                <Image source={require('@assets/icons/right.png')} resizeMode='contain' style={{ width: 12.14, height: 17.7 }} />
               </TouchableOpacity>
 
 
@@ -325,7 +325,7 @@ export default function MyStadiumReport({ route, navigation }) {
                 <Text style={styles.inputButtonText}>
                   {state ? state?.name : 'State'}
                 </Text>
-                <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+                <Image source={require('@assets/icons/right.png')} resizeMode='contain' style={{ width: 12.14, height: 17.7 }} />
               </TouchableOpacity>
 
 

@@ -214,7 +214,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.selectText} numberOfLines={1}>
                     {sportsLine ? sportsLine : 'Your Sport Rating'}
                   </Text>
-                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='contain' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
               </View>
 
@@ -227,7 +227,7 @@ export default function Login({ navigation }) {
                   <Text style={styles.selectText} numberOfLines={1}>
                     {teamsLine ? teamsLine : 'Favorite Teams'}
                   </Text>
-                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='contain' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
               </View>
 

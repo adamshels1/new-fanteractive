@@ -101,7 +101,7 @@ export default function About({ route, navigation }) {
         <Image
           style={{ width: '100%', height: 335 }}
           source={require('@assets/images/banner.png')}
-          resizeMode='center'
+          resizeMode='contain'
         />
       </View>
     )

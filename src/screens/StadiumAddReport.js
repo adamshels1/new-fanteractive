@@ -194,7 +194,7 @@ export default function PlayerSummary({ route, navigation }) {
         images,
         characteristics
       })
-      console.log('res', res)
+      console.log('res_____', res)
       if (res.status === 200) {
         // navigation.navigate('StadiumSummary', { activeTab: 'reports' })
         navigation.goBack()
@@ -331,7 +331,7 @@ export default function PlayerSummary({ route, navigation }) {
           <Text style={styles.inputButtonText}>
             {selectedSport ? selectedSport?.name : 'Your Sport Rating'}
           </Text>
-          <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+          <Image source={require('@assets/icons/right.png')} resizeMode='contain' style={{ width: 12.14, height: 17.7 }} />
         </TouchableOpacity>
 
 

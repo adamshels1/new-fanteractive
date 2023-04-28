@@ -255,7 +255,7 @@ export default function CompleteAccount({ navigation }) {
                     itemStyle={styles.lookumItemStyle}
                     itemTextStyle={styles.lookumItemTextStyle}
                   /> */}
-                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='contain' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
 
 
@@ -286,7 +286,7 @@ export default function CompleteAccount({ navigation }) {
                   <Text style={{ fontWeight: '400', fontSize: 16, color: '#CBCBCB' }}>
                     {state ? state?.name : 'State'}
                   </Text>
-                  <Image style={styles.selectIcon} resizeMode='center' source={require('@assets/icons/arrow-right.png')} />
+                  <Image style={styles.selectIcon} resizeMode='contain' source={require('@assets/icons/arrow-right.png')} />
                 </TouchableOpacity>
                 <Input
                   onChangeText={city => setCity(city)}

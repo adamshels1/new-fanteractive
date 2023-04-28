@@ -422,7 +422,7 @@ export default function GameSummary({ route, navigation }) {
               <Image source={require('@assets/icons/calendar_2.png')} style={{ width: 11, height: 12 }} />
               <Text style={{ fontFamily: 'Oswald', fontWeight: '500', fontSize: 14, color: '#FFF', marginLeft: 7 }}>
                 {/* May 16, 2020   12:30 PM ET */}
-                {moment(item.started).format('MMM DD, YYYY hh:mm A')}
+                {moment(item?.game?.started).format('MMM DD, YYYY hh:mm A')}
               </Text>
             </View>
 

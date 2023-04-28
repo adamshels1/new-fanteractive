@@ -100,7 +100,7 @@ export default function MyStadiumReport(props) {
               <Image
                 style={{ width: 26 }}
                 source={item.icon}
-                resizeMode='center'
+                resizeMode='contain'
               />
               <Text style={{ fontWeight: '400', fontSize: 18, color: '#081735', marginLeft: 16 }}>
                 {item.title}
@@ -109,7 +109,7 @@ export default function MyStadiumReport(props) {
             <Image
               style={{ width: 13, height: 25 }}
               source={require('@assets/icons/green-arrow.png')}
-              resizeMode='center'
+              resizeMode='contain'
             />
           </TouchableOpacity>
           }

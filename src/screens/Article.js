@@ -94,7 +94,9 @@ export default function About({ route, navigation }) {
                 {moment(item?.published).format('DD MMM, YYYY')}
               </Text>
               <Image source={require('@assets/icons/message.png')} style={{ width: 16, height: 17, marginLeft: 13 }} />
-              <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF', marginLeft: 7 }}>23</Text>
+              <Text style={{ fontWeight: '500', fontSize: 12, color: '#FFF', marginLeft: 7 }}>
+                {item?.comments_count}
+              </Text>
             </View>
 
           </View>

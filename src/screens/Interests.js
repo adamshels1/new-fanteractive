@@ -264,7 +264,7 @@ export default function Interests({ route, navigation }) {
                 <Text style={styles.inputButtonText} numberOfLines={1}>
                   {sportsLine ? sportsLine : 'Select Sports'}
                 </Text>
-                <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+                <Image source={require('@assets/icons/right.png')} resizeMode='contain' style={{ width: 12.14, height: 17.7 }} />
               </TouchableOpacity>
 
 
@@ -280,7 +280,7 @@ export default function Interests({ route, navigation }) {
                 <Text style={styles.inputButtonText} numberOfLines={1}>
                   {teamsLine ? teamsLine : 'Select Teams'}
                 </Text>
-                <Image source={require('@assets/icons/right.png')} resizeMode='center' style={{ width: 12.14, height: 17.7 }} />
+                <Image source={require('@assets/icons/right.png')} resizeMode='contain' style={{ width: 12.14, height: 17.7 }} />
               </TouchableOpacity>
 
 
